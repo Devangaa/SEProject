@@ -6,10 +6,12 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\LayananController as PublicLayananController;
+use App\Http\Controllers\Pelanggan\KeranjangController;
 use App\Http\Controllers\Pelanggan\TransaksiController;
 use App\Http\Controllers\ProductController as PublicProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WilayahController;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +21,14 @@ Route::get('/', function () {
         return redirect()->route('admin.dashboard');
     }
 
-    return view('landing');
+    $topProducts = Product::where('is_delete', 0)
+        ->orderByRaw('jumlah_stok = 0 ASC')
+        ->orderBy('total_terjual', 'desc')
+        ->orderBy('id', 'desc')
+        ->limit(8)
+        ->get();
+
+    return view('landing', compact('topProducts'));
 })->name('landing');
 
 // PRODUK & LAYANAN
@@ -73,14 +82,32 @@ Route::middleware(['auth'])->group(function () {
             'update' => 'layanan.update',
             'destroy' => 'layanan.destroy',
         ]);
+
+        Route::get('/kelola-transaksi', [App\Http\Controllers\Admin\TransaksiController::class, 'index'])->name('transaksi.index');
+        Route::get('/kelola-transaksi/{order_id}', [App\Http\Controllers\Admin\TransaksiController::class, 'show'])->name('transaksi.show');
+        Route::post('/kelola-transaksi/{order_id}/status', [App\Http\Controllers\Admin\TransaksiController::class, 'updateStatus'])->name('transaksi.status');
+        Route::post('/kelola-transaksi/{order_id}/resi', [App\Http\Controllers\Admin\TransaksiController::class, 'updateResi'])->name('transaksi.resi');
     });
 
     // PELANGGAN ONLY
     Route::middleware(['role:pelanggan'])->group(function () {
+        // CART
+        Route::get('/keranjang', [KeranjangController::class, 'index'])->name('cart.index');
+        Route::post('/keranjang/tambah', [KeranjangController::class, 'store'])->name('cart.store');
+        Route::patch('/keranjang/update/{cart}', [KeranjangController::class, 'update'])->name('cart.update');
+        Route::delete('/keranjang/hapus/{cart}', [KeranjangController::class, 'destroy'])->name('cart.destroy');
+
         Route::get('/checkout', [TransaksiController::class, 'checkout'])->name('checkout.produk.index');
         Route::post('/checkout/store', [TransaksiController::class, 'store'])->name('checkout.produk.store');
+
+        Route::get('/checkout-layanan', [TransaksiController::class, 'checkoutLayanan'])->name('checkout.layanan.index');
+        Route::post('/checkout-layanan/store', [TransaksiController::class, 'storeLayanan'])->name('checkout.layanan.store');
+
+        Route::get('/cek-ongkir', [TransaksiController::class, 'cekOngkir'])->name('cek-ongkir');
         Route::get('/pesanan-saya', [TransaksiController::class, 'history'])->name('transaksi.history');
-        Route::post('/transaksi/{id}/cancel', [TransaksiController::class, 'cancel'])->name('transaksi.cancel');
+        Route::get('/transaksi/{order_id}', [TransaksiController::class, 'show'])->name('transaksi.show');
+        Route::get('/pembayaran/{order_id}', [TransaksiController::class, 'pembayaran'])->name('transaksi.pembayaran');
+        Route::post('/transaksi/{order_id}/cancel', [TransaksiController::class, 'cancel'])->name('transaksi.cancel');
     });
 
     // PROFILE
@@ -94,5 +121,7 @@ Route::middleware(['auth'])->group(function () {
 
 // DROPDOWN WILAYAH
 Route::get('/provinces', [WilayahController::class, 'getProvinces']);
+Route::get('/provinces-transaction', [WilayahController::class, 'getProvincesForTransaction']);
 Route::get('/cities/{provinceId}', [WilayahController::class, 'getCitiesByProvince']);
 Route::get('/kecamatan/{cityId}', [WilayahController::class, 'getKecamatanByCity']);
+Route::get('/kecamatan-transaction/{cityId}', [WilayahController::class, 'getKecamatanByTransactionCity']);

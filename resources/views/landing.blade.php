@@ -114,6 +114,37 @@
         </div>
     </section>
 
+    {{-- Katalog Produk --}}
+    <section data-aos="fade-up" class="pt-10 pb-24">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div class="text-left">
+                    <span class="inline-block px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold rounded-full mb-4 uppercase">
+                        Koleksi Produk
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">
+                        Produk <span class="text-green-600">Terbaik</span> Kami
+                    </h2>
+                    <p class="text-gray-500 mt-2 max-w-lg">Pilih dari berbagai pilihan hasil panen segar dan peralatan hidroponik berkualitas tinggi.</p>
+                </div>
+                <div>
+                    <a href="{{ route('produk.index') }}" class="inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-green-600 text-green-600 font-bold rounded-xl hover:bg-green-600 hover:text-white transition duration-300 shadow-lg shadow-green-50">
+                        Lihat Semua Produk
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                @foreach($topProducts as $product)
+                    @include('produk.item-card', ['product' => $product])
+                @endforeach
+            </div>
+        </div>
+    </section>
+
     <section data-aos="fade-up" class="bg-green-100 py-24">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16">

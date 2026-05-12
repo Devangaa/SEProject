@@ -103,20 +103,24 @@
 
                 <div class="flex flex-col sm:flex-row gap-3 pt-2">
                     @auth
-                        <button class="flex-1 bg-green-100 text-green-700 font-black py-3 px-6 rounded-xl hover:bg-green-200 transition-all text-sm">
-                            + Keranjang
-                        </button>
-                        <button class="flex-1 bg-green-600 text-white font-black py-3 px-6 rounded-xl hover:bg-green-700 shadow-lg shadow-green-100 transition-all text-sm">
-                            Beli Sekarang
-                        </button>
+                        <form action="{{ route('checkout.layanan.index') }}" method="GET" class="flex-1">
+                            <input type="hidden" name="layanan_id" value="{{ $layanan->id }}">
+                            <button type="submit" class="w-full bg-green-600 text-white font-black py-4 px-6 rounded-2xl hover:bg-green-700 shadow-xl shadow-green-100 transition-all text-base active:scale-95 flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                Pesan Sekarang
+                            </button>
+                        </form>
                     @else
-                        <a href="{{ route('login') }}" class="flex-1 flex items-center justify-center bg-green-100 text-green-700 font-black py-3 px-6 rounded-xl hover:bg-green-200 transition-all text-sm">
-                            + Keranjang
-                        </a>
-
-                        <a href="{{ route('login') }}" class="flex-1 flex items-center justify-center bg-green-600 text-white font-black py-3 px-6 rounded-xl hover:bg-green-700 shadow-lg shadow-green-100 transition-all text-sm">
-                            Beli Sekarang
-                        </a>
+                        <form action="{{ route('login') }}" method="GET" class="flex-1">
+                            <button type="submit" class="w-full bg-green-600 text-white font-black py-4 px-6 rounded-2xl hover:bg-green-700 shadow-xl shadow-green-100 transition-all text-base active:scale-95 flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                                Pesan Sekarang
+                            </button>
+                        </form>
                     @endauth
                 </div>
             </div>

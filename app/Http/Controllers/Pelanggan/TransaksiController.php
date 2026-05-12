@@ -4,37 +4,133 @@ namespace App\Http\Controllers\Pelanggan;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\DetailTransaksiLayanan;
 use App\Models\DetailTransaksiProduk;
 use App\Models\Kecamatan;
+use App\Models\Keranjang;
+use App\Models\Layanan;
 use App\Models\Product;
 use App\Models\Province;
 use App\Models\Transaksi;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Midtrans\Config;
+use Midtrans\CoreApi;
 
 class TransaksiController extends Controller
 {
-    /**
-     * Menampilkan Halaman Checkout
-     */
+    public function __construct()
+    {
+        Config::$serverKey = config('midtrans.server_key');
+        Config::$isProduction = config('midtrans.is_production');
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
+    }
+
+    public function cekOngkir(Request $request)
+    {
+        $request->validate([
+            'kecamatan_id' => 'required|exists:kecamatans,id',
+            'total_weight' => 'required|integer|min:0',
+        ]);
+
+        $ongkir = $this->calculateOngkir($request->kecamatan_id, $request->total_weight);
+
+        return response()->json([
+            'success' => true,
+            'ongkir' => $ongkir,
+            'formatted_ongkir' => 'Rp '.number_format($ongkir, 0, ',', '.'),
+        ]);
+    }
+
+    private function calculateOngkir($kecamatanId, $totalWeightGrams)
+    {
+        $kecamatan = Kecamatan::with('city')->findOrFail($kecamatanId);
+        $freeShippingKecamatans = ['Patrang', 'Sumbersari', 'Kaliwates'];
+
+        if (in_array($kecamatan->name, $freeShippingKecamatans)) {
+            return 0;
+        }
+
+        // Ambil ongkir per kg dari tabel cities (yang diatur via seeder/manual)
+        $ongkirPerKg = $kecamatan->city->ongkir ?? 0;
+
+        // Konversi gram ke kg dan bulatkan ke atas (misal 1.2kg jadi 2kg)
+        $weightInKg = ceil($totalWeightGrams / 1000);
+
+        // Minimal 1kg jika ada beratnya
+        if ($weightInKg < 1 && $totalWeightGrams > 0) {
+            $weightInKg = 1;
+        }
+
+        return $ongkirPerKg * $weightInKg;
+    }
+
     public function checkout(Request $request)
     {
-        // Ambil data produk (Beli Sekarang)
-        $product = Product::findOrFail($request->product_id);
-        $qty = $request->qty ?? 1;
+        $mode = $request->input('mode', 'buy_now');
 
-        // Logika Cek Sayuran
-        $isSayuran = ($product->kategori == 'Sayuran');
+        if ($mode === 'cart') {
+            $cartIds = $request->input('cart_ids', []);
+            if (empty($cartIds)) {
+                return redirect()->route('cart.index')->with('error', 'Pilih minimal satu produk untuk di checkout.');
+            }
 
-        // Ambil semua provinsi untuk dropdown (non-sayuran)
-        $provinces = Province::all();
+            $cartItems = Keranjang::whereIn('id', $cartIds)
+                ->where('user_id', Auth::id())
+                ->with('product')
+                ->get();
+
+            if ($cartItems->isEmpty()) {
+                return redirect()->route('cart.index')->with('error', 'Produk tidak ditemukan atau keranjang kosong.');
+            }
+
+            foreach ($cartItems as $item) {
+                if ($item->jumlah > $item->product->jumlah_stok) {
+                    return redirect()->route('cart.index')->with('error', "Stok {$item->product->nama_produk} tidak mencukupi.");
+                }
+            }
+
+            $items = $cartItems->map(fn ($cart) => (object) [
+                'product' => $cart->product,
+                'qty' => $cart->jumlah,
+                'subtotal' => $cart->product->harga * $cart->jumlah,
+                'cart_id' => $cart->id,
+            ]);
+        } else {
+            $request->validate([
+                'product_id' => 'required|exists:products,id',
+                'qty' => 'nullable|integer|min:1',
+            ]);
+
+            $product = Product::findOrFail($request->product_id);
+            $qty = min($request->qty ?? 1, $product->jumlah_stok);
+
+            $items = collect([
+                (object) [
+                    'product' => $product,
+                    'qty' => $qty,
+                    'subtotal' => $product->harga * $qty,
+                ],
+            ]);
+        }
+
+        $grandTotal = $items->sum('subtotal');
+        $totalWeight = $items->sum(fn ($item) => $item->product->berat * $item->qty);
+        $isSayuran = $items->contains(fn ($item) => $item->product->kategori === 'Sayuran');
+
+        $allowedProvinces = ['Banten', 'Daerah Khusus Ibukota Jakarta', 'Jawa Barat', 'Jawa Tengah', 'Daerah Istimewa Yogyakarta', 'Jawa Timur'];
+        $provinces = Province::whereIn('name', $allowedProvinces)->orderBy('name')->get();
 
         $sayuranProvince = null;
         $sayuranCity = null;
-
         if ($isSayuran) {
-            // Sayuran: hanya bisa dikirim ke Kab. Jember (Sumbersari, Patrang, Kaliwates)
             $kecamatans = Kecamatan::whereIn('name', ['Sumbersari', 'Patrang', 'Kaliwates'])->orderBy('name')->get();
             $sayuranProvince = Province::where('name', 'Jawa Timur')->first();
             $sayuranCity = City::where('name', 'Kabupaten Jember')->first();
@@ -43,136 +139,310 @@ class TransaksiController extends Controller
         }
 
         return view('pelanggan.transaksi.checkout.produk.index', compact(
-            'product', 'qty', 'isSayuran', 'kecamatans', 'provinces', 'sayuranProvince', 'sayuranCity'
+            'items', 'grandTotal', 'mode', 'isSayuran', 'kecamatans', 'provinces', 'sayuranProvince', 'sayuranCity', 'totalWeight'
         ));
     }
 
-    /**
-     * Eksekusi Simpan Transaksi (Store)
-     */
+    public function checkoutLayanan(Request $request)
+    {
+        $request->validate([
+            'layanan_id' => 'required|exists:layanan,id',
+        ]);
+
+        $layanan = Layanan::findOrFail($request->layanan_id);
+        $grandTotal = $layanan->harga;
+        $totalWeight = 1000;
+
+        $isLayananGeofencing = true;
+        $allowedKecamatans = ['Sumbersari', 'Patrang', 'Kaliwates'];
+
+        $provinces = Province::all();
+        $kecamatans = Kecamatan::whereIn('name', $allowedKecamatans)->orderBy('name')->get();
+        $layananProvince = Province::where('name', 'Jawa Timur')->first();
+        $layananCity = City::where('name', 'Kabupaten Jember')->first();
+
+        return view('pelanggan.transaksi.checkout.layanan.index', compact(
+            'layanan', 'grandTotal', 'isLayananGeofencing', 'kecamatans', 'provinces', 'layananProvince', 'layananCity', 'totalWeight'
+        ));
+    }
+
     public function store(Request $request)
     {
         $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'jumlah' => 'required|integer|min:1',
+            'items' => 'required|array|min:1',
+            'items.*.product_id' => 'required|exists:products,id',
+            'items.*.jumlah' => 'required|integer|min:1',
+            'items.*.catatan' => 'nullable|string',
             'nama_penerima' => 'required|string',
             'no_hp' => 'required|string',
             'alamat_lengkap' => 'required|string',
             'kecamatan_id' => 'required|exists:kecamatans,id',
-            'metode_pembayaran' => 'required|in:midtrans,cod',
-            'catatan' => 'nullable|string',
+            'metode_pembayaran' => 'required|in:qris,bca,mandiri,cod',
         ]);
 
-        $product = Product::find($request->product_id);
+        $itemsData = $request->input('items');
+        $products = Product::whereIn('id', collect($itemsData)->pluck('product_id'))->get()->keyBy('id');
+        $totalWeight = 0;
 
-        // 1. Validasi Stok
-        if ($product->jumlah_stok < $request->jumlah) {
-            return back()->with('error', 'Maaf, stok tidak mencukupi.');
-        }
-
-        // 2. Validasi Geofencing Sayuran (Security Check)
-        if ($product->kategori == 'Sayuran') {
-            $kecamatan = Kecamatan::find($request->kecamatan_id);
-            $allowed = ['Sumbersari', 'Patrang', 'Kaliwates'];
-            if (! in_array($kecamatan->name, $allowed)) {
-                return back()->with('error', 'Produk sayur hanya bisa dikirim ke Sumbersari, Patrang, dan Kaliwates.');
+        foreach ($itemsData as $item) {
+            $product = $products->get($item['product_id']);
+            if ($product->jumlah_stok < $item['jumlah']) {
+                return back()->with('error', "Stok {$product->nama_produk} tidak mencukupi.");
+            }
+            $totalWeight += ($product->berat * $item['jumlah']);
+            if ($product->kategori === 'Sayuran') {
+                $kecamatan = Kecamatan::find($request->kecamatan_id);
+                if (! in_array($kecamatan->name, ['Sumbersari', 'Patrang', 'Kaliwates'])) {
+                    return back()->with('error', 'Produk sayur hanya bisa dikirim ke Sumbersari, Patrang, dan Kaliwates.');
+                }
             }
         }
 
-        // 3. Mulai Database Transaction
-        return DB::transaction(function () use ($request, $product) {
-            $subtotal = $product->harga * $request->jumlah;
+        $ongkir = $this->calculateOngkir($request->kecamatan_id, $totalWeight);
 
-            // Simpan Header Transaksi
+        return DB::transaction(function () use ($request, $itemsData, $products, $ongkir) {
+            $grandTotal = 0;
+            foreach ($itemsData as $item) {
+                $grandTotal += $products->get($item['product_id'])->harga * $item['jumlah'];
+            }
+
             $transaksi = Transaksi::create([
                 'user_id' => Auth::id(),
                 'kecamatan_id' => $request->kecamatan_id,
-                'tanggal_transaksi' => now(),
+                'tanggal_transaksi' => now('Asia/Jakarta'),
                 'metode_pembayaran' => $request->metode_pembayaran,
-                'ekspedisi' => ($request->metode_pembayaran == 'cod') ? 'Kurir Lokal (COD)' : 'Ekspedisi Reguler',
-                'status' => 'Menunggu Pembayaran',
+                'status' => ($request->metode_pembayaran == 'cod') ? 'Menunggu Konfirmasi' : 'Menunggu Pembayaran',
                 'alamat_pengiriman' => $request->alamat_lengkap,
                 'nama_penerima' => $request->nama_penerima,
                 'no_hp' => $request->no_hp,
-                'poin' => floor($subtotal / 10000),
+                'poin' => floor($grandTotal / 10000),
+                'batas_pembayaran' => now('Asia/Jakarta')->addHours(24),
+                'ongkir' => $ongkir,
             ]);
 
-            // Simpan Detail Transaksi
-            DetailTransaksiProduk::create([
-                'transaksi_id' => $transaksi->id,
-                'produk_id' => $product->id,
-                'jumlah' => $request->jumlah,
-                'total_harga' => $subtotal,
-                'catatan' => $request->catatan ?? null,
-                'nomor_resi' => null,
-            ]);
+            foreach ($itemsData as $item) {
+                $product = $products->get($item['product_id']);
+                DetailTransaksiProduk::create([
+                    'transaksi_id' => $transaksi->id,
+                    'produk_id' => $product->id,
+                    'jumlah' => $item['jumlah'],
+                    'total_harga' => $product->harga * $item['jumlah'],
+                    'catatan' => $item['catatan'] ?? null,
+                ]);
+                $product->decrement('jumlah_stok', $item['jumlah']);
+                if (isset($item['cart_id'])) {
+                    Keranjang::where('id', $item['cart_id'])->delete();
+                }
+            }
 
-            // Potong Stok
-            $product->decrement('jumlah_stok', $request->jumlah);
-
-            // 4. Integrasi Pembayaran
             if ($request->metode_pembayaran == 'cod') {
-                return redirect()->route('transaksi.history')->with('success', 'Pesanan COD berhasil dibuat!');
+                return redirect()->route('transaksi.pembayaran', $transaksi->order_id)->with('success', 'Pesanan COD berhasil dibuat!');
             } else {
-                // Di sini nanti tempat kode Midtrans (Snap Token)
-                return $this->generateMidtransToken($transaksi);
+                return $this->generateMidtransPayment($transaksi);
             }
         });
     }
 
-    private function generateMidtransToken($transaksi)
+    public function storeLayanan(Request $request)
     {
-        // Placeholder untuk integrasi Midtrans di tahap berikutnya
-        return redirect()->route('transaksi.history')->with('success', 'Lanjutkan pembayaran melalui Midtrans.');
+        $request->validate([
+            'layanan_id' => 'required|exists:layanan,id',
+            'catatan' => 'nullable|string',
+            'nama_penerima' => 'required|string',
+            'no_hp' => 'required|string',
+            'alamat_lengkap' => 'required|string',
+            'kecamatan_id' => 'required|exists:kecamatans,id',
+            'metode_pembayaran' => 'required|in:qris,bca,mandiri,cod',
+        ]);
+
+        $layanan = Layanan::findOrFail($request->layanan_id);
+        $ongkir = $this->calculateOngkir($request->kecamatan_id, 1000);
+
+        return DB::transaction(function () use ($request, $layanan, $ongkir) {
+            $transaksi = Transaksi::create([
+                'user_id' => Auth::id(),
+                'kecamatan_id' => $request->kecamatan_id,
+                'tanggal_transaksi' => now('Asia/Jakarta'),
+                'metode_pembayaran' => $request->metode_pembayaran,
+                'status' => ($request->metode_pembayaran == 'cod') ? 'Menunggu Konfirmasi' : 'Menunggu Pembayaran',
+                'alamat_pengiriman' => $request->alamat_lengkap,
+                'nama_penerima' => $request->nama_penerima,
+                'no_hp' => $request->no_hp,
+                'poin' => floor($layanan->harga / 50000),
+                'batas_pembayaran' => now('Asia/Jakarta')->addHours(24),
+                'ongkir' => $ongkir,
+            ]);
+
+            DetailTransaksiLayanan::create([
+                'transaksi_id' => $transaksi->id,
+                'layanan_id' => $layanan->id,
+                'total_harga' => $layanan->harga,
+                'catatan' => $request->catatan,
+            ]);
+
+            if ($request->metode_pembayaran == 'cod') {
+                return redirect()->route('transaksi.pembayaran', $transaksi->order_id)->with('success', 'Pesanan COD berhasil dibuat!');
+            } else {
+                return $this->generateMidtransPayment($transaksi);
+            }
+        });
     }
 
-    public function cancel($id)
+    private function generateMidtransPayment(Transaksi $transaksi)
     {
-        // Cari transaksi milik user yang login
-        $transaksi = Transaksi::where('user_id', Auth::id())->findOrFail($id);
-
-        // Cek apakah status masih memungkinkan untuk dibatalkan
-        if ($transaksi->status !== 'Menunggu Pembayaran') {
-            return back()->with('error', 'Pesanan tidak dapat dibatalkan karena sudah diproses.');
-        }
-
         try {
-            DB::transaction(function () use ($transaksi) {
-                // 1. Ubah status transaksi
-                $transaksi->update([
-                    'status' => 'Dibatalkan',
-                ]);
+            $totalAmount = (int) ($transaksi->detailProduks->sum('total_harga') + $transaksi->detailLayanans->sum('total_harga') + $transaksi->ongkir);
 
-                // 2. Kembalikan stok produk
-                // Kita ambil detail produk yang terkait dengan transaksi ini
-                $details = DetailTransaksiProduk::where('transaksi_id', $transaksi->id)->get();
+            $params = [
+                'payment_type' => ($transaksi->metode_pembayaran == 'mandiri') ? 'echannel' : ($transaksi->metode_pembayaran == 'qris' ? 'qris' : 'bank_transfer'),
+                'transaction_details' => [
+                    'order_id' => $transaksi->order_id,
+                    'gross_amount' => $totalAmount,
+                ],
+                'customer_details' => [
+                    'first_name' => $transaksi->nama_penerima,
+                    'email' => $transaksi->user->email,
+                    'phone' => $transaksi->no_hp,
+                ],
+                'expiry' => [
+                    'start_time' => Carbon::parse($transaksi->tanggal_transaksi)->format('Y-m-d H:i:s O'),
+                    'unit' => 'hours',
+                    'duration' => 24,
+                ],
+            ];
 
-                foreach ($details as $detail) {
-                    $product = Product::find($detail->produk_id);
-                    if ($product) {
-                        $product->increment('jumlah_stok', $detail->jumlah);
+            if ($transaksi->metode_pembayaran == 'bca') {
+                $params['bank_transfer'] = ['bank' => 'bca'];
+            } elseif ($transaksi->metode_pembayaran == 'mandiri') {
+                $params['echannel'] = [
+                    'bill_info1' => 'Pembayaran HydroMart',
+                    'bill_info2' => $transaksi->order_id,
+                ];
+            }
+
+            $response = CoreApi::charge($params);
+            $paymentCode = null;
+            if ($transaksi->metode_pembayaran == 'bca') {
+                $paymentCode = $response->va_numbers[0]->va_number;
+            } elseif ($transaksi->metode_pembayaran == 'mandiri') {
+                $paymentCode = json_encode(['bill_key' => $response->bill_key, 'biller_code' => $response->biller_code]);
+            } elseif ($transaksi->metode_pembayaran == 'qris') {
+                foreach ($response->actions as $action) {
+                    if ($action->name == 'generate-qr-code') {
+                        $paymentCode = $action->url;
+                        break;
                     }
                 }
-            });
+            }
+
+            $transaksi->update(['kode_pembayaran' => $paymentCode]);
+
+            return redirect()->route('transaksi.pembayaran', $transaksi->order_id)->with('success', 'Pesanan berhasil dibuat!');
+        } catch (Exception $e) {
+            return redirect()->route('transaksi.show', $transaksi->order_id)->with('error', 'Gagal menghubungkan ke Midtrans: '.$e->getMessage());
+        }
+    }
+
+    public function show($order_id)
+    {
+        $transaksi = Transaksi::where('user_id', Auth::id())
+            ->where('order_id', $order_id)
+            ->with(['detailProduks.produk', 'detailLayanans.layanan', 'kecamatan.city.province'])
+            ->firstOrFail();
+
+        $trackingData = null;
+        if (in_array($transaksi->status, ['Dikirim', 'Selesai']) && $transaksi->nomor_resi && $transaksi->ekspedisi) {
+            if ($transaksi->ekspedisi !== 'Kurir Lokal') {
+                $cacheKey = 'tracking_'.$transaksi->nomor_resi;
+                $trackingData = Cache::remember($cacheKey, 3600, function () use ($transaksi) {
+                    if (strtoupper($transaksi->nomor_resi) === 'TESTING123') {
+                        return $this->getMockTrackingData($transaksi->nomor_resi);
+                    }
+                    try {
+                        $apiKey = config('services.binderbyte.key');
+                        $response = Http::get('https://api.binderbyte.com/v1/track', [
+                            'api_key' => $apiKey,
+                            'courier' => strtolower($transaksi->ekspedisi),
+                            'awb' => $transaksi->nomor_resi,
+                        ]);
+                        if ($response->successful()) {
+                            $data = $response->json();
+                            if (isset($data['status']) && $data['status'] === 200) {
+                                return $data;
+                            }
+                        }
+                    } catch (Exception $e) {
+                        Log::error('BinderByte API Show Error (Pelanggan): '.$e->getMessage());
+                    }
+
+                    return null;
+                });
+            }
+        }
+
+        return view('pelanggan.transaksi.show', compact('transaksi', 'trackingData'));
+    }
+
+    private function getMockTrackingData($resi)
+    {
+        return [
+            'status' => 200,
+            'message' => 'Successfully tracked package (MOCK)',
+            'data' => [
+                'summary' => [
+                    'awb' => $resi,
+                    'courier' => 'JNE',
+                    'service' => 'REG',
+                    'status' => 'DELIVERED',
+                    'date' => now()->format('Y-m-d H:i:s'),
+                    'desc' => 'Paket telah diterima',
+                ],
+                'history' => [
+                    ['date' => now()->subHours(2)->format('Y-m-d H:i:s'), 'desc' => 'PAKET DITERIMA', 'location' => 'JEMBER'],
+                    ['date' => now()->subHours(5)->format('Y-m-d H:i:s'), 'desc' => 'PAKET KELUAR GUDANG', 'location' => 'JEMBER'],
+                ],
+            ],
+        ];
+    }
+
+    public function pembayaran($order_id)
+    {
+        $transaksi = Transaksi::where('user_id', Auth::id())
+            ->where('order_id', $order_id)
+            ->with(['detailProduks.produk', 'detailLayanans.layanan'])
+            ->firstOrFail();
+
+        return view('pelanggan.transaksi.pembayaran', compact('transaksi'));
+    }
+
+    public function cancel($order_id)
+    {
+        try {
+            $transaksi = Transaksi::where('order_id', $order_id)
+                ->where('user_id', Auth::id())
+                ->where('status', 'Menunggu Pembayaran')
+                ->firstOrFail();
+            $transaksi->markAsCancelled();
 
             return back()->with('success', 'Pesanan berhasil dibatalkan.');
-        } catch (\Exception $e) {
-            return back()->with('error', 'Terjadi kesalahan saat membatalkan pesanan.');
+        } catch (Exception $e) {
+            return back()->with('error', 'Gagal membatalkan pesanan: '.$e->getMessage());
         }
     }
 
     public function history(Request $request)
     {
-        $tab = $request->input('tab', 'aktif');
-
+        $tab = $request->get('tab', 'menunggu-pembayaran');
         $query = Transaksi::where('user_id', Auth::id())
-            ->with(['detailProduks.produk', 'kecamatan'])
+            ->with(['detailProduks.produk', 'detailLayanans.layanan', 'kecamatan'])
             ->orderBy('tanggal_transaksi', 'desc');
 
-        if ($tab == 'riwayat') {
+        if ($tab === 'menunggu-pembayaran') {
+            $query->whereIn('status', ['Menunggu Pembayaran', 'Menunggu Konfirmasi']);
+        } elseif ($tab === 'diproses') {
+            $query->whereIn('status', ['Diproses', 'Dikirim']);
+        } elseif ($tab === 'riwayat') {
             $query->whereIn('status', ['Selesai', 'Dibatalkan']);
-        } else {
-            $query->whereNotIn('status', ['Selesai', 'Dibatalkan']);
         }
 
         $transaksis = $query->paginate(10)->withQueryString();

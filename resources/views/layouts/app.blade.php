@@ -14,6 +14,13 @@
     <style>
         body { font-family: 'Inter', sans-serif; }
 
+        /* Global Mobile Font Size Optimization */
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+        }
+
         input::-ms-reveal,
         input::-ms-clear {
             display: none;
@@ -22,11 +29,11 @@
         [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body class="bg-gray-50 flex flex-col min-h-screen overflow-x-hidden">
 
     <x-navbar />
 
-    <main class="flex-grow flex items-center justify-center py-10 ">
+    <main class="flex-grow py-10">
         @yield('content')
 
         @stack('scripts')
@@ -41,6 +48,7 @@
                 duration: 800, 
                 once: true,   
                 offset: 100,
+                disable: 'mobile'
             });
         });
     </script>

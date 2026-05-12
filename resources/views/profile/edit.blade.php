@@ -56,7 +56,7 @@
         </div>
     @endif
 
-    <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden mb-8">
+    <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 mb-8">
         <div class="p-8 border-b border-gray-200 flex items-center gap-4">
             <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 border border-green-100">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -111,7 +111,7 @@
                         <input type="hidden" name="provinsi" :value="selectedProvince">
 
                         <button type="button"
-                            @click="open = !open"
+                            @click="open = !open; if(open) $nextTick(() => $refs.provSearch.focus())"
                             class="w-full bg-gray-50 border {{ $errors->has('provinsi') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 transition-all flex items-center justify-between gap-2"
                             :class="open ? 'ring-2 ring-green-500 border-green-300' : 'hover:border-gray-300'"
                         >
@@ -133,9 +133,9 @@
                              x-transition:leave-end="opacity-0 -translate-y-2"
                              class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden z-50">
                             {{-- Search --}}
-                            <div class="px-3 pt-3 pb-2 border-b border-gray-50">
-                                <input type="text" x-model="provinceSearch" placeholder="Cari provinsi..."
-                                       class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-100 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300">
+                            <div class="p-2 border-b border-gray-50 bg-gray-50/50">
+                                <input type="text" x-model="provinceSearch" x-ref="provSearch" placeholder="Cari provinsi..."
+                                       class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
                             </div>
                             <div class="max-h-52 overflow-y-auto">
                                 <template x-if="filteredProvinces.length === 0">
@@ -160,7 +160,7 @@
                         <input type="hidden" name="kota" :value="selectedCity">
 
                         <button type="button"
-                            @click="if (selectedProvince && !loadingCities) open = !open"
+                            @click="if (selectedProvince && !loadingCities) { open = !open; if(open) $nextTick(() => $refs.citySearch.focus()) }"
                             class="w-full bg-gray-50 border {{ $errors->has('kota') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 transition-all flex items-center justify-between gap-2"
                             :class="{
                                 'ring-2 ring-green-500 border-green-300': open,
@@ -190,9 +190,9 @@
                              x-transition:leave-start="opacity-100 translate-y-0"
                              x-transition:leave-end="opacity-0 -translate-y-2"
                              class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden z-50">
-                            <div class="px-3 pt-3 pb-2 border-b border-gray-50">
-                                <input type="text" x-model="citySearch" placeholder="Cari kota..."
-                                       class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-100 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300">
+                            <div class="p-2 border-b border-gray-50 bg-gray-50/50">
+                                <input type="text" x-model="citySearch" x-ref="citySearch" placeholder="Cari kota..."
+                                       class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
                             </div>
                             <div class="max-h-52 overflow-y-auto">
                                 <template x-if="filteredCities.length === 0">
@@ -217,7 +217,7 @@
                         <input type="hidden" name="kecamatan" :value="selectedKecamatan">
 
                         <button type="button"
-                            @click="if (selectedCity && !loadingKecamatan) open = !open"
+                            @click="if (selectedCity && !loadingKecamatan) { open = !open; if(open) $nextTick(() => $refs.kecSearch.focus()) }"
                             class="w-full bg-gray-50 border {{ $errors->has('kecamatan') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 transition-all flex items-center justify-between gap-2"
                             :class="{
                                 'ring-2 ring-green-500 border-green-300': open,
@@ -247,9 +247,9 @@
                              x-transition:leave-start="opacity-100 translate-y-0"
                              x-transition:leave-end="opacity-0 -translate-y-2"
                              class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden z-50">
-                            <div class="px-3 pt-3 pb-2 border-b border-gray-50">
-                                <input type="text" x-model="kecamatanSearch" placeholder="Cari kecamatan..."
-                                       class="w-full px-3 py-2 text-sm bg-gray-50 border border-gray-100 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300">
+                            <div class="p-2 border-b border-gray-50 bg-gray-50/50">
+                                <input type="text" x-model="kecamatanSearch" x-ref="kecSearch" placeholder="Cari kecamatan..."
+                                       class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
                             </div>
                             <div class="max-h-52 overflow-y-auto">
                                 <template x-if="filteredKecamatan.length === 0">

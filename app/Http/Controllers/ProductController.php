@@ -12,7 +12,11 @@ class ProductController extends Controller
         $search = $request->input('search');
         $selectedCategory = $request->input('category');
 
-        $query = Product::query()->where('is_delete', 0)->orderByRaw('jumlah_stok = 0 ASC')->latest();
+        $query = Product::query()
+            ->where('is_delete', 0)
+            ->orderByRaw('jumlah_stok = 0 ASC')
+            ->orderBy('total_terjual', 'desc')
+            ->orderBy('id', 'desc');
 
         if ($search) {
             $query->where('nama_produk', 'like', "%{$search}%");

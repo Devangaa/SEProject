@@ -21,10 +21,19 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
+            // Check case-sensitive username
+            if (Auth::user()->username !== $request->username) {
+                Auth::logout();
+
+                return back()->withErrors([
+                    'username' => 'Username atau password salah.',
+                ])->onlyInput('username');
+            }
+
             $request->session()->regenerate();
 
             $user = Auth::user();
-            
+
             if ($user->role === 'admin') {
                 return redirect()->intended('/dashboard');
             } else {
@@ -42,6 +51,7 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('/');
     }
 }

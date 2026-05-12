@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 50,
                 'kategori' => 'Sayuran',
                 'berat' => 250,
-                'unit' => 'Gram',
+                'unit' => 'Ikat',
                 'is_delete' => false,
             ],
             [
@@ -28,7 +28,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 5,
                 'kategori' => 'Sayuran',
                 'berat' => 300,
-                'unit' => 'Gram',
+                'unit' => 'Ikat',
                 'is_delete' => false,
             ],
             [
@@ -38,7 +38,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 20,
                 'kategori' => 'Nutrisi',
                 'berat' => 1000,
-                'unit' => 'Set',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 30,
                 'kategori' => 'Benih',
                 'berat' => 100,
-                'unit' => 'Bungkus',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -68,7 +68,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 15,
                 'kategori' => 'Media Tanam',
                 'berat' => 500,
-                'unit' => 'Slab',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -78,7 +78,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 10,
                 'kategori' => 'Alat',
                 'berat' => 400,
-                'unit' => 'Unit',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -88,7 +88,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 25,
                 'kategori' => 'Alat',
                 'berat' => 150,
-                'unit' => 'Unit',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -98,7 +98,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 40,
                 'kategori' => 'Benih',
                 'berat' => 50,
-                'unit' => 'Bungkus',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -108,7 +108,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 60,
                 'kategori' => 'Sayuran',
                 'berat' => 200,
-                'unit' => 'Gram',
+                'unit' => 'Ikat',
                 'is_delete' => false,
             ],
             [
@@ -118,7 +118,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 15,
                 'kategori' => 'Nutrisi',
                 'berat' => 1000,
-                'unit' => 'Set',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -138,7 +138,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 20,
                 'kategori' => 'Benih',
                 'berat' => 20,
-                'unit' => 'Bungkus',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -148,27 +148,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 35,
                 'kategori' => 'Media Tanam',
                 'berat' => 1000,
-                'unit' => 'Blok',
-                'is_delete' => false,
-            ],
-            [
-                'nama_produk' => 'Melon Hidroponik',
-                'deskripsi' => 'Melon manis hasil tanam sistem hidroponik.',
-                'harga' => 25000,
-                'jumlah_stok' => 12,
-                'kategori' => 'Buah',
-                'berat' => 1000,
-                'unit' => 'Kg',
-                'is_delete' => false,
-            ],
-            [
-                'nama_produk' => 'Strawberry Hidroponik',
-                'deskripsi' => 'Strawberry segar dan manis dari kebun hidroponik.',
-                'harga' => 45000,
-                'jumlah_stok' => 8,
-                'kategori' => 'Buah',
-                'berat' => 250,
-                'unit' => 'Gram',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -178,7 +158,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 100,
                 'kategori' => 'Alat',
                 'berat' => 50,
-                'unit' => 'Paket',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -188,7 +168,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 25,
                 'kategori' => 'Benih',
                 'berat' => 10,
-                'unit' => 'Bungkus',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -198,7 +178,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 15,
                 'kategori' => 'Alat',
                 'berat' => 2000,
-                'unit' => 'Batang',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
             [
@@ -208,7 +188,7 @@ class ProductSeeder extends Seeder
                 'jumlah_stok' => 5,
                 'kategori' => 'Media Tanam',
                 'berat' => 1000,
-                'unit' => 'Slab',
+                'unit' => 'Pcs',
                 'is_delete' => false,
             ],
         ];

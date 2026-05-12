@@ -22,7 +22,6 @@
         }
      }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
@@ -129,19 +128,25 @@
                         </button>
                     </div>
                         @auth
-                            <button class="flex-1 bg-green-100 text-green-700 font-black py-3 px-6 rounded-xl hover:bg-green-200 transition-all text-sm">
-                                + Keranjang
-                            </button>
+                            <form action="{{ route('cart.store') }}" method="POST" class="flex-1">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <input type="hidden" name="jumlah" :value="quantity">
+                                <button type="submit" class="w-full bg-green-100 text-green-700 font-black py-4 px-8 rounded-2xl hover:bg-green-200 transition-all text-sm flex items-center justify-center">
+                                    + Keranjang
+                                </button>
+                            </form>
+                            
                             <a :href="'{{ route('checkout.produk.index') }}?product_id={{ $product->id }}&qty=' + quantity"
-                               class="flex-1 flex items-center justify-center bg-green-600 text-white font-black py-3 px-6 rounded-xl hover:bg-green-700 shadow-lg shadow-green-100 transition-all text-sm">
+                               class="flex-1 flex items-center justify-center bg-green-600 text-white font-black py-4 px-8 rounded-2xl hover:bg-green-700 shadow-lg shadow-green-100 transition-all text-sm">
                                 Beli Sekarang
                             </a>
                         @else
-                            <a href="{{ route('login') }}" class="flex-1 flex items-center justify-center bg-green-100 text-green-700 font-black py-3 px-6 rounded-xl hover:bg-green-200 transition-all text-sm">
+                            <a href="{{ route('login') }}" class="flex-1 flex items-center justify-center bg-green-100 text-green-700 font-black py-4 px-8 rounded-2xl hover:bg-green-200 transition-all text-sm">
                                 + Keranjang
                             </a>
 
-                            <a href="{{ route('login') }}" class="flex-1 flex items-center justify-center bg-green-600 text-white font-black py-3 px-6 rounded-xl hover:bg-green-700 shadow-lg shadow-green-100 transition-all text-sm">
+                            <a href="{{ route('login') }}" class="flex-1 flex items-center justify-center bg-green-600 text-white font-black py-4 px-8 rounded-2xl hover:bg-green-700 shadow-lg shadow-green-100 transition-all text-sm">
                                 Beli Sekarang
                             </a>
                         @endauth
@@ -228,5 +233,37 @@
             </div>
         </div>
     </div>
+
+    {{-- Toast Notification Success --}}
+    @if(session('success'))
+        <div x-data="{ show: true }" 
+             x-show="show" 
+             x-init="setTimeout(() => show = false, 4000)"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 translate-x-8"
+             x-transition:enter-end="opacity-100 translate-x-0"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100 translate-x-0"
+             x-transition:leave-end="opacity-0 translate-x-8"
+             class="fixed bottom-8 right-8 z-[100] max-w-sm bg-white border border-green-100 rounded-2xl shadow-2xl shadow-green-200/50 p-2 pr-6 flex items-center gap-4">
+            
+            <div class="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-green-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+            </div>
+            
+            <div class="flex-1">
+                <p class="font-black text-sm text-gray-900 leading-tight">Berhasil!</p>
+                <p class="font-bold text-[10px] text-gray-400 mt-0.5">{{ session('success') }}</p>
+            </div>
+
+            <button @click="show = false" class="text-gray-300 hover:text-gray-600 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    @endif
 </div>
 @endsection

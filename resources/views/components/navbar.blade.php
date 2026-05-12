@@ -12,6 +12,18 @@
                     <div class="flex items-center gap-8 mr-2">
                         <a href="{{ route('produk.index') }}" class="text-gray-600 font-medium hover:text-green-600 transition text-sm">Produk</a>
                         <a href="{{ route('layanan.index') }}" class="text-gray-600 font-medium hover:text-green-600 transition text-sm">Layanan</a>
+                        
+                        @if(auth()->check() && auth()->user()->role === 'pelanggan')
+                            {{-- Icon Keranjang Desktop --}}
+                            <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 hover:text-green-600 transition group">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                                </svg>
+                                @if($cartCount > 0)
+                                    <span class="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-[10px] font-black rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">{{ $cartCount }}</span>
+                                @endif
+                        @endif
+                        </a>
                     </div>
                 @endif
             @endif
@@ -71,7 +83,20 @@
         </div>
 
         @if(!Route::is('login', 'register', 'password.request', 'password.reset'))
-        <div class="md:hidden flex items-center">
+        <div class="md:hidden flex items-center gap-2">
+
+            @if((auth()->check() && auth()->user()->role !== 'admin'))
+                {{-- Icon Keranjang Mobile --}}
+                <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 hover:text-green-600 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                    </svg>
+                    @if($cartCount > 0)
+                        <span class="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-[10px] font-black rounded-full flex items-center justify-center shadow-sm">{{ $cartCount }}</span>
+                    @endif
+                </a>
+            @endif
+
             <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-gray-600 p-2 focus:outline-none">
                 <svg x-show="!mobileMenuOpen" xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -80,6 +105,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
+
         </div>
         @endif
     </div>
@@ -114,7 +140,7 @@
                 <a href="{{ route('profile') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Profil Saya</a>
                 
                 @if(auth()->user()->role == 'pelanggan')
-                    <a href="#" class="block text-gray-600 font-medium hover:text-green-600 py-2">Pesanan Saya</a>
+                    <a href="{{ route('transaksi.history') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Pesanan Saya</a>
                     <a href="#" class="block text-gray-600 font-medium hover:text-green-600 py-2">Reward Saya</a>
                 @endif
                 

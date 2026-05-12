@@ -16,5 +16,12 @@ class Kecamatan extends Model
         return $this->hasMany(User::class, 'kecamatan_id');
     }
 
+    public function transaksis()
+    {
+        return $this->hasMany(Transaksi::class, 'kecamatan_id');
+    }
+
+    public $incrementing = false;
+
     protected $fillable = ['city_id', 'name'];
 }

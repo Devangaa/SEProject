@@ -48,14 +48,14 @@
                     <p class="text-gray-400 text-xs leading-relaxed mb-6">Kelola layanan instalasi dan konsultasi hidroponik.</p>
                 </a>
 
-                <a href="#" class="bg-white p-8 rounded-[2.5rem] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                <a href="{{ route('admin.transaksi.index') }}" class="bg-white p-8 rounded-[2.5rem] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
                     <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center text-purple-500 mb-6 group-hover:scale-110 transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                         </svg>
                     </div>
                     <h3 class="text-lg font-bold text-gray-900 mb-2">Transaksi</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed mb-6">Pantau transaksi masuk dan konfirmasi pembayaran.</p>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">Pantau transaksi masuk dan kelola status pengiriman.</p>
                 </a>
 
                 <a href="#" class="bg-white p-8 rounded-[2.5rem] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">

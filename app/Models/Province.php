@@ -6,15 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Province extends Model
 {
-    public function province()
-    {
-        return $this->belongsTo(Province::class);
-    }
-
     public function cities()
     {
         return $this->hasMany(City::class);
     }
+
+    public $incrementing = false;
 
     protected $fillable = ['name'];
 }

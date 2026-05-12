@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    'binderbyte' => [
+        'key' => env('BINDERBYTE_API_KEY'),
+    ],
+
+    'rajaongkir' => [
+        'key' => env('RAJAONGKIR_API_KEY'),
+    ],
 ];

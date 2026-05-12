@@ -17,7 +17,19 @@ class WilayahIndonesiaSeeder extends Seeder
         $sqlUrl = 'https://raw.githubusercontent.com/cahyadsn/wilayah/refs/heads/master/db/wilayah.sql';
 
         try {
-            $sqlContent = file_get_contents($sqlUrl);
+            // Create stream context to handle SSL properly
+            $context = stream_context_create([
+                'http' => [
+                    'timeout' => 30,
+                    'user_agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                ],
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                ],
+            ]);
+
+            $sqlContent = file_get_contents($sqlUrl, false, $context);
 
             if (! $sqlContent) {
                 $this->command->error('Gagal download file SQL dari GitHub');

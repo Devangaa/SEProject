@@ -1,5 +1,5 @@
 <a href="{{ route('produk.show', $product->slug) }}" 
-   class="group bg-white rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col h-full {{ $product->jumlah_stok <= 0 ? 'opacity-60 grayscale' : '' }}"
+   class="group bg-white rounded-2xl md:rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col h-full {{ $product->jumlah_stok <= 0 ? 'opacity-60 grayscale' : '' }}"
    data-aos="fade-up">
     
     <div class="relative aspect-square overflow-hidden bg-gray-100">
@@ -9,19 +9,19 @@
             alt="{{ $product->nama_produk }}"
             class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
         
-        <div class="absolute top-4 left-4 flex gap-2">
-            <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-green-700 text-[10px] font-black rounded-lg uppercase tracking-wider shadow-sm">
+        <div class="absolute top-2 left-2 md:top-4 md:left-4 flex flex-wrap gap-1 md:gap-2">
+            <span class="px-2 py-0.5 md:px-3 md:py-1 bg-white/90 backdrop-blur-sm text-green-700 text-[9px] md:text-[10px] font-black rounded-md md:rounded-lg uppercase tracking-wider shadow-sm whitespace-nowrap">
                 {{ $product->kategori }}
             </span>
             @if($product->jumlah_stok <= 0)
-                <span class="px-3 py-1 bg-red-500 text-white text-[10px] font-black rounded-lg uppercase tracking-wider shadow-sm">
+                <span class="px-2 py-0.5 md:px-3 md:py-1 bg-red-500 text-white text-[9px] md:text-[10px] font-black rounded-md md:rounded-lg uppercase tracking-wider shadow-sm whitespace-nowrap">
                     Habis
                 </span>
             @endif
         </div>
     </div>
 
-    <div class="p-5 flex flex-col flex-grow">
+    <div class="p-3 md:p-5 flex flex-col flex-grow">
         <div class="flex items-center gap-1.5 mb-2">
             <div class="flex items-center">
                 <svg class="w-3.5 h-3.5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
@@ -38,12 +38,12 @@
         
         <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
             <div>
-                <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Harga</p>
-                <p class="text-green-600 font-black text-sm md:text-base">
+                <p class="hidden md:block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Harga</p>
+                <p class="text-green-600 font-black text-xs md:text-base">
                     Rp{{ number_format($product->harga, 0, ',', '.') }}
                 </p>
             </div>
-            <div class="text-right">
+            <div class="text-right hidden md:block">
                 <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Stok</p>
                 <p class="text-gray-900 font-black text-sm">
                     {{ $product->jumlah_stok }} <span class="text-[10px] text-gray-500 font-medium lowercase">{{ $product->unit }}</span>

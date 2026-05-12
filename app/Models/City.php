@@ -16,5 +16,7 @@ class City extends Model
         return $this->hasMany(Kecamatan::class);
     }
 
-    protected $fillable = ['province_id', 'name'];
+    public $incrementing = false;
+
+    protected $fillable = ['province_id', 'name', 'ongkir'];
 }

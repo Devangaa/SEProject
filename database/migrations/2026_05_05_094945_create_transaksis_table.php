@@ -13,16 +13,19 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('akun');
+            $table->foreignUuid('user_id')->constrained('akun');
+            $table->string('order_id')->unique();
             $table->foreignId('kecamatan_id')->constrained('kecamatans');
             $table->text('alamat_pengiriman');
             $table->string('nama_penerima');
             $table->string('no_hp');
-            $table->date('tanggal_transaksi');
+            $table->timestamp('tanggal_transaksi');
             $table->string('metode_pembayaran');
-            $table->string('ekspedisi');
+            $table->string('ekspedisi')->nullable();
             $table->string('status');
             $table->integer('poin')->default(0);
+            $table->text('kode_pembayaran')->nullable();
+            $table->timestamp('batas_pembayaran')->nullable();
             $table->string('nomor_resi')->nullable();
             $table->decimal('ongkir', 12, 2)->default(0);
             $table->timestamps();

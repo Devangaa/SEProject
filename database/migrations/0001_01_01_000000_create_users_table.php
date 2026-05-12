@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('akun', function (Blueprint $app) {
-            $app->id();
+            $app->uuid('id')->primary();
             $app->string('username')->unique();
             $app->string('password');
             $app->string('role');
