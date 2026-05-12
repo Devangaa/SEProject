@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             WilayahIndonesiaSeeder::class,
-            UpdateCityOngkirSeeder::class,
             UserSeeder::class,
             ProductSeeder::class,
             LayananSeeder::class,

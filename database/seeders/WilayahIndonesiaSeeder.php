@@ -6,6 +6,8 @@ use App\Models\City;
 use App\Models\Kecamatan;
 use App\Models\Province;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class WilayahIndonesiaSeeder extends Seeder
 {
@@ -14,6 +16,18 @@ class WilayahIndonesiaSeeder extends Seeder
      */
     public function run(): void
     {
+        $localBackupPath = database_path('seeders/sql/wilayah_indonesia.sql');
+
+        // Jika ada backup lokal (hasil export), gunakan itu karena lebih cepat dan mengandung data kustom (ongkir)
+        if (File::exists($localBackupPath)) {
+            $this->command->info('Menggunakan backup lokal: '.$localBackupPath);
+            DB::unprepared(File::get($localBackupPath));
+            $this->command->info('✓ Data wilayah berhasil diimport dari backup lokal');
+
+            return;
+        }
+
+        $this->command->info('Backup lokal tidak ditemukan, mendownload dari GitHub...');
         $sqlUrl = 'https://raw.githubusercontent.com/cahyadsn/wilayah/refs/heads/master/db/wilayah.sql';
 
         try {
@@ -40,7 +54,7 @@ class WilayahIndonesiaSeeder extends Seeder
             // Parse INSERT statements dari wilayah table
             $this->parseAndImport($sqlContent);
 
-            $this->command->info('✓ Data wilayah berhasil diimport');
+            $this->command->info('✓ Data wilayah berhasil diimport dari GitHub');
 
         } catch (\Exception $e) {
             $this->command->error('Error: '.$e->getMessage());
