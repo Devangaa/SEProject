@@ -84,8 +84,6 @@ flowchart TD
 
 ## Galeri Tampilan (Tempat Screenshot)
 
-> Ganti gambar placeholder berikut dengan screenshot asli web kamu.
-
 ### 1) Halaman Beranda
 ![Screenshot Beranda](docs/assets/screenshots/01-beranda.png)
 
