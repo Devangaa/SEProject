@@ -1,3 +1,10 @@
+{{-- ============================================================================= --}}
+{{-- FILE: admin/layanan/modal-reviews.blade.php --}}
+{{-- HALAMAN: Modal Ulasan Layanan --}}
+{{-- DESKRIPSI: Modal menampilkan ulasan pelanggan untuk layanan. --}}
+{{-- ============================================================================= --}}
+
+{{-- Modal: Daftar Ulasan Layanan --}}
 <div x-show="showReviewModal" class="fixed inset-0 z-[9999] overflow-y-auto" style="display: none;">
     <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:p-0">
         
@@ -23,6 +30,7 @@
             x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
             class="inline-block w-full max-w-2xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-2xl rounded-[2rem]">
             
+            {{-- Bagian: Header Modal --}}
             <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center gap-4">
                     <div class="flex items-center justify-center w-12 h-12 text-blue-600 bg-blue-50 rounded-2xl shrink-0">

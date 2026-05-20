@@ -1,3 +1,10 @@
+{{-- ============================================================================= --}}
+{{-- FILE: admin/reward/modal-edit.blade.php --}}
+{{-- HALAMAN: Modal Edit Reward --}}
+{{-- DESKRIPSI: Form modal mengubah data reward. --}}
+{{-- ============================================================================= --}}
+
+{{-- Modal: Form Edit --}}
 <template x-teleport="body">
     <div x-show="showEditModal" 
          class="fixed inset-0 z-[9999] flex items-start justify-center p-4 bg-black/40 backdrop-blur-sm overflow-y-auto py-10"
@@ -12,6 +19,8 @@
         <div @click.away="showEditModal = false" 
              class="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-3xl relative">
             
+            {{-- Bagian: Header Modal --}}
+            <div class="px-8 py-6 border-b border-gray-50 flex justify-between items-center">
             <div class="px-8 py-6 border-b border-gray-50 flex justify-between items-center">
                 <h1 class="text-2xl font-bold text-gray-900">Edit Reward</h1>
                 <button @click="showEditModal = false" class="text-gray-400 hover:text-gray-600 transition">
@@ -21,6 +30,7 @@
                 </button>
             </div>
 
+            {{-- Bagian: Form --}}
             <form :action="editUrl" method="POST" class="p-8"
                 x-data="{ isSubmitting: false }"
                 @submit="isSubmitting = true">

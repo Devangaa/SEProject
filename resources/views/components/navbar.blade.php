@@ -1,11 +1,20 @@
+{{-- ============================================================================= --}}
+{{-- FILE: components/navbar.blade.php --}}
+{{-- HALAMAN: Komponen Navbar --}}
+{{-- DESKRIPSI: Navigasi utama dengan menu desktop/mobile, keranjang, profil, dan modal logout. --}}
+{{-- ============================================================================= --}}
+
+{{-- Bagian: Navbar Utama --}}
 <nav x-data="{ showLogoutModal: false, mobileMenuOpen: false }" class="bg-white border-b border-gray-100 min-h-[5rem] px-4 sticky top-0 z-50 shadow-sm flex items-center">
     <div class="max-w-7xl mx-auto w-full flex justify-between items-center transition-all duration-300">
-        
+
+        {{-- Bagian: Logo & Brand --}}
         <a href="{{ route('landing') }}" class="flex items-center gap-2 group">
             <img src="{{ asset('img/logo-hydro2.ico') }}" alt="Logo HydroMart" class="w-11 h-11 object-contain">
             <span class="text-2xl font-bold text-gray-900 tracking-tight">Hydro<span class="text-green-600">Mart</span></span>
         </a>
 
+        {{-- Bagian: Menu Desktop --}}
         <div class="hidden md:flex items-center gap-8">
             @if(!Route::is('login', 'register', 'password.request', 'password.reset'))
                 @if(!auth()->check() || (auth()->check() && auth()->user()->role !== 'admin'))
@@ -14,7 +23,7 @@
                         <a href="{{ route('layanan.index') }}" class="text-gray-600 font-medium hover:text-green-600 transition text-sm">Layanan</a>
                         
                         @if(auth()->check() && auth()->user()->role === 'pelanggan')
-                            {{-- Icon Keranjang Desktop --}}
+                            {{-- Bagian: Ikon Keranjang Desktop --}}
                             <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 hover:text-green-600 transition group">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
@@ -28,6 +37,7 @@
                 @endif
             @endif
             
+            {{-- Bagian: Auth & Dropdown Profil Desktop --}}
             <div class="flex items-center gap-3">
                 @auth
                     <div x-data="{ open: false }" @click.away="open = false" class="relative">
@@ -85,10 +95,11 @@
         </div>
 
         @if(!Route::is('login', 'register', 'password.request', 'password.reset'))
+        {{-- Bagian: Menu Mobile (Toggle & Keranjang) --}}
         <div class="md:hidden flex items-center gap-2">
 
             @if((auth()->check() && auth()->user()->role !== 'admin'))
-                {{-- Icon Keranjang Mobile --}}
+                {{-- Bagian: Ikon Keranjang Mobile --}}
                 <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 hover:text-green-600 transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
@@ -112,6 +123,7 @@
         @endif
     </div>
 
+    {{-- Bagian: Panel Menu Mobile --}}
     <div x-show="mobileMenuOpen" 
         x-cloak 
         x-transition:enter="transition ease-out duration-200"
@@ -121,7 +133,7 @@
         
         <div class="px-4 py-6 space-y-4">
             @auth
-                {{-- User Sudah Login --}}
+                {{-- Bagian: Menu Mobile - Pengguna Login --}}
                 <div class="flex items-center gap-3 py-2 border-b border-gray-50 pb-4">
                     <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center border border-green-200">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" viewBox="0 0 20 20" fill="currentColor">
@@ -149,11 +161,11 @@
                 <button @click="showLogoutModal = true; mobileMenuOpen = false" class="w-full text-left text-red-500 font-bold py-2">Keluar</button>
 
             @else
-                {{-- User Belum Login (Guest) --}}
+                {{-- Bagian: Menu Mobile - Tamu --}}
                 @if(Route::is('login', 'register', 'password.request', 'password.reset'))
 
                 @else
-                    {{-- Di Halaman Biasa: Tampil Produk, Layanan, & Tombol Auth --}}
+                    {{-- Bagian: Menu Mobile - Navigasi & Tombol Auth --}}
                     <a href="{{ route('produk.index') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Produk</a>
                     <a href="{{ route('layanan.index') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Layanan</a>
 
@@ -168,6 +180,7 @@
         </div>
     </div>
 
+    {{-- Modal: Konfirmasi Logout --}}
     <template x-teleport="body">
         <div x-show="showLogoutModal" 
              x-transition:enter="transition ease-out duration-300"

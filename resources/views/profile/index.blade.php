@@ -1,11 +1,18 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: profile/index.blade.php --}}
+{{-- HALAMAN: Profil Saya --}}
+{{-- DESKRIPSI: Menampilkan informasi akun dan ringkasan aktivitas pelanggan. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Data Akun Anda')
 
 @section('content')
 <div class="w-full">
     <div class="max-w-4xl mx-auto px-6">
     
+    {{-- Bagian: Breadcrumb --}}
     <nav class="flex mb-8" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -28,6 +35,7 @@
         </ol>
     </nav>
 
+    {{-- Bagian: Header Halaman --}}
     <div class="mb-8">
         <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
             Data Akun Anda
@@ -36,6 +44,7 @@
         <p class="text-gray-500 text-sm mt-2 font-medium">Kelola informasi akun dan keamanan akun Anda</p>
     </div>
 
+    {{-- Bagian: Tab Navigasi --}}
     <div class="bg-white p-1.5 rounded-2xl shadow-sm border border-gray-100 flex w-full mb-8">
         <a href="{{ route('profile') }}" 
            class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-center {{ Route::is('profile') ? 'bg-green-600 text-white shadow-md' : 'text-gray-500 hover:text-gray-700' }}">
@@ -47,6 +56,7 @@
         </a>
     </div>
 
+    {{-- Bagian: Kartu Informasi Akun --}}
     <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden w-full">
         <div class="p-8 border-b border-gray-200 flex items-center gap-4">
             <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center border border-green-100 text-green-600">

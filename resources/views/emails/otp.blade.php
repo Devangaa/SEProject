@@ -1,4 +1,11 @@
+{{-- ============================================================================= --}}
+{{-- FILE: emails/otp.blade.php --}}
+{{-- HALAMAN: Email OTP --}}
+{{-- DESKRIPSI: Template email berisi kode OTP untuk reset password atau verifikasi akun. --}}
+{{-- ============================================================================= --}}
+
 <x-mail::message>
+{{-- Bagian: Judul & Pembuka --}}
 # Kode Verifikasi Anda
 
 Halo,
@@ -7,6 +14,7 @@ Anda menerima email ini karena kami menerima permintaan pengaturan ulang kata sa
 
 Berikut adalah kode OTP Anda:
 
+{{-- Bagian: Panel Kode OTP --}}
 <x-mail::panel>
 <div style="text-align: center; font-size: 32px; font-weight: bold; letter-spacing: 5px;">
 {{ $otp }}

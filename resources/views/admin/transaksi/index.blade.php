@@ -1,12 +1,19 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: admin/transaksi/index.blade.php --}}
+{{-- HALAMAN: Kelola Transaksi --}}
+{{-- DESKRIPSI: Daftar semua transaksi dengan filter status dan pencarian. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Kelola Transaksi')
 
 @section('content')
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full min-h-screen bg-gray-50/50 pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {{-- Breadcrumb --}}
+        {{-- Bagian: Breadcrumb --}}
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">

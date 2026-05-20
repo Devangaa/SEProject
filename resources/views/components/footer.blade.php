@@ -1,7 +1,15 @@
+{{-- ============================================================================= --}}
+{{-- FILE: components/footer.blade.php --}}
+{{-- HALAMAN: Komponen Footer --}}
+{{-- DESKRIPSI: Footer situs dengan branding, menu navigasi per peran, kontak, dan tautan sosial media. --}}
+{{-- ============================================================================= --}}
+
+{{-- Bagian: Footer Utama --}}
 <footer class="bg-gray-50 text-gray-600 py-16 px-6 md:px-12 border-t border-gray-200">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-            
+
+            {{-- Bagian: Branding & Deskripsi --}}
             <div class="col-span-1">
                 <div class="flex items-center gap-2 mb-6">
                     <img src="{{ asset('img/logo-hydro2.ico') }}" 
@@ -21,6 +29,7 @@
             </div>
 
             @if(auth()->check() && auth()->user()->role == 'admin')
+                {{-- Bagian: Menu Footer Admin --}}
                 <div>
                     <h4 class="text-gray-900 font-bold mb-6 text-base">Layanan</h4>
                     <ul class="space-y-4 text-sm font-medium">
@@ -35,6 +44,7 @@
                     </ul>
                 </div>
             @elseif(auth()->check() && auth()->user()->role == 'pelanggan')
+                {{-- Bagian: Menu Footer Pelanggan --}}
                 <div>
                     <h4 class="text-gray-900 font-bold mb-6 text-base">Menu</h4>
                     <ul class="space-y-4 text-sm font-medium">
@@ -46,6 +56,7 @@
                     </ul>
                 </div>
             @else
+                {{-- Bagian: Menu Footer Tamu --}}
                 <div>
                     <h4 class="text-gray-900 font-bold mb-6 text-base">Menu</h4>
                     <ul class="space-y-4 text-sm font-medium">
@@ -56,6 +67,7 @@
                 </div>
             @endif
 
+            {{-- Bagian: Kontak --}}
             <div>
                 <h4 class="text-gray-900 font-bold mb-6 text-base">Kontak</h4>
                 <ul class="space-y-4 text-sm font-medium text-gray-500">
@@ -65,6 +77,7 @@
             </div>
         </div>
 
+        {{-- Bagian: Hak Cipta & Sosial Media --}}
         <div class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <p class="text-[11px] md:text-xs text-gray-400 tracking-wide font-medium">
                 © 2026 HydroMart. All rights reserved.

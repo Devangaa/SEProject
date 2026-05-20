@@ -1,14 +1,23 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: auth/login.blade.php --}}
+{{-- HALAMAN: Login --}}
+{{-- DESKRIPSI: Form masuk akun dengan username, password, dan tautan lupa password. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Login')
 
 @section('content')
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full">
     <div class="max-w-4xl mx-auto px-6">
 
+        {{-- Bagian: Kartu Form Login --}}
         <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-gray-100 w-full max-w-md mx-auto"
             x-data="{ loading: false }">
-            
+
+            {{-- Bagian: Header & Logo --}}
             <div class="flex justify-center mb-6">
                 <img src="{{ asset('img/logo-hydro2.ico') }}" 
                         alt="Logo HydroMart" 
@@ -18,6 +27,7 @@
             <h2 class="text-2xl font-bold text-center text-gray-900 mb-1">Masuk ke Akun</h2>
             <p class="text-center text-gray-400 text-sm mb-8">Selamat datang kembali di HydroMart</p>
 
+            {{-- Bagian: Form Login --}}
             <form action="{{ route('login') }}" method="POST" @submit="loading = true">
                 @csrf
                 
@@ -72,7 +82,7 @@
                         :disabled="loading"
                         class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition duration-300 transform active:scale-[0.98] shadow-lg shadow-green-100 flex justify-center items-center gap-2">
                     
-                    {{-- Teks Normal --}}
+                    {{-- Bagian: Tombol Submit & Loading --}}
                     <span x-show="!loading">Login</span>
                     
                     {{-- Teks & Spinner saat Loading --}}

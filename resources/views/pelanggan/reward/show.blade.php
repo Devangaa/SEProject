@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: pelanggan/reward/show.blade.php --}}
+{{-- HALAMAN: Detail Reward --}}
+{{-- DESKRIPSI: Detail hadiah reward dan form penukaran poin. --}}
+{{-- ============================================================================= --}}
+
 @section('content')
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full min-h-screen bg-gray-50/50 pb-12">
     <div class="max-w-2xl mx-auto px-4 pt-8">
         {{-- Header --}}
@@ -130,6 +137,7 @@
     </div>
 </div>
 
+{{-- Bagian: Skrip Arsip --}}
 <!--
 <script>
     function confirmClaim(url, name, poin) {

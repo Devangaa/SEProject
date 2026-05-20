@@ -1,10 +1,18 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: layanan/index.blade.php --}}
+{{-- HALAMAN: Katalog Layanan --}}
+{{-- DESKRIPSI: Daftar layanan hidroponik dengan filter dan kartu layanan. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Katalog Layanan Hidroponik')
 
 @section('content')
 <div class="w-full bg-gray-50/50 min-h-screen pb-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {{-- Bagian: Header Halaman --}}
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div data-aos="fade-right">
                 <span class="inline-block px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold rounded-full mb-4 uppercase">
@@ -17,6 +25,8 @@
             </div>
         </div>
 
+        {{-- Bagian: Filter & Pencarian --}}
+        <div class="bg-white p-4 rounded-[2rem] border border-gray-100 shadow-sm mb-10
         <div class="bg-white p-4 rounded-[2rem] border border-gray-100 shadow-sm mb-10" data-aos="fade-up">
             <form action="{{ route('layanan.index') }}" method="GET" class="flex flex-col md:flex-row flex-wrap gap-4 items-start md:items-center">
                 <div class="relative w-full md:flex-1 md:min-w-[300px]">
@@ -39,6 +49,8 @@
             </form>
         </div>
 
+        {{-- Bagian: Grid Layanan --}}
+        <div id="layanan-container"
         <div id="layanan-container" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
             @forelse($layanan as $item)
                 @include('layanan.item-card', ['layanan' => $item])
@@ -51,6 +63,8 @@
             @endforelse
         </div>
 
+        {{-- Bagian: Paginasi --}}
+        @if($layanan->hasPages())
         @if($layanan->hasPages())
         <div class="mt-12 flex flex-col md:flex-row justify-between items-center gap-4" data-aos="fade-up">
             <p class="text-xs font-bold text-gray-400">

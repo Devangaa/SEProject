@@ -1,3 +1,10 @@
+{{-- ============================================================================= --}}
+{{-- FILE: admin/layanan/modal-edit.blade.php --}}
+{{-- HALAMAN: Modal Edit Layanan --}}
+{{-- DESKRIPSI: Form modal mengubah data layanan. --}}
+{{-- ============================================================================= --}}
+
+{{-- Modal: Form Edit Layanan --}}
 <div x-show="showEditModal"
      class="fixed inset-0 z-[9999] flex items-start justify-center p-4 bg-black/40 backdrop-blur-sm overflow-y-auto py-10"
      x-transition:enter="transition ease-out duration-300"
@@ -11,6 +18,7 @@
     <div @click.away="showEditModal = false"
         class="bg-white rounded-[2.5rem] shadow-2xl w-full max-w-3xl relative">
             
+            {{-- Bagian: Header Modal --}}
             <div class="px-8 py-6 border-b border-gray-50 flex justify-between items-center text-gray-900">
                 <h1 class="text-2xl font-bold">Edit Layanan</h1>
                 <button @click="showEditModal = false" class="text-gray-400 hover:text-gray-600 transition">
@@ -20,6 +28,7 @@
                 </button>
             </div>
 
+            {{-- Bagian: Form --}}
             <form :action="editUrl" method="POST" enctype="multipart/form-data" class="p-8"
                 x-data="{ 
                     newPhotos: [],

@@ -1,3 +1,10 @@
+{{-- ============================================================================= --}}
+{{-- FILE: admin/produk/modal-edit.blade.php --}}
+{{-- HALAMAN: Modal Edit Produk --}}
+{{-- DESKRIPSI: Form modal mengubah data produk yang ada. --}}
+{{-- ============================================================================= --}}
+
+{{-- Modal: Form Edit --}}
 <template x-teleport="body">
     <div x-show="showEditModal" 
          class="fixed inset-0 z-[9999] flex items-start justify-center p-4 bg-black/40 backdrop-blur-sm overflow-y-auto py-10"
@@ -21,6 +28,7 @@
                 </button>
             </div>
 
+            {{-- Bagian: Form --}}
             <form :action="editUrl" method="POST" enctype="multipart/form-data" class="p-8"
                 x-data="{ 
                     newPhotos: [],

@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: layanan/show.blade.php --}}
+{{-- HALAMAN: Detail Layanan --}}
+{{-- DESKRIPSI: Halaman detail layanan dengan deskripsi, harga, dan pemesanan. --}}
+{{-- ============================================================================= --}}
+
 @section('title', $layanan->nama_layanan)
 
 @section('content')
@@ -23,6 +29,7 @@
      }">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
+        {{-- Bagian: Breadcrumb --}}
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
@@ -38,7 +45,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             
-            {{-- BAGIAN KIRI: FOTO & GALERI --}}
+            {{-- Bagian: Galeri Foto --}}
             <div class="space-y-6" data-aos="fade-right">
                 <div class="bg-white rounded-[3rem] overflow-hidden aspect-square flex items-center justify-center relative shadow-sm border border-gray-100">
                     {{-- Foto Utama menggunakan x-bind (:src) --}}
@@ -68,7 +75,7 @@
                 </div>
             </div>
 
-            {{-- BAGIAN KANAN: DETAIL LAYANAN --}}
+            {{-- Bagian: Detail & Pesan Layanan --}}
             <div class="space-y-8" data-aos="fade-left">
                 <div>
                     <span class="text-green-600 text-xs font-black uppercase tracking-widest">{{ $layanan->kategori }}</span>

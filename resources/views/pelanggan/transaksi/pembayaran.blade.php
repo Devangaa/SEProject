@@ -1,8 +1,15 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: pelanggan/transaksi/pembayaran.blade.php --}}
+{{-- HALAMAN: Pembayaran --}}
+{{-- DESKRIPSI: Halaman instruksi dan konfirmasi pembayaran pesanan. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Pembayaran #' . $transaksi->order_id)
 
 @section('content')
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full min-h-screen bg-gray-50/50 pb-20">
     <div class="max-w-5xl mx-auto px-4 pt-12">
         
@@ -212,8 +219,10 @@
         'statusCheckUrl' => route('transaksi.status-check', $transaksi->order_id),
     ];
 @endphp
+{{-- Bagian: Konfigurasi Data --}}
 <div id="pembayaran-config" class="hidden" data-config="{{ json_encode($pembayaranConfig) }}"></div>
 
+{{-- Bagian: Skrip Arsip --}}
 <!--
 <script>
     // Countdown logic

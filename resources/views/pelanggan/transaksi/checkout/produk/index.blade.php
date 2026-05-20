@@ -1,12 +1,18 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: pelanggan/transaksi/checkout/produk/index.blade.php --}}
+{{-- HALAMAN: Checkout Produk --}}
+{{-- DESKRIPSI: Form checkout pembelian produk: alamat, pengiriman, dan ringkasan pesanan. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Checkout Produk')
 
 @section('content')
 <div class="w-full min-h-screen bg-gray-50/50 pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {{-- Breadcrumb --}}
+        {{-- Bagian: Breadcrumb --}}
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
@@ -20,6 +26,7 @@
             </ol>
         </nav>
 
+        {{-- Bagian: Header Checkout --}}
         <div class="mb-8">
             <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
                 Checkout
@@ -48,7 +55,9 @@
               class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             @csrf
             
-            {{-- Reward Selection Modal --}}
+            {{-- Modal: Pilih Reward --}}
+            
+            
             <div id="rewardModal" class="fixed inset-0 z-[9999] overflow-y-auto" x-show="showRewardModal" x-cloak>
                 <div class="flex items-center justify-center min-h-screen p-4 text-center sm:p-0">
                     <div class="fixed inset-0 transition-opacity bg-black/40 backdrop-blur-sm" @click="showRewardModal = false"></div>
@@ -133,10 +142,10 @@
                 </div>
             </div>
 
-            {{-- Kolom Utama (Kiri) --}}
+            {{-- Bagian: Form Utama (Kiri) --}}
             <div class="lg:col-span-2 space-y-6">
-                
-                {{-- Detail Produk Card --}}
+
+                {{-- Bagian: Kartu Detail Produk --}}
                 <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
                     <div class="p-8 border-b border-gray-200 flex items-center gap-4">
                         <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center border border-green-100 text-green-600">
@@ -495,9 +504,9 @@
                 </div>
 
 
-            {{-- Sidebar Kanan --}}
+            {{-- Bagian: Ringkasan Pesanan (Kanan) --}}
             <div class="lg:col-span-1 lg:sticky lg:top-24 lg:self-start h-fit space-y-6">
-                {{-- Ringkasan Pesanan --}}
+                {{-- Bagian: Kartu Ringkasan --}}
                 <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden">
                     <div class="p-6 border-b border-gray-200 flex items-center gap-3">
                         <div class="w-10 h-10 bg-purple-50 rounded-lg flex items-center justify-center border border-purple-100 text-purple-600">
@@ -657,6 +666,7 @@
         $checkoutProdukConfig['productWeight'] = $items->first()->product->berat;
     }
 @endphp
+{{-- Bagian: Konfigurasi Data --}}
 <div id="checkout-produk-config" class="hidden" data-config="{{ json_encode($checkoutProdukConfig) }}"></div>
 
 <!--

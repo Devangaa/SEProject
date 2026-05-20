@@ -1,12 +1,18 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: pelanggan/transaksi/history.blade.php --}}
+{{-- HALAMAN: Riwayat Pesanan --}}
+{{-- DESKRIPSI: Daftar transaksi pelanggan dengan filter status. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Riwayat Transaksi')
 
 @section('content')
 <div class="w-full min-h-screen bg-gray-50/50 pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {{-- Breadcrumb --}}
+        {{-- Bagian: Breadcrumb --}}
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">

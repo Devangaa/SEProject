@@ -1,12 +1,19 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: pelanggan/transaksi/checkout/layanan/index.blade.php --}}
+{{-- HALAMAN: Checkout Layanan --}}
+{{-- DESKRIPSI: Form checkout pemesanan layanan hidroponik dan jadwal. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Checkout Layanan')
 
 @section('content')
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full min-h-screen bg-gray-50/50 pb-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {{-- Breadcrumb --}}
+        {{-- Bagian: Breadcrumb --}}
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
@@ -57,6 +64,8 @@
             $photoUrl = $fotoLayanan ? asset('uploads/layanan/' . $fotoLayanan) : 'https://ui-avatars.com/api/?name=' . urlencode($layanan->nama_layanan);
         @endphp
 
+        {{-- Bagian: Form Checkout Layanan --}}
+        <form action=
         <form action="{{ route('checkout.layanan.store') }}" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             @csrf
             <input type="hidden" name="layanan_id" value="{{ $layanan->id }}">
@@ -388,8 +397,10 @@
         'useDistrictsApi' => false,
     ];
 @endphp
+{{-- Bagian: Konfigurasi Data --}}
 <div id="checkout-layanan-config" class="hidden" data-config="{{ json_encode($checkoutLayananConfig) }}"></div>
 
+{{-- Bagian: Skrip Arsip --}}
 <!--
 <script>
     function formatCurrency(num) {

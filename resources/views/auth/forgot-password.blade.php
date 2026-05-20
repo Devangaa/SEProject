@@ -1,13 +1,21 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: auth/forgot-password.blade.php --}}
+{{-- HALAMAN: Lupa Password --}}
+{{-- DESKRIPSI: Alur reset password dua langkah: kirim OTP ke email lalu verifikasi kode. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Lupa Password')
 
 @section('content')
-{{-- Container utama dibuat sama dengan login untuk centering --}}
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full">
     <div class="max-w-4xl mx-auto px-6">
 <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-gray-100 w-full max-w-md mx-auto" x-data="forgotPasswordHandler()">
     
+    {{-- Bagian: Header & Logo --}}
+    {{-- Logo HydroMart Asli --}}
     {{-- Logo HydroMart Asli --}}
     <div class="flex justify-center mb-6">
         <img src="{{ asset('img/logo-hydro2.ico') }}" 
@@ -18,7 +26,9 @@
     <h2 class="text-2xl font-bold text-center text-gray-900 mb-1">Lupa Password</h2>
     <p class="text-center text-gray-400 text-sm mb-8">Harap isi data dibawah ini</p>
 
-    {{-- Form Step 1: Input Email --}}
+    {{-- Bagian: Langkah 1 - Email --}}
+    
+    
     <div x-show="step === 1" x-transition>
         <div class="mb-5">
             <label class="block text-sm font-bold text-gray-700 mb-2">Email</label>
@@ -47,7 +57,9 @@
         </button>
     </div>
 
-    {{-- Form Step 2: Input OTP --}}
+    {{-- Bagian: Langkah 2 - OTP --}}
+    
+    
     <div x-show="step === 2" x-cloak x-transition.opacity>
         <p class="text-[11px] text-gray-400 text-center mb-5 italic">ⓘ Link verifikasi sudah dikirim ke email anda</p>
         
@@ -79,6 +91,7 @@
     </div>
 </div>
 
+{{-- Bagian: Konfigurasi Data --}}
 <div id="forgot-password-config" class="hidden" data-reset-url="{{ route('password.reset') }}"></div>
 
 <!--

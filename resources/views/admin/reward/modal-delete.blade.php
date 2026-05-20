@@ -1,4 +1,12 @@
+{{-- ============================================================================= --}}
+{{-- FILE: admin/reward/modal-delete.blade.php --}}
+{{-- HALAMAN: Modal Hapus Reward --}}
+{{-- DESKRIPSI: Modal konfirmasi penghapusan reward. --}}
+{{-- ============================================================================= --}}
+
 {{-- Modal Delete --}}
+{{-- Modal: Konfirmasi Hapus --}}
+{{-- Modal: Konfirmasi Hapus Reward --}}
 <template x-teleport="body">
     <div x-show="showDeleteModal" 
          x-transition:enter="transition ease-out duration-300"

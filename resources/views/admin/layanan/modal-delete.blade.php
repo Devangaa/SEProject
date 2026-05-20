@@ -1,3 +1,11 @@
+{{-- ============================================================================= --}}
+{{-- FILE: admin/layanan/modal-delete.blade.php --}}
+{{-- HALAMAN: Modal Hapus Layanan --}}
+{{-- DESKRIPSI: Modal konfirmasi penghapusan layanan. --}}
+{{-- ============================================================================= --}}
+
+{{-- Modal: Konfirmasi Hapus --}}
+{{-- Modal: Konfirmasi Hapus Layanan --}}
 <template x-teleport="body">
     <div x-show="showDeleteModal" class="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm" style="display: none;" x-transition>
         <div @click.away="showDeleteModal = false" class="bg-white rounded-[2.5rem] p-10 max-w-sm w-full text-center shadow-2xl">

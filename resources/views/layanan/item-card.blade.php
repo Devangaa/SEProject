@@ -1,7 +1,14 @@
+{{-- ============================================================================= --}}
+{{-- FILE: layanan/item-card.blade.php --}}
+{{-- HALAMAN: Kartu Layanan --}}
+{{-- DESKRIPSI: Komponen kartu layanan untuk grid katalog. --}}
+{{-- ============================================================================= --}}
+
 <a href="{{ route('layanan.show', $layanan->slug) }}" 
    class="group bg-white rounded-2xl md:rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col h-full"
    data-aos="fade-up">
     
+    {{-- Bagian: Gambar & Badge --}}
     <div class="relative aspect-square overflow-hidden bg-gray-100">
         <img src="{{ (is_array($layanan->foto_layanan) && count($layanan->foto_layanan) > 0) 
             ? asset('uploads/layanan/' . $layanan->foto_layanan[0]) 
@@ -10,6 +17,7 @@
             class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
     </div>
 
+    {{-- Bagian: Info Layanan --}}
     <div class="p-3 md:p-5 flex flex-col flex-grow">
 
         <h3 class="font-bold text-gray-900 text-sm md:text-base leading-tight group-hover:text-green-600 transition-colors line-clamp-2 mb-4">
@@ -29,6 +37,7 @@
         </div>
         @endif
 
+        {{-- Bagian: Harga & Stok --}}
         <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
             <div>
                 <p class="hidden md:block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Harga</p>

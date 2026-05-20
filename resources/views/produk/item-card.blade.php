@@ -1,7 +1,14 @@
+{{-- ============================================================================= --}}
+{{-- FILE: produk/item-card.blade.php --}}
+{{-- HALAMAN: Kartu Produk --}}
+{{-- DESKRIPSI: Komponen kartu produk untuk grid katalog dan landing page. --}}
+{{-- ============================================================================= --}}
+
 <a href="{{ route('produk.show', $product->slug) }}" 
    class="group bg-white rounded-2xl md:rounded-[2rem] border border-gray-100 shadow-sm hover:shadow-xl transition duration-300 overflow-hidden flex flex-col h-full {{ $product->jumlah_stok <= 0 ? 'opacity-60 grayscale' : '' }}"
    data-aos="fade-up">
     
+    {{-- Bagian: Gambar & Badge --}}
     <div class="relative aspect-square overflow-hidden bg-gray-100">
         <img src="{{ (is_array($product->foto_produk) && count($product->foto_produk) > 0) 
             ? asset('uploads/produk/' . $product->foto_produk[0]) 
@@ -21,6 +28,7 @@
         </div>
     </div>
 
+    {{-- Bagian: Info Produk --}}
     <div class="p-3 md:p-5 flex flex-col flex-grow">
 
         <h3 class="font-bold text-gray-900 text-sm md:text-base leading-tight group-hover:text-green-600 transition-colors line-clamp-2 mb-4">
@@ -40,6 +48,7 @@
         </div>
         @endif
 
+        {{-- Bagian: Harga & Stok --}}
         <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
             <div>
                 <p class="hidden md:block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Harga</p>

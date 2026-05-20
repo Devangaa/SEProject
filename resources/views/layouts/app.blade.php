@@ -1,3 +1,10 @@
+{{-- ============================================================================= --}}
+{{-- FILE: layouts/app.blade.php --}}
+{{-- HALAMAN: Layout Utama Aplikasi --}}
+{{-- DESKRIPSI: Template dasar HTML dengan navbar, footer, yield konten, dan stack styles/scripts. --}}
+{{-- ============================================================================= --}}
+
+{{-- Bagian: Head & Meta --}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +17,7 @@
 
     @vite(['resources/css/app.css'])
 
+    {{-- Bagian: Skrip & Style Arsip (CDN) --}}
     <!--
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -30,18 +38,23 @@
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen overflow-x-hidden">
 
+    {{-- Bagian: Konfigurasi Aplikasi --}}
     <div id="app-config" class="hidden" data-base-path="{{ rtrim((string) parse_url(url('/'), PHP_URL_PATH), '/') }}"></div>
 
+    {{-- Bagian: Navbar --}}
     <x-navbar />
 
+    {{-- Bagian: Konten Utama --}}
     <main class="flex-grow py-10">
         @yield('content')
 
         @stack('scripts')
     </main>
 
+    {{-- Bagian: Footer --}}
     <x-footer />
 
+    {{-- Bagian: Skrip Arsip (AOS) --}}
     <!--
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -56,6 +69,7 @@
     </script>
     -->
 
+    {{-- Bagian: Vite Assets JS --}}
     @vite(['resources/js/app.js'])
 
 </body>

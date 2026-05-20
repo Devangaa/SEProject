@@ -1,10 +1,18 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: auth/register.blade.php --}}
+{{-- HALAMAN: Registrasi --}}
+{{-- DESKRIPSI: Form pendaftaran akun pelanggan dengan data pribadi dan alamat berjenjang wilayah. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Buat Akun Anda')
 
 @section('content')
 <div class="w-full">
     <div class="max-w-4xl mx-auto px-6">
+        {{-- Bagian: Kartu Form Registrasi --}}
+<div class="bg-white p-8 md:p-10 rounded-[2.5rem]
 <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-gray-100 w-full max-w-4xl"
     x-data="{ loading: false }">
     
@@ -17,6 +25,8 @@
     <h2 class="text-2xl font-bold text-center text-gray-900 mb-1">Buat Akun Anda</h2>
     <p class="text-center text-gray-400 text-sm mb-8">Selamat datang di HydroMart</p>
 
+            {{-- Bagian: Form Registrasi --}}
+    <form action="{{ route('register') }}"
     <form action="{{ route('register') }}" method="POST" @submit="loading = true">
         @csrf
         
@@ -93,6 +103,8 @@
             </div>
 
             {{-- Provinsi, Kota, Kecamatan - Full row with 3 columns --}}
+            {{-- Bagian: Dropdown Wilayah --}}
+            <div x-data="cascadingDropdown()"
             <div x-data="cascadingDropdown()" x-init="init()" class="md:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-6">
 
                 {{-- Provinsi Custom Dropdown --}}
@@ -303,6 +315,9 @@
 </div>
     </div>
 </div>
+{{-- Bagian: Konfigurasi Data --}}
+{{-- Bagian: Konfigurasi Wilayah --}}
+<div id="wilayah-config"
 <div id="wilayah-config" class="hidden"
     data-province-id="{{ old('provinsi') }}"
     data-city-id="{{ old('kota') }}"
@@ -310,6 +325,7 @@
 
 @endsection
 
+{{-- Bagian: Push Scripts --}}
 @push('scripts')
 <!--
 <script>

@@ -1,11 +1,18 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: profile/edit.blade.php --}}
+{{-- HALAMAN: Edit Profil --}}
+{{-- DESKRIPSI: Form mengubah data profil, alamat, dan password pengguna. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Ubah Data Akun')
 
 @section('content')
 <div class="w-full">
     <div class="max-w-4xl mx-auto px-6">
     
+    {{-- Bagian: Breadcrumb --}}
     <nav class="flex mb-8" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
@@ -36,6 +43,7 @@
         <p class="text-gray-500 text-sm mt-2 font-medium">Kelola informasi akun dan keamanan akun Anda</p>
     </div>
 
+    {{-- Bagian: Tab Navigasi --}}
     <div class="bg-white p-1.5 rounded-2xl shadow-sm border border-gray-100 flex w-full mb-8">
         <a href="{{ route('profile') }}" 
            class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-center text-gray-500 hover:text-gray-700">
@@ -365,6 +373,7 @@
     </div>
     </div>
 </div>
+{{-- Bagian: Konfigurasi Data --}}
 <div id="wilayah-config" class="hidden"
     data-province-id="{{ old('provinsi', $user->kecamatan->city->province_id ?? '') }}"
     data-city-id="{{ old('kota', $user->kecamatan->city_id ?? '') }}"
@@ -372,6 +381,7 @@
 
 @endsection
 
+{{-- Bagian: Push Scripts --}}
 @push('scripts')
 <!--
 <script>

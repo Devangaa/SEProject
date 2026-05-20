@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: admin/dashboard.blade.php --}}
+{{-- HALAMAN: Dashboard Admin --}}
+{{-- DESKRIPSI: Ringkasan statistik bisnis, grafik, dan aktivitas terbaru untuk admin. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Dashboard Admin')
 
 @section('content')
@@ -18,6 +24,8 @@
             </div>
         </div>
 
+        {{-- Bagian: Menu Admin --}}
+        <div class="mt-12">
         <div class="mt-12">
             <div class="flex items-center justify-between mb-8">
                 <div class="flex flex-col">
@@ -26,6 +34,7 @@
                 </div>
             </div>
 
+            {{-- Bagian: Kartu Menu --}}
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 <a href="{{ route('admin.produk.index') }}" class="bg-white p-8 rounded-[2.5rem] border border-gray-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">

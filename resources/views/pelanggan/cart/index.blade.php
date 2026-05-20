@@ -1,12 +1,19 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: pelanggan/cart/index.blade.php --}}
+{{-- HALAMAN: Keranjang Belanja --}}
+{{-- DESKRIPSI: Daftar item keranjang dengan kuantitas, subtotal, dan lanjut checkout. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Keranjang Belanja')
 
 @section('content')
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full min-h-screen bg-gray-50/50 pb-32 lg:pb-20" x-data="cartHandler()">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {{-- Breadcrumb --}}
+        {{-- Bagian: Breadcrumb --}}
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
@@ -221,9 +228,12 @@
         'updateUrl' => url('/keranjang/update'),
     ];
 @endphp
+{{-- Bagian: Konfigurasi Data --}}
 <div id="cart-config" class="hidden" data-config="{{ json_encode($cartConfig) }}"></div>
 
+{{-- Bagian: Push Scripts --}}
 @push('scripts')
+{{-- Bagian: Skrip Arsip --}}
 <!--
 <script>
     function cartHandler() {

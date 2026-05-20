@@ -1,8 +1,15 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: pelanggan/transaksi/show.blade.php --}}
+{{-- HALAMAN: Detail Pesanan --}}
+{{-- DESKRIPSI: Detail transaksi pelanggan termasuk item dan status pengiriman. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Detail Transaksi #' . $transaksi->order_id)
 
 @section('content')
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full min-h-screen bg-gray-50/50 pb-20" x-data="{ 
     showCancelModal: false,
     showReviewModal: false,

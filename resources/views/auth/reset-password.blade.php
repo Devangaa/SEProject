@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: auth/reset-password.blade.php --}}
+{{-- HALAMAN: Reset Password --}}
+{{-- DESKRIPSI: Form mengatur password baru setelah verifikasi OTP berhasil. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Reset Password')
 
 @section('content')
@@ -14,6 +20,8 @@
     <h2 class="text-2xl font-bold text-center text-gray-900 mb-1">Password Baru</h2>
     <p class="text-center text-gray-400 text-sm mb-8">Silahkan masukkan password baru anda</p>
 
+    {{-- Bagian: Form Password Baru --}}
+    <div class="space-y-5">
     <div class="space-y-5">
         {{-- Input Password Baru --}}
         <div x-data="{ show: false }">
@@ -79,6 +87,7 @@
         </button>
     </div>
 
+    {{-- Modal: Sukses Reset Password --}}
     <template x-teleport="body">
         <div x-show="showSuccessModal" 
              x-transition:enter="transition ease-out duration-300"
@@ -115,6 +124,7 @@
     </template>
 </div>
 
+{{-- Bagian: Konfigurasi Data --}}
 <div id="reset-password-config" class="hidden"
     data-email="{{ $email }}"
     data-login-url="{{ route('login') }}"></div>

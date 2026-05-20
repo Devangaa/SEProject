@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: admin/reward/index.blade.php --}}
+{{-- HALAMAN: Kelola Reward --}}
+{{-- DESKRIPSI: Manajemen program reward dan poin loyalitas. --}}
+{{-- ============================================================================= --}}
+
 @section('content')
 <div x-data="{ 
     showDeleteModal: false, 
@@ -20,6 +26,7 @@
     <div class="min-h-screen bg-gray-50/50 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
+            {{-- Bagian: Breadcrumb --}}
             <nav class="flex mb-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
@@ -34,6 +41,8 @@
             </nav>
 
             <div data-aos="fade-right">
+                {{-- Bagian: Header & Tombol Tambah --}}
+                <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                     <div>
                         <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
@@ -76,6 +85,8 @@
             </div>
 
             <div data-aos="fade-up">
+                {{-- Bagian: Filter & Pencarian --}}
+                <div class="bg-white p-4 rounded-3xl border border-gray-100 shadow-sm mb-6
                 <div class="bg-white p-4 rounded-3xl border border-gray-100 shadow-sm mb-6 relative overflow-visible">
                     <form action="{{ route('admin.reward.index') }}" method="GET" class="flex flex-col gap-4 sm:flex-row sm:flex-wrap items-start justify-between">
                         <div class="flex flex-1 items-center gap-2 min-w-0">
@@ -116,6 +127,8 @@
                     </form>
                 </div>
 
+                {{-- Bagian: Tabel Data --}}
+                <div class="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden">
                 <div class="bg-white rounded-[2rem] border border-gray-100 shadow-sm overflow-hidden">
                     <div class="p-6 border-b border-gray-50 flex justify-between items-center">
                         <h2 class="font-bold text-gray-900">Daftar Reward {{ request('status') == 'terhapus' ? '(Terhapus)' : '' }}</h2>
@@ -248,6 +261,7 @@
         </div>
     </div>
 
+    {{-- Bagian: Modal Terkait --}}
     @include('admin.reward.modal-delete')
     @include('admin.reward.modal-create')
     @include('admin.reward.modal-edit')

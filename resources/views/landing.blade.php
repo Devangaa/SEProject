@@ -1,9 +1,17 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: landing.blade.php --}}
+{{-- HALAMAN: Beranda --}}
+{{-- DESKRIPSI: Halaman landing dengan hero, statistik, katalog produk, dan keunggulan HydroMart. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Kelola Bisnis Hidroponik Anda')
 
 @section('content')
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full">
+    {{-- Bagian: Hero --}}
     <section id="hero" class="max-w-6xl mx-auto px-4 py-16 md:py-24 flex flex-col md:flex-row items-center gap-12">
         <div data-aos="fade-right" class="flex-1 text-left">
             <span class="inline-block px-4 py-1.5 bg-green-100 text-green-700 text-xs font-bold rounded-full mb-6">
@@ -62,6 +70,7 @@
         -->
     </section>
 
+    {{-- Bagian: Statistik --}}
     <section data-aos="fade-up" class="bg-green-100 py-12">
         <div class="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8">
             <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 text-center">
@@ -83,6 +92,7 @@
         </div>
     </section>
 
+    {{-- Bagian: Tentang Kami --}}
     <section data-aos="fade-up" id="tentang" class="max-w-6xl mx-auto px-4 py-24 flex flex-col-reverse md:flex-row items-center gap-20">
         <div class="flex-1">
             <div class="w-full aspect-square bg-green-50 rounded-[3rem] border-2 border-green-100/50 p-6 md:p-12 flex items-center justify-center overflow-hidden">
@@ -116,6 +126,7 @@
         </div>
     </section>
 
+    {{-- Bagian: Katalog Produk --}}
     {{-- Katalog Produk --}}
     <section data-aos="fade-up" class="pt-10 pb-24">
         <div class="max-w-6xl mx-auto px-4">
@@ -147,6 +158,7 @@
         </div>
     </section>
 
+    {{-- Bagian: Keuntungan --}}
     <section data-aos="fade-up" class="bg-green-100 py-24">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-16">
@@ -203,6 +215,7 @@
         </div>
     </section>
 
+    {{-- Bagian: Cara Kerja --}}
     <section data-aos="fade-up" class="py-24">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-20">

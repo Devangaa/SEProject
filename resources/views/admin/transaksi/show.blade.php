@@ -1,8 +1,15 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: admin/transaksi/show.blade.php --}}
+{{-- HALAMAN: Detail Transaksi Admin --}}
+{{-- DESKRIPSI: Detail transaksi untuk verifikasi, update status, dan kelola pesanan. --}}
+{{-- ============================================================================= --}}
+
 @section('title', 'Detail Transaksi #' . $transaksi->order_id)
 
 @section('content')
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full min-h-screen bg-gray-50/50 pb-20" x-data="{ 
     showCancelModal: false, 
     showResiModal: {{ $errors->hasAny(['nomor_resi', 'ekspedisi']) ? 'true' : 'false' }},

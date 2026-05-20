@@ -1,9 +1,16 @@
 @extends('layouts.app')
 
+{{-- ============================================================================= --}}
+{{-- FILE: pelanggan/reward/my-rewards.blade.php --}}
+{{-- HALAMAN: Reward Saya --}}
+{{-- DESKRIPSI: Riwayat dan status penukaran reward pelanggan. --}}
+{{-- ============================================================================= --}}
+
 @section('content')
+{{-- Bagian: Kontainer Halaman --}}
 <div class="w-full min-h-screen bg-gray-50/50 pb-12">
     <div class="max-w-4xl mx-auto px-6">
-        {{-- Breadcrumb --}}
+        {{-- Bagian: Breadcrumb --}}
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
