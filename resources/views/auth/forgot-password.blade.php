@@ -60,6 +60,15 @@
                    placeholder="000000">
         </div>
 
+        <div class="flex flex-col items-end mb-6">
+            {{-- Error Message gaya Login --}}
+            <template x-if="error">
+                <div class="flex items-center gap-1 text-red-500 text-[11px] w-full italic">
+                    <span class="not-italic">ⓘ</span> <span x-text="error"></span>
+                </div>
+            </template>
+        </div>
+
         <button @click="verifyOtp" 
                 :disabled="loading"
                 class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-green-100">
@@ -114,8 +123,8 @@
             },
 
             async verifyOtp() {
-                if(this.otp.length < 6) { 
-                    this.error = 'Masukkan 6 digit kode!'; 
+                if(!this.otp) { 
+                    this.error = 'Kode OTP wajib diisi!'; 
                     return; 
                 }
                 

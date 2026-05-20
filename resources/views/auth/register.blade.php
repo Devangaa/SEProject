@@ -390,7 +390,11 @@
 
             async fetchProvinces() {
                 try {
-                    const response = await fetch(`${basePath}/provinces`);
+                    const response = await fetch(`${basePath}/provinces`, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
                     this.provinces = await response.json();
                 } catch (error) {
                     console.error('Error fetching provinces:', error);
@@ -413,7 +417,11 @@
                 this.kecamatan = [];
 
                 try {
-                    const response = await fetch(`${basePath}/cities/${this.selectedProvince}`);
+                    const response = await fetch(`${basePath}/cities/${this.selectedProvince}`, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
                     this.cities = await response.json();
 
                     // Restore old city value
@@ -443,7 +451,11 @@
                 this.kecamatan = [];
 
                 try {
-                    const response = await fetch(`${basePath}/kecamatan/${this.selectedCity}`);
+                    const response = await fetch(`${basePath}/kecamatan/${this.selectedCity}`, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
                     this.kecamatan = await response.json();
 
                     // Restore old kecamatan value
