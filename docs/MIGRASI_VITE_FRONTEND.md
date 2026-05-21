@@ -76,7 +76,7 @@ sequenceDiagram
 
     B->>L: GET /produk
     L->>BL: Render layout + view
-    BL-->>B: HTML + link ke app.css & app.js (dari @vite)
+    BL-->>B: HTML + link ke app.css dan app.js via Vite
     B->>V: Muat public/build/assets/*.css
     B->>V: Muat public/build/assets/*.js
     Note over B: Alpine init, AOS init, fungsi global window.*
@@ -241,31 +241,31 @@ Panduan lengkap Windows: [RUNNING_GUIDE_WINDOWS.md](RUNNING_GUIDE_WINDOWS.md)
 
 ```mermaid
 flowchart TB
-    subgraph Blade
+    subgraph bladeLayer [Blade]
         L[layouts/app.blade.php]
-        P[Halaman *.blade.php]
-        C[div#*-config data-config]
+        P[Halaman blade]
+        C[Elemen config tersembunyi]
     end
 
-    subgraph Vite
+    subgraph viteLayer [Vite]
         CSS[resources/css/app.css]
         JS[resources/js/app.js]
-        MOD[components + pages]
+        MOD[components dan pages]
     end
 
-    subgraph Output
-        BUILD[public/build/]
+    subgraph outputLayer [Output]
+        BUILD[public/build]
     end
 
-    L -->|@vite css| CSS
-    L -->|@vite js| JS
+    L -->|muat CSS| CSS
+    L -->|muat JS| JS
     P --> C
     JS --> MOD
     CSS --> BUILD
     JS --> BUILD
     BUILD --> Browser[Browser]
     C -->|getPageConfig| MOD
-    P -->|x-data, HTML| Browser
+    P -->|x-data dan HTML| Browser
 ```
 
 ---
