@@ -1,5 +1,17 @@
+/**
+ * ==============================================================================
+ * FILE: components/checkout.js
+ * TUJUAN: Komponen Checkout
+ * DESKRIPSI: Logika checkout termasuk ongkos kirim calculation, payment method,
+ *            order summary, product/service checkout flow, dan form management.
+ * ==============================================================================
+ */
+
 import { getAppConfig, formatCurrency, getPageConfig } from '../utils/helpers';
 
+/**
+ * Fetch ongkos kirim berdasarkan kecamatan dan total weight
+ */
 export async function fetchOngkirAjax(kecamatanId, totalWeight, grandTotal, basePath, summary = null) {
     const { basePath: appBase } = getAppConfig();
     const path = basePath || appBase;
@@ -210,6 +222,9 @@ export function checkoutSummary(initialSubtotal, availableRewards = []) {
     };
 }
 
+/**
+ * Payment method selection handler
+ */
 export function paymentMethod() {
     return {
         selectedMethod: 'bca',
@@ -465,6 +480,9 @@ export function checkoutDropdown(isSayuran, initialProvinces, basePath = '', res
     };
 }
 
+/**
+ * Inisialisasi checkout untuk produk
+ */
 export function initCheckoutProduk() {
     const cfg = getPageConfig('checkout-produk-config');
 
@@ -547,6 +565,9 @@ export function initCheckoutProduk() {
     }
 }
 
+/**
+ * Inisialisasi checkout untuk layanan
+ */
 export function initCheckoutLayanan() {
     const cfg = getPageConfig('checkout-layanan-config');
 

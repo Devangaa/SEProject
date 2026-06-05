@@ -54,20 +54,22 @@
     {{-- Bagian: Footer --}}
     <x-footer />
 
-    {{-- Bagian: Skrip Arsip (AOS) --}}
-    <!--
+    {{-- Bagian: Skrip AOS --}}
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 100,
-                disable: 'mobile'
-            });
+            const hasVisitedKeuangan = sessionStorage.getItem('visitedKeuangan');
+            if (!hasVisitedKeuangan) {
+                sessionStorage.setItem('visitedKeuangan', 'true');
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100,
+                    disable: 'mobile'
+                });
+            }
         });
     </script>
-    -->
 
     {{-- Bagian: Vite Assets JS --}}
     @vite(['resources/js/app.js'])

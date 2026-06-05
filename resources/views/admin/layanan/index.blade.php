@@ -204,12 +204,16 @@
                                         @endif
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="flex flex-col sm:flex-row items-center justify-center gap-2">
+                                        <div class="flex items-center justify-center gap-2">
                                             @if($item->is_delete)
-                                                <form action="{{ route('admin.layanan.update', $item->id) }}" method="POST" class="inline w-full sm:w-auto">
+                                                <form action="{{ route('admin.layanan.update', $item->id) }}" method="POST" class="inline">
                                                     @csrf @method('PUT')
                                                     <input type="hidden" name="restore" value="1">
-                                                    <button type="submit" class="w-full sm:w-auto px-4 py-2 bg-orange-50 text-orange-600 text-xs font-bold rounded-xl hover:bg-orange-600 hover:text-white transition">Pulihkan</button>
+                                                    <button type="submit" class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-orange-50 text-orange-600 hover:bg-orange-600 hover:text-white transition-all" title="Pulihkan">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                                        </svg>
+                                                    </button>
                                                 </form>
                                             @else
                                                 <button 
@@ -217,8 +221,10 @@
                                                         showReviewModal = true;
                                                         reviewData = {{ json_encode($item->ulasans) }};
                                                     "
-                                                    class="w-full sm:w-auto px-4 py-2 bg-blue-50 text-blue-600 text-xs font-bold rounded-xl hover:bg-blue-600 hover:text-white transition">
-                                                    Lihat Ulasan
+                                                    class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-blue-50 text-blue-500 hover:bg-blue-500 hover:text-white transition-all" title="Lihat Ulasan">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v12a2 2 0 01-2 2h-3l-4 4z" />
+                                                    </svg>
                                                 </button>
                                                 
                                                 <button 
@@ -232,14 +238,18 @@
                                                             'foto_layanan' => $item->foto_layanan ?? [],
                                                         ]) }}
                                                     " 
-                                                    class="w-full sm:w-auto px-4 py-2 bg-green-50 text-green-600 text-xs font-bold rounded-xl hover:bg-green-600 hover:text-white transition">
-                                                    Edit
+                                                    class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-green-50 text-green-500 hover:bg-green-500 hover:text-white transition-all" title="Edit">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                    </svg>
                                                 </button>
 
                                                 <button @click="showDeleteModal = true; deleteUrl = '{{ route('admin.layanan.destroy', $item->id) }}'" 
                                                     type="button" 
-                                                    class="w-full sm:w-auto px-4 py-2 bg-red-50 text-red-500 text-xs font-bold rounded-xl hover:bg-red-500 hover:text-white hover:shadow-md active:scale-90 transition-all duration-200">
-                                                    Hapus
+                                                    class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-red-50 text-red-500 hover:bg-red-500 hover:text-white transition-all" title="Hapus">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
                                                 </button>
                                             @endif
                                         </div>

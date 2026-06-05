@@ -1,5 +1,17 @@
+/**
+ * ==============================================================================
+ * FILE: pages/cart.js
+ * TUJUAN: Halaman Keranjang Belanja
+ * DESKRIPSI: Logika cart management termasuk selection, quantity update,
+ *            summary calculation, dan delete item dengan modal confirmation.
+ * ==============================================================================
+ */
+
 import { getCsrfToken, getPageConfig } from '../utils/helpers';
 
+/**
+ * Handler untuk manajemen cart: selection, quantity update, delete
+ */
 export function cartHandler() {
     const config = getPageConfig('cart-config');
 
@@ -19,6 +31,9 @@ export function cartHandler() {
             });
         },
 
+        /**
+         * Update summary berdasarkan item yang dipilih (checked)
+         */
         updateSummary() {
             const checkboxes = document.querySelectorAll('input[name="cart_ids[]"]:checked');
             this.selectedCount = checkboxes.length;
@@ -34,6 +49,9 @@ export function cartHandler() {
             this.totalPrice = total;
         },
 
+        /**
+         * Update jumlah item di cart dan sync ke server
+         */
         async updateQty(cartId, newQty) {
             const item = this.items.find((i) => i.id == cartId);
 
@@ -66,6 +84,9 @@ export function cartHandler() {
             }
         },
 
+        /**
+         * Buka modal konfirmasi delete item
+         */
         removeItem(cartId) {
             this.cartIdToDelete = cartId;
             this.showDeleteModal = true;

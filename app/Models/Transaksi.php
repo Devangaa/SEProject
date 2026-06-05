@@ -70,6 +70,11 @@ class Transaksi extends Model
         'ongkir',
     ];
 
+    protected $casts = [
+        'tanggal_transaksi' => 'date',
+        'batas_pembayaran' => 'date',
+    ];
+
     /**
      * Atribut aksesori total harga setelah ongkir dan diskon reward.
      */

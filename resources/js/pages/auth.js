@@ -1,5 +1,17 @@
+/**
+ * ==============================================================================
+ * FILE: pages/auth.js
+ * TUJUAN: Halaman Authentication / Autentikasi
+ * DESKRIPSI: Logika forgot password flow dengan OTP verification dan reset password
+ *            termasuk form validation, error handling, dan API integration.
+ * ==============================================================================
+ */
+
 import { getCsrfToken, getPageConfig } from '../utils/helpers';
 
+/**
+ * Handler untuk forgot password: send OTP, verify OTP, reset password
+ */
 export function forgotPasswordHandler() {
     return {
         step: 1,
@@ -8,6 +20,9 @@ export function forgotPasswordHandler() {
         loading: false,
         error: '',
 
+        /**
+         * Kirim OTP ke email yang terdaftar
+         */
         async sendOtp() {
             if (! this.email) {
                 this.error = 'Email wajib diisi!';
@@ -43,6 +58,9 @@ export function forgotPasswordHandler() {
             this.loading = false;
         },
 
+        /**
+         * Verify OTP code dari email
+         */
         async verifyOtp() {
             if (! this.otp) {
                 this.error = 'Kode OTP wajib diisi!';
@@ -82,6 +100,9 @@ export function forgotPasswordHandler() {
     };
 }
 
+/**
+ * Handler untuk reset password dengan validasi dan confirmation
+ */
 export function resetPasswordHandler() {
     const config = getPageConfig('reset-password-config');
 

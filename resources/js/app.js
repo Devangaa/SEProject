@@ -1,4 +1,13 @@
-﻿import Alpine from 'alpinejs';
+﻿/**
+ * ==============================================================================
+ * FILE: app.js
+ * TUJUAN: Entry point utama aplikasi
+ * DESKRIPSI: Inisialisasi Alpine.js, AOS animations, dan registrasi global functions
+ *            untuk semua modul aplikasi (auth, cart, checkout, reward, pembayaran).
+ * ==============================================================================
+ */
+
+import Alpine from 'alpinejs';
 import AOS from 'aos';
 
 import { cascadingDropdown } from './components/cascading-dropdown';

@@ -35,12 +35,11 @@
                     <ul class="space-y-4 text-sm font-medium">
                         <li><a href="{{ route('admin.produk.index') }}" class="hover:text-green-600 transition">Kelola Produk</a></li>
                         <li><a href="{{ route('admin.layanan.index') }}" class="hover:text-green-600 transition">Kelola Layanan</a></li>
-                        <li><a href="#" class="hover:text-green-600 transition">Transaksi</a></li>
-                        <li><a href="#" class="hover:text-green-600 transition">Reward</a></li>
-                        <li><a href="#" class="hover:text-green-600 transition">Ulasan</a></li>
-                        <li><a href="#" class="hover:text-green-600 transition">Keuangan</a></li>
+                        <li><a href="{{ route('admin.transaksi.index') }}" class="hover:text-green-600 transition">Transaksi</a></li>
+                        <li><a href="{{ route('admin.reward.index') }}" class="hover:text-green-600 transition">Reward</a></li>
+                        <li><a href="{{ route('admin.keuangan.index') }}" class="hover:text-green-600 transition">Keuangan</a></li>
                         <li><a href="#" class="hover:text-green-600 transition">Laporan</a></li>
-                        <li><a href="#" class="hover:text-green-600 transition">Dashboard</a></li>
+                        <li><a href="{{ route('admin.dashboard') }}" class="hover:text-green-600 transition">Dashboard</a></li>
                     </ul>
                 </div>
             @elseif(auth()->check() && auth()->user()->role == 'pelanggan')

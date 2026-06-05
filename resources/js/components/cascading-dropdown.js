@@ -1,5 +1,17 @@
+/**
+ * ==============================================================================
+ * FILE: components/cascading-dropdown.js
+ * TUJUAN: Komponen Cascading Dropdown
+ * DESKRIPSI: Logika dropdown berjenjang untuk Province -> City -> Kecamatan.
+ *            Dengan search filtering, loading states, dan API integration.
+ * ==============================================================================
+ */
+
 import { getAppConfig, getPageConfig } from '../utils/helpers';
 
+/**
+ * Buat cascading dropdown component untuk alamat (province, city, kecamatan)
+ */
 export function createCascadingDropdown(config = {}) {
     const { basePath } = getAppConfig();
 
@@ -24,6 +36,9 @@ export function createCascadingDropdown(config = {}) {
         loadingKecamatan: false,
 
         get filteredProvinces() {
+            /**
+             * Filter provinces berdasarkan search input
+             */
             if (! this.provinceSearch) {
                 return this.provinces;
             }
@@ -34,6 +49,9 @@ export function createCascadingDropdown(config = {}) {
         },
 
         get filteredCities() {
+            /**
+             * Filter cities berdasarkan search input
+             */
             if (! this.citySearch) {
                 return this.cities;
             }
@@ -44,6 +62,9 @@ export function createCascadingDropdown(config = {}) {
         },
 
         get filteredKecamatan() {
+            /**
+             * Filter kecamatan berdasarkan search input
+             */
             if (! this.kecamatanSearch) {
                 return this.kecamatan;
             }
@@ -177,6 +198,9 @@ export function createCascadingDropdown(config = {}) {
     };
 }
 
+/**
+ * Function wrapper untuk cascading dropdown dengan default config
+ */
 export function cascadingDropdown() {
     const config = getPageConfig('wilayah-config');
 

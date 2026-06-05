@@ -1,5 +1,17 @@
+/**
+ * ==============================================================================
+ * FILE: pages/pembayaran.js
+ * TUJUAN: Halaman Pembayaran / Payment
+ * DESKRIPSI: Logika countdown timer untuk ekspirasi pembayaran dan status check
+ *            untuk verifikasi pembayaran real-time dengan polling dari server.
+ * ==============================================================================
+ */
+
 import { getPageConfig } from '../utils/helpers';
 
+/**
+ * Inisialisasi halaman pembayaran dengan countdown dan status checking
+ */
 export function initPembayaranPage() {
     const config = getPageConfig('pembayaran-config');
 
@@ -54,6 +66,9 @@ export function initPembayaranPage() {
     }
 }
 
+/**
+ * Copy text ke clipboard
+ */
 export function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(() => {
         alert('Kode berhasil disalin!');

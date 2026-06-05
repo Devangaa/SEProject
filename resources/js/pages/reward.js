@@ -1,7 +1,19 @@
+/**
+ * ==============================================================================
+ * FILE: pages/reward.js
+ * TUJUAN: Halaman Reward / Tukar Poin
+ * DESKRIPSI: Logika modal confirm untuk claim reward dan transaksi penukaran poin.
+ *            Handling modal fade animation dan API call untuk reward claim.
+ * ==============================================================================
+ */
+
 import { numberFormat } from '../utils/helpers';
 
 const MODAL_FADE_MS = 300;
 
+/**
+ * Ambil elemen modal dari DOM
+ */
 function getModalElements() {
     const modal = document.getElementById('confirmModal');
     const backdrop = modal?.querySelector('.modal-backdrop');
@@ -10,6 +22,9 @@ function getModalElements() {
     return { modal, backdrop, content };
 }
 
+/**
+ * Tampilkan modal dengan fade animation
+ */
 function showModalFade() {
     const { modal, backdrop, content } = getModalElements();
 
@@ -26,6 +41,9 @@ function showModalFade() {
     });
 }
 
+/**
+ * Sembunyikan modal dengan fade animation
+ */
 function hideModalFade(callback) {
     const { modal, backdrop, content } = getModalElements();
 
