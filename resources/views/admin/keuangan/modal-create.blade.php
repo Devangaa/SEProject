@@ -53,7 +53,7 @@
 
                 <div>
                     <label for="keterangan" class="text-sm font-bold text-gray-700 ml-1 mb-2 block">Keterangan</label>
-                    <input type="text" id="keterangan" name="keterangan" value="{{ old('keterangan') }}" placeholder="Masukkan keterangan" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 outline-none text-sm {{ $errors->has('keterangan') ? 'ring-2 ring-red-500' : '' }}" required>
+                    <input type="text" id="keterangan" name="keterangan" value="{{ old('keterangan') }}" placeholder="Masukkan keterangan" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none text-sm {{ $errors->has('keterangan') ? 'ring-2 ring-red-500' : '' }}" required>
                     @error('keterangan')
                         <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                     @enderror
@@ -61,7 +61,7 @@
 
                 <div x-data="{ openTipe: false, selectedType: 'pengeluaran' }" class="relative">
                     <label class="text-sm font-bold text-gray-700 ml-1 mb-2 block">Tipe Laporan</label>
-                    <button type="button" @click="openTipe = !openTipe" class="w-full bg-gray-50 border-none rounded-2xl px-5 py-4 text-sm font-bold text-gray-600 outline-none focus:ring-2 focus:ring-green-500 transition flex items-center justify-between hover:bg-gray-100">
+                    <button type="button" @click="openTipe = !openTipe" class="w-full bg-gray-50 border-none rounded-2xl px-5 py-4 text-sm font-bold text-gray-600 outline-none focus:ring-2 focus:ring-amber-500 transition flex items-center justify-between hover:bg-gray-100">
                         <span x-text="selectedType === 'pendapatan' ? 'Pendapatan' : 'Pengeluaran'"></span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 transition-transform" :class="openTipe ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -73,7 +73,7 @@
                         <button type="button" @click="openTipe = false; selectedType = 'pengeluaran'; document.getElementById('tipe_laporan').value = 'pengeluaran';" :class="selectedType === 'pengeluaran' ? 'bg-red-50 text-red-600' : 'text-gray-600'" class="w-full text-left px-5 py-3 text-sm font-bold hover:bg-red-50 hover:text-red-600 transition">
                             Pengeluaran
                         </button>
-                        <button type="button" @click="openTipe = false; selectedType = 'pendapatan'; document.getElementById('tipe_laporan').value = 'pendapatan';" :class="selectedType === 'pendapatan' ? 'bg-green-50 text-green-600' : 'text-gray-600'" class="w-full text-left px-5 py-3 text-sm font-bold hover:bg-green-50 hover:text-green-600 transition">
+                        <button type="button" @click="openTipe = false; selectedType = 'pendapatan'; document.getElementById('tipe_laporan').value = 'pendapatan';" :class="selectedType === 'pendapatan' ? 'bg-amber-50 text-amber-700' : 'text-gray-600'" class="w-full text-left px-5 py-3 text-sm font-bold hover:bg-amber-50 hover:text-amber-700 transition">
                             Pendapatan
                         </button>
                     </div>
@@ -84,7 +84,7 @@
 
                 <div>
                     <label for="nominal" class="text-sm font-bold text-gray-700 ml-1 mb-2 block">Nominal</label>
-                    <input type="number" id="nominal" name="nominal" value="{{ old('nominal') }}" placeholder="Masukkan nominal" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 outline-none text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none {{ $errors->has('nominal') ? 'ring-2 ring-red-500' : '' }}" min="0" step="0.01" required>
+                    <input type="number" id="nominal" name="nominal" value="{{ old('nominal') }}" placeholder="Masukkan nominal" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none {{ $errors->has('nominal') ? 'ring-2 ring-red-500' : '' }}" min="0" step="0.01" required>
                     @error('nominal')
                         <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
                     @enderror
@@ -131,7 +131,7 @@
                     <label for="tanggal" class="text-sm font-bold text-gray-700 ml-1 mb-2 block">Tanggal</label>
                     <div class="relative">
                         <input type="hidden" id="tanggal" name="tanggal" :value="selectedDate">
-                        <button type="button" @click="showCalendar = !showCalendar" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 outline-none text-sm font-bold text-gray-600 text-left flex items-center justify-between hover:bg-gray-100 {{ $errors->has('tanggal') ? 'ring-2 ring-red-500' : '' }}">
+                        <button type="button" @click="showCalendar = !showCalendar" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none text-sm font-bold text-gray-600 text-left flex items-center justify-between hover:bg-gray-100 {{ $errors->has('tanggal') ? 'ring-2 ring-red-500' : '' }}">
                             <span x-text="new Date(selectedDate + 'T00:00:00').toLocaleDateString('id-ID', {year: 'numeric', month: 'long', day: 'numeric'})"></span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -175,8 +175,8 @@
                                         :disabled="day === null"
                                         @click="day && selectDate(day)"
                                         :class="day && selectedDate === `${String(currentYear).padStart(4, '0')}-${String(currentMonth).padStart(2, '0')}-${String(day).padStart(2, '0')}` 
-                                            ? 'bg-green-600 text-white font-bold' 
-                                            : 'bg-gray-50 text-gray-600 hover:bg-green-50 hover:text-green-600'"
+                                            ? 'bg-amber-700 text-white font-bold' 
+                                            : 'bg-gray-50 text-gray-600 hover:bg-amber-50 hover:text-amber-700'"
                                         class="p-2 rounded-lg text-sm font-semibold transition-all"
                                         x-text="day"
                                     >
@@ -192,7 +192,7 @@
 
                 {{-- Bagian: Tombol Aksi --}}
                 <div class="flex flex-col gap-3 pt-4">
-                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-green-100">
+                    <button type="submit" class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-amber-100">
                         Simpan Laporan
                     </button>
                     <button type="button" @click="showCreateModal = false" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-4 rounded-2xl transition-all">

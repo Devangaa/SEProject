@@ -17,9 +17,7 @@
     x-data="{ loading: false }">
     
     <div class="flex justify-center mb-6">
-        <img src="{{ asset('img/logo-hydro2.ico') }}" 
-        alt="Logo HydroMart" 
-        class="w-20 h-20 object-contain">
+        <x-logo-icon class="w-20 h-20" />
     </div>
 
     <h2 class="text-2xl font-bold text-center text-gray-900 mb-1">Buat Akun Anda</h2>
@@ -34,22 +32,22 @@
         
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">Nama Lengkap</label>
-                <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300" placeholder="Nama sesuai KTP" required>
+                <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap') }}" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300" placeholder="Nama sesuai KTP" required>
             </div>
 
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">Email</label>
-                <input type="email" name="email" value="{{ old('email') }}" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300" placeholder="contoh@mail.com" required>
+                <input type="email" name="email" value="{{ old('email') }}" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300" placeholder="contoh@mail.com" required>
             </div>
 
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">No. Telepon</label>
-                <input type="text" name="no_hp" value="{{ old('no_hp') }}" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300" placeholder="085xxxxx" required>
+                <input type="text" name="no_hp" value="{{ old('no_hp') }}" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300" placeholder="085xxxxx" required>
             </div>
 
             <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">Username</label>
-                <input type="text" name="username" value="{{ old('username') }}" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300" placeholder="Buat username unik" required>
+                <input type="text" name="username" value="{{ old('username') }}" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300" placeholder="Buat username unik" required>
             </div>
 
             <div x-data="{ show: false }">
@@ -57,13 +55,13 @@
                 <div class="relative">
                     <input :type="show ? 'text' : 'password'" 
                         name="password" 
-                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300" 
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300" 
                         placeholder="Minimal 8 karakter" 
                         required>
                     
                     <button type="button" 
                             @click="show = !show" 
-                            class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-green-600 transition">
+                            class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-amber-700 transition">
                         
                         <svg x-show="show" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -82,13 +80,13 @@
                 <div class="relative">
                     <input :type="show ? 'text' : 'password'" 
                         name="password_confirmation" 
-                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300" 
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300" 
                         placeholder="Ulangi password" 
                         required>
                     
                     <button type="button" 
                             @click="show = !show" 
-                            class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-green-600 transition">
+                            class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-amber-700 transition">
                         
                         <svg x-show="show" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -114,8 +112,8 @@
 
                     <button type="button"
                         @click="open = !open; if(open) $nextTick(() => $refs.provSearch.focus())"
-                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition text-sm font-semibold text-left flex items-center justify-between gap-2"
-                        :class="open ? 'ring-2 ring-green-500 border-green-300' : 'hover:border-gray-300'"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition text-sm font-semibold text-left flex items-center justify-between gap-2"
+                        :class="open ? 'ring-2 ring-amber-500 border-amber-300' : 'hover:border-gray-300'"
                     >
                         <span :class="selectedProvinceName ? 'text-gray-800' : 'text-gray-400'"
                               x-text="selectedProvinceName || 'Pilih Provinsi'"></span>
@@ -137,7 +135,7 @@
                         {{-- Search --}}
                         <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                             <input type="text" x-model="provinceSearch" x-ref="provSearch" placeholder="Cari provinsi..."
-                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                         </div>
                         <div class="max-h-52 overflow-y-auto">
                             <template x-if="filteredProvinces.length === 0">
@@ -146,8 +144,8 @@
                             <template x-for="prov in filteredProvinces" :key="prov.id">
                                 <button type="button"
                                     @click="selectProvince(prov); open = false"
-                                    class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 transition"
-                                    :class="selectedProvince == prov.id ? 'bg-green-50 text-green-600' : ''"
+                                    class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition"
+                                    :class="selectedProvince == prov.id ? 'bg-amber-50 text-amber-700' : ''"
                                     x-text="prov.name">
                                 </button>
                             </template>
@@ -162,15 +160,15 @@
 
                     <button type="button"
                         @click="if (selectedProvince && !loadingCities) { open = !open; if(open) $nextTick(() => $refs.citySearch.focus()) }"
-                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition text-sm font-semibold text-left flex items-center justify-between gap-2"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition text-sm font-semibold text-left flex items-center justify-between gap-2"
                         :class="{
-                            'ring-2 ring-green-500 border-green-300': open,
+                            'ring-2 ring-amber-500 border-amber-300': open,
                             'hover:border-gray-300': selectedProvince && !loadingCities,
                             'opacity-50 cursor-not-allowed': !selectedProvince || loadingCities
                         }"
                     >
                         <span class="flex items-center gap-2" :class="selectedCityName ? 'text-gray-800' : 'text-gray-400'">
-                            <svg x-show="loadingCities" class="animate-spin h-4 w-4 text-green-500 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg x-show="loadingCities" class="animate-spin h-4 w-4 text-amber-500 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                             </svg>
@@ -193,7 +191,7 @@
                          class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden z-50">
                         <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                             <input type="text" x-model="citySearch" x-ref="citySearch" placeholder="Cari kota..."
-                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                         </div>
                         <div class="max-h-52 overflow-y-auto">
                             <template x-if="filteredCities.length === 0">
@@ -202,8 +200,8 @@
                             <template x-for="city in filteredCities" :key="city.id">
                                 <button type="button"
                                     @click="selectCity(city); open = false"
-                                    class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 transition"
-                                    :class="selectedCity == city.id ? 'bg-green-50 text-green-600' : ''"
+                                    class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition"
+                                    :class="selectedCity == city.id ? 'bg-amber-50 text-amber-700' : ''"
                                     x-text="city.name">
                                 </button>
                             </template>
@@ -218,15 +216,15 @@
 
                     <button type="button"
                         @click="if (selectedCity && !loadingKecamatan) { open = !open; if(open) $nextTick(() => $refs.kecSearch.focus()) }"
-                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition text-sm font-semibold text-left flex items-center justify-between gap-2"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition text-sm font-semibold text-left flex items-center justify-between gap-2"
                         :class="{
-                            'ring-2 ring-green-500 border-green-300': open,
+                            'ring-2 ring-amber-500 border-amber-300': open,
                             'hover:border-gray-300': selectedCity && !loadingKecamatan,
                             'opacity-50 cursor-not-allowed': !selectedCity || loadingKecamatan
                         }"
                     >
                         <span class="flex items-center gap-2" :class="selectedKecamatanName ? 'text-gray-800' : 'text-gray-400'">
-                            <svg x-show="loadingKecamatan" class="animate-spin h-4 w-4 text-green-500 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <svg x-show="loadingKecamatan" class="animate-spin h-4 w-4 text-amber-500 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                             </svg>
@@ -249,7 +247,7 @@
                          class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden z-50">
                         <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                             <input type="text" x-model="kecamatanSearch" x-ref="kecSearch" placeholder="Cari kecamatan..."
-                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                         </div>
                         <div class="max-h-52 overflow-y-auto">
                             <template x-if="filteredKecamatan.length === 0">
@@ -258,8 +256,8 @@
                             <template x-for="kec in filteredKecamatan" :key="kec.id">
                                 <button type="button"
                                     @click="selectKecamatan(kec); open = false"
-                                    class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 transition"
-                                    :class="selectedKecamatan == kec.id ? 'bg-green-50 text-green-600' : ''"
+                                    class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition"
+                                    :class="selectedKecamatan == kec.id ? 'bg-amber-50 text-amber-700' : ''"
                                     x-text="kec.name">
                                 </button>
                             </template>
@@ -272,7 +270,7 @@
             <div class="md:col-span-3">
                 <label class="block text-sm font-bold text-gray-700 mb-2">Detail Alamat (No. Rumah / Blok)</label>
                 <textarea name="alamat" rows="2" 
-                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300" 
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300" 
                         placeholder="Contoh: No. 12, Blok A, dekat warung." required>{{ old('alamat') }}</textarea>
             </div>
         </div>
@@ -288,7 +286,7 @@
         <div class="max-w-xs mx-auto">
             <button type="submit" 
                 :disabled="loading"
-                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition duration-300 transform active:scale-[0.98] shadow-lg shadow-green-100 flex justify-center items-center gap-2">
+                class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-3.5 rounded-xl transition duration-300 transform active:scale-[0.98] shadow-lg shadow-amber-100 flex justify-center items-center gap-2">
             
             {{-- Teks Normal --}}
             <span x-show="!loading">Register</span>
@@ -309,7 +307,7 @@
         </div>
 
         <p class="text-center text-sm text-gray-400">
-            Sudah punya akun? <a href="{{ route('login') }}" class="text-green-600 font-bold hover:underline">Masuk Sekarang</a>
+            Sudah punya akun? <a href="{{ route('login') }}" class="text-amber-700 font-bold hover:underline">Masuk Sekarang</a>
         </p>
     </form>
 </div>

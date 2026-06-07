@@ -65,7 +65,7 @@
                             <input type="hidden" name="ekspedisi" :value="selectedCourier" required>
                             
                             <button type="button" @click="courierOpen = !courierOpen; if(courierOpen) $nextTick(() => $refs.courierSearch.focus())"
-                                    class="w-full bg-gray-50 border-2 rounded-xl px-4 py-3 text-sm font-bold text-left flex items-center justify-between transition-all focus:border-green-500 focus:outline-none"
+                                    class="w-full bg-gray-50 border-2 rounded-xl px-4 py-3 text-sm font-bold text-left flex items-center justify-between transition-all focus:border-amber-500 focus:outline-none"
                                     :class="(clientErrorEkspedisi || {{ $errors->has('ekspedisi') ? 'true' : 'false' }}) ? 'border-red-500' : 'border-gray-100'">
                                 <span :class="selectedCourierName ? 'text-gray-900' : 'text-gray-400'" x-text="selectedCourierName || 'Pilih Ekspedisi'"></span>
                                 <svg class="h-4 w-4 text-gray-400 transition-transform duration-200" :class="courierOpen ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -81,7 +81,7 @@
                                  class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden">
                                 <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                                     <input type="text" x-model="courierSearch" x-ref="courierSearch" placeholder="Cari ekspedisi..."
-                                           class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                           class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                                 </div>
                                 <div class="max-h-40 overflow-y-auto">
                                     <template x-if="filteredCouriers.length === 0">
@@ -89,8 +89,8 @@
                                     </template>
                                     <template x-for="courier in filteredCouriers" :key="courier.id">
                                         <button type="button" @click="selectedCourier = courier.id; selectedCourierName = courier.name; courierOpen = false; courierSearch = '';"
-                                                class="w-full text-left px-4 py-3 text-xs font-bold text-gray-600 hover:bg-green-50 hover:text-green-600 transition"
-                                                :class="selectedCourier == courier.id ? 'bg-green-50 text-green-600' : ''"
+                                                class="w-full text-left px-4 py-3 text-xs font-bold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition"
+                                                :class="selectedCourier == courier.id ? 'bg-amber-50 text-amber-700' : ''"
                                                 x-text="courier.name"></button>
                                     </template>
                                 </div>
@@ -98,7 +98,7 @@
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-gray-400 uppercase mb-2">Nomor Resi (AWB)</label>
-                            <input type="text" name="nomor_resi" value="{{ old('nomor_resi') }}" required placeholder="Contoh: JP123456789" class="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 text-sm focus:border-green-500 focus:ring-0 transition-colors @error('nomor_resi') border-red-500 @enderror">
+                            <input type="text" name="nomor_resi" value="{{ old('nomor_resi') }}" required placeholder="Contoh: JP123456789" class="w-full bg-gray-50 border-2 border-gray-100 rounded-xl px-4 py-3 text-sm focus:border-amber-500 focus:ring-0 transition-colors @error('nomor_resi') border-red-500 @enderror">
                             @error('nomor_resi')
                                 <p class="text-xs text-red-500 mt-2 font-bold">{{ $message }}</p>
                             @enderror
@@ -106,7 +106,7 @@
                     </div>
 
                     <div class="flex flex-col gap-3 mt-8">
-                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-green-100 active:scale-95">
+                        <button type="submit" class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-amber-100 active:scale-95">
                             Validasi & Simpan
                         </button>
                         <button @click="showResiModal = false" type="button" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-4 rounded-2xl transition-all active:scale-95">

@@ -17,7 +17,7 @@
             class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
         
         <div class="absolute top-2 left-2 md:top-4 md:left-4 flex flex-wrap gap-1 md:gap-2">
-            <span class="px-2 py-0.5 md:px-3 md:py-1 bg-white/90 backdrop-blur-sm text-green-700 text-[9px] md:text-[10px] font-black rounded-md md:rounded-lg uppercase tracking-wider shadow-sm whitespace-nowrap">
+            <span class="px-2 py-0.5 md:px-3 md:py-1 bg-white/90 backdrop-blur-sm text-amber-800 text-[9px] md:text-[10px] font-black rounded-md md:rounded-lg uppercase tracking-wider shadow-sm whitespace-nowrap">
                 {{ $product->kategori }}
             </span>
             @if($product->jumlah_stok <= 0)
@@ -31,7 +31,7 @@
     {{-- Bagian: Info Produk --}}
     <div class="p-3 md:p-5 flex flex-col flex-grow">
 
-        <h3 class="font-bold text-gray-900 text-sm md:text-base leading-tight group-hover:text-green-600 transition-colors line-clamp-2 mb-4">
+        <h3 class="font-bold text-gray-900 text-sm md:text-base leading-tight group-hover:text-amber-700 transition-colors line-clamp-2 mb-4">
             {{ $product->nama_produk }}
         </h3>
 
@@ -52,7 +52,7 @@
         <div class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between">
             <div>
                 <p class="hidden md:block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5">Harga</p>
-                <p class="text-green-600 font-black text-xs md:text-base">
+                <p class="text-amber-700 font-black text-xs md:text-base">
                     Rp{{ number_format($product->harga, 0, ',', '.') }}
                 </p>
             </div>

@@ -38,12 +38,12 @@
 
                 <div>
                     <label for="edit_keterangan" class="text-sm font-bold text-gray-700 ml-1 mb-2 block">Keterangan</label>
-                    <input type="text" id="edit_keterangan" x-model="editData.keterangan" name="keterangan" placeholder="Masukkan keterangan" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 outline-none text-sm" required>
+                    <input type="text" id="edit_keterangan" x-model="editData.keterangan" name="keterangan" placeholder="Masukkan keterangan" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none text-sm" required>
                 </div>
 
                 <div x-data="{ openTipeEdit: false }" class="relative">
                     <label class="text-sm font-bold text-gray-700 ml-1 mb-2 block">Tipe Laporan</label>
-                    <button type="button" @click="openTipeEdit = !openTipeEdit" class="w-full bg-gray-50 border-none rounded-2xl px-5 py-4 text-sm font-bold text-gray-600 outline-none focus:ring-2 focus:ring-green-500 transition flex items-center justify-between hover:bg-gray-100" :style="{ backgroundColor: editData.tipe_laporan === 'pendapatan' ? '#dcfce7' : '#fee2e2', color: editData.tipe_laporan === 'pendapatan' ? '#15803d' : '#b91c1c' }">
+                    <button type="button" @click="openTipeEdit = !openTipeEdit" class="w-full bg-gray-50 border-none rounded-2xl px-5 py-4 text-sm font-bold text-gray-600 outline-none focus:ring-2 focus:ring-amber-500 transition flex items-center justify-between hover:bg-gray-100" :style="{ backgroundColor: editData.tipe_laporan === 'pendapatan' ? '#dcfce7' : '#fee2e2', color: editData.tipe_laporan === 'pendapatan' ? '#15803d' : '#b91c1c' }">
                         <span x-text="editData.tipe_laporan === 'pendapatan' ? 'Pendapatan' : 'Pengeluaran'"></span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform" :class="openTipeEdit ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -55,7 +55,7 @@
                         <button type="button" @click="openTipeEdit = false; editData.tipe_laporan = 'pengeluaran';" :class="editData.tipe_laporan === 'pengeluaran' ? 'bg-red-50 text-red-600' : 'text-gray-600'" class="w-full text-left px-5 py-3 text-sm font-bold hover:bg-red-50 hover:text-red-600 transition">
                             Pengeluaran
                         </button>
-                        <button type="button" @click="openTipeEdit = false; editData.tipe_laporan = 'pendapatan';" :class="editData.tipe_laporan === 'pendapatan' ? 'bg-green-50 text-green-600' : 'text-gray-600'" class="w-full text-left px-5 py-3 text-sm font-bold hover:bg-green-50 hover:text-green-600 transition">
+                        <button type="button" @click="openTipeEdit = false; editData.tipe_laporan = 'pendapatan';" :class="editData.tipe_laporan === 'pendapatan' ? 'bg-amber-50 text-amber-700' : 'text-gray-600'" class="w-full text-left px-5 py-3 text-sm font-bold hover:bg-amber-50 hover:text-amber-700 transition">
                             Pendapatan
                         </button>
                     </div>
@@ -63,14 +63,14 @@
 
                 <div>
                     <label for="edit_nominal" class="text-sm font-bold text-gray-700 ml-1 mb-2 block">Nominal</label>
-                    <input type="number" id="edit_nominal" x-model="editData.nominal" name="nominal" placeholder="Masukkan nominal" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 outline-none text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" min="0" step="0.01" required>
+                    <input type="number" id="edit_nominal" x-model="editData.nominal" name="nominal" placeholder="Masukkan nominal" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none text-sm [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" min="0" step="0.01" required>
                 </div>
 
                 <div>
                     <label for="edit_tanggal" class="text-sm font-bold text-gray-700 ml-1 mb-2 block">Tanggal</label>
                     <div class="relative">
                         <input type="hidden" id="edit_tanggal" x-model="editData.tanggal" name="tanggal">
-                        <button type="button" @click="showCalendarEdit = !showCalendarEdit" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 outline-none text-sm font-bold text-gray-600 text-left flex items-center justify-between hover:bg-gray-100">
+                        <button type="button" @click="showCalendarEdit = !showCalendarEdit" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none text-sm font-bold text-gray-600 text-left flex items-center justify-between hover:bg-gray-100">
                             <span x-text="editData.tanggal ? new Date(editData.tanggal + 'T00:00:00').toLocaleDateString('id-ID', {year: 'numeric', month: 'long', day: 'numeric'}) : 'Pilih Tanggal'"></span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -114,8 +114,8 @@
                                         :disabled="day === null"
                                         @click="day && selectDateEdit(day)"
                                         :class="day && editData.tanggal === `${String(currentYearEdit).padStart(4, '0')}-${String(currentMonthEdit).padStart(2, '0')}-${String(day).padStart(2, '0')}` 
-                                            ? 'bg-green-600 text-white font-bold' 
-                                            : 'bg-gray-50 text-gray-600 hover:bg-green-50 hover:text-green-600'"
+                                            ? 'bg-amber-700 text-white font-bold' 
+                                            : 'bg-gray-50 text-gray-600 hover:bg-amber-50 hover:text-amber-700'"
                                         class="p-2 rounded-lg text-sm font-semibold transition-all"
                                         x-text="day"
                                     >
@@ -128,7 +128,7 @@
 
                 {{-- Bagian: Tombol Aksi --}}
                 <div class="flex flex-col gap-3 pt-4">
-                    <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-green-100">
+                    <button type="submit" class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-amber-100">
                         Update Laporan
                     </button>
                     <button type="button" @click="showEditModal = false" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-4 rounded-2xl transition-all">

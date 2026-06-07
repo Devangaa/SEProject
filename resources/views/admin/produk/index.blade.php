@@ -55,7 +55,7 @@
             <nav class="flex mb-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
-                        <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2">
+                        <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
@@ -69,13 +69,13 @@
                 {{-- Bagian: Header & Tombol Tambah --}}
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                     <div>
-                        <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase">
                             Manajemen Produk
                         </span>
                         <h1 class="text-3xl font-extrabold text-gray-900 mt-2">Data Produk</h1>
                         <p class="text-gray-500 text-sm">Kelola semua produk hidroponik yang tersedia di toko</p>
                     </div>
-                    <button @click="showCreateModal = true" type="button" class="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-2xl transition-all shadow-lg shadow-green-200 gap-2">
+                    <button @click="showCreateModal = true" type="button" class="inline-flex items-center justify-center bg-amber-700 hover:bg-amber-800 text-white font-bold py-3 px-6 rounded-2xl transition-all shadow-lg shadow-amber-200 gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
@@ -88,7 +88,7 @@
                     @php
                         $cardStyles = [
                             ['label' => 'Total Produk', 'value' => $stats['total'], 'color' => 'text-gray-900'],
-                            ['label' => 'Produk Aktif', 'value' => $stats['aktif'], 'color' => 'text-green-600'],
+                            ['label' => 'Produk Aktif', 'value' => $stats['aktif'], 'color' => 'text-amber-700'],
                             ['label' => 'Stok Menipis', 'value' => $stats['menipis'], 'color' => 'text-orange-500'],
                             ['label' => 'Dihapus', 'value' => $stats['dihapus'], 'color' => 'text-red-500'],
                         ];
@@ -112,7 +112,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                                 </span>
                                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama produk..." 
-                                    class="w-full pl-12 pr-12 py-3 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 transition outline-none text-sm">
+                                    class="w-full pl-12 pr-12 py-3 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 transition outline-none text-sm">
                             </div>
 
                             @if(request('search') || request('category') || request('status'))
@@ -127,7 +127,7 @@
 
                         <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                             <div x-data="{ openCategory: false }" class="w-full sm:w-auto relative z-20">
-                                <button type="button" @click="openCategory = !openCategory" class="w-full sm:w-auto bg-gray-50 border-none rounded-xl px-4 py-3 text-sm font-bold text-gray-600 outline-none focus:ring-2 focus:ring-green-500 transition flex items-center justify-between hover:bg-gray-100">
+                                <button type="button" @click="openCategory = !openCategory" class="w-full sm:w-auto bg-gray-50 border-none rounded-xl px-4 py-3 text-sm font-bold text-gray-600 outline-none focus:ring-2 focus:ring-amber-500 transition flex items-center justify-between hover:bg-gray-100">
                                     <span>{{ request('category') ? request('category') : 'Semua Kategori' }}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 transition-transform" :class="openCategory ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -146,11 +146,11 @@
                                     x-transition:leave-end="opacity-0 -translate-y-2"
                                     class="absolute top-full left-0 right-0 sm:right-auto mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-[9999] overflow-hidden min-w-[160px]"
                                 >
-                                    <button type="button" @click="openCategory = false; document.querySelector('input[name=category]').value = ''; setTimeout(() => document.querySelector('form').submit(), 100)" class="w-full text-left px-4 py-3 text-sm font-bold text-gray-600 hover:bg-green-50 hover:text-green-600 transition {{ !request('category') ? 'bg-green-50 text-green-600' : '' }}">
+                                    <button type="button" @click="openCategory = false; document.querySelector('input[name=category]').value = ''; setTimeout(() => document.querySelector('form').submit(), 100)" class="w-full text-left px-4 py-3 text-sm font-bold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition {{ !request('category') ? 'bg-amber-50 text-amber-700' : '' }}">
                                         Semua Kategori
                                     </button>
                                     @foreach($categories as $cat)
-                                        <button type="button" @click="openCategory = false; document.querySelector('input[name=category]').value = '{{ $cat }}'; setTimeout(() => document.querySelector('form').submit(), 100)" class="w-full text-left px-4 py-3 text-sm font-bold text-gray-600 hover:bg-green-50 hover:text-green-600 transition {{ request('category') == $cat ? 'bg-green-50 text-green-600' : '' }}">
+                                        <button type="button" @click="openCategory = false; document.querySelector('input[name=category]').value = '{{ $cat }}'; setTimeout(() => document.querySelector('form').submit(), 100)" class="w-full text-left px-4 py-3 text-sm font-bold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition {{ request('category') == $cat ? 'bg-amber-50 text-amber-700' : '' }}">
                                             {{ $cat }}
                                         </button>
                                     @endforeach
@@ -166,7 +166,7 @@
                             <button type="submit" class="hidden">Cari</button>
 
                             <a href="{{ route('admin.produk.index') }}" 
-                            class="w-full sm:w-auto px-4 py-3 font-bold rounded-xl text-sm text-center transition-all duration-300 {{ request('status') != 'terhapus' ? 'bg-green-600 text-white' : 'bg-gray-50 text-gray-400 hover:bg-gray-100' }}">
+                            class="w-full sm:w-auto px-4 py-3 font-bold rounded-xl text-sm text-center transition-all duration-300 {{ request('status') != 'terhapus' ? 'bg-amber-700 text-white' : 'bg-gray-50 text-gray-400 hover:bg-gray-100' }}">
                                 Aktif
                             </a>
                             <a href="{{ route('admin.produk.index', ['status' => 'terhapus']) }}" 
@@ -187,7 +187,7 @@
                             <thead class="bg-gray-50/50">
                                 <tr>
                                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'nama_produk', 'order' => request('sort_by') == 'nama_produk' && request('order') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1 hover:text-green-600 transition-colors">
+                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'nama_produk', 'order' => request('sort_by') == 'nama_produk' && request('order') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1 hover:text-amber-700 transition-colors">
                                             Produk
                                             @if(request('sort_by') == 'nama_produk')
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 {{ request('order') == 'asc' ? 'rotate-180' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -196,7 +196,7 @@
                                     </th>
                                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Kategori</th>
                                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'harga', 'order' => request('sort_by') == 'harga' && request('order') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1 hover:text-green-600 transition-colors">
+                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'harga', 'order' => request('sort_by') == 'harga' && request('order') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1 hover:text-amber-700 transition-colors">
                                             Harga
                                             @if(request('sort_by') == 'harga')
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 {{ request('order') == 'asc' ? 'rotate-180' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -204,7 +204,7 @@
                                         </a>
                                     </th>
                                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'jumlah_stok', 'order' => request('sort_by') == 'jumlah_stok' && request('order') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1 hover:text-green-600 transition-colors">
+                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'jumlah_stok', 'order' => request('sort_by') == 'jumlah_stok' && request('order') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1 hover:text-amber-700 transition-colors">
                                             Stok
                                             @if(request('sort_by') == 'jumlah_stok')
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 {{ request('order') == 'asc' ? 'rotate-180' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -212,7 +212,7 @@
                                         </a>
                                     </th>
                                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'total_terjual', 'order' => request('sort_by') == 'total_terjual' && request('order') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1 hover:text-green-600 transition-colors">
+                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'total_terjual', 'order' => request('sort_by') == 'total_terjual' && request('order') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1 hover:text-amber-700 transition-colors">
                                             Terjual
                                             @if(request('sort_by') == 'total_terjual')
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 {{ request('order') == 'asc' ? 'rotate-180' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -220,7 +220,7 @@
                                         </a>
                                     </th>
                                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'ulasans_avg_rating', 'order' => request('sort_by') == 'ulasans_avg_rating' && request('order') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1 hover:text-green-600 transition-colors">
+                                        <a href="{{ request()->fullUrlWithQuery(['sort_by' => 'ulasans_avg_rating', 'order' => request('sort_by') == 'ulasans_avg_rating' && request('order') == 'asc' ? 'desc' : 'asc']) }}" class="flex items-center gap-1 hover:text-amber-700 transition-colors">
                                             Rating
                                             @if(request('sort_by') == 'ulasans_avg_rating')
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 {{ request('order') == 'asc' ? 'rotate-180' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -250,7 +250,7 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <span class="px-3 py-1 bg-green-50 text-green-600 text-[10px] font-bold rounded-lg uppercase">{{ $product->kategori }}</span>
+                                        <span class="px-3 py-1 bg-amber-50 text-amber-700 text-[10px] font-bold rounded-lg uppercase">{{ $product->kategori }}</span>
                                     </td>
                                     <td class="px-6 py-4 font-bold text-gray-900 text-sm whitespace-nowrap">
                                         Rp {{ number_format($product->harga, 0, ',', '.') }}
@@ -274,7 +274,7 @@
                                         @elseif($product->jumlah_stok <= 10)
                                             <span class="px-3 py-1 bg-orange-50 text-orange-600 text-[10px] font-bold rounded-lg uppercase">Stok Menipis</span>
                                         @else
-                                            <span class="px-3 py-1 bg-green-50 text-green-600 text-[10px] font-bold rounded-lg uppercase">Aktif</span>
+                                            <span class="px-3 py-1 bg-amber-50 text-amber-700 text-[10px] font-bold rounded-lg uppercase">Aktif</span>
                                         @endif
                                     </td>
                                     <td class="px-6 py-4">
@@ -316,7 +316,7 @@
                                                             foto_produk: {{ json_encode($product->foto_produk) }}
                                                         }
                                                     "
-                                                    class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-green-50 text-green-500 hover:bg-green-500 hover:text-white transition-all" title="Edit">
+                                                    class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-amber-50 text-amber-500 hover:bg-amber-500 hover:text-white transition-all" title="Edit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>
@@ -353,14 +353,14 @@
                                     <
                                 </span>
                             @else
-                                <a href="{{ $products->previousPageUrl() }}" class="px-4 py-2 bg-white border border-gray-100 text-gray-600 text-xs font-bold rounded-xl hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300">
+                                <a href="{{ $products->previousPageUrl() }}" class="px-4 py-2 bg-white border border-gray-100 text-gray-600 text-xs font-bold rounded-xl hover:bg-amber-700 hover:text-white hover:border-amber-700 transition-all duration-300">
                                     <
                                 </a>
                             @endif
 
                             @foreach ($products->getUrlRange(max(1, $products->currentPage() - 1), min($products->lastPage(), $products->currentPage() + 1)) as $page => $url)
                                 @if ($page == $products->currentPage())
-                                    <span class="px-4 py-2 bg-green-600 text-white text-xs font-bold rounded-xl shadow-sm shadow-green-100">
+                                    <span class="px-4 py-2 bg-amber-700 text-white text-xs font-bold rounded-xl shadow-sm shadow-amber-100">
                                         {{ $page }}
                                     </span>
                                 @else
@@ -371,7 +371,7 @@
                             @endforeach
 
                             @if ($products->hasMorePages())
-                                <a href="{{ $products->nextPageUrl() }}" class="px-4 py-2 bg-white border border-gray-100 text-gray-600 text-xs font-bold rounded-xl hover:bg-green-600 hover:text-white hover:border-green-600 transition-all duration-300">
+                                <a href="{{ $products->nextPageUrl() }}" class="px-4 py-2 bg-white border border-gray-100 text-gray-600 text-xs font-bold rounded-xl hover:bg-amber-700 hover:text-white hover:border-amber-700 transition-all duration-300">
                                     >
                                 </a>
                             @else

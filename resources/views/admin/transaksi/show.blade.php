@@ -1,4 +1,4 @@
-﻿@extends('layouts.app')
+@extends('layouts.app')
 
 {{-- ============================================================================= --}}
 {{-- FILE: admin/transaksi/show.blade.php --}}
@@ -23,13 +23,13 @@
         {{-- Header --}}
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8" data-aos="fade-right">
             <div>
-                <a href="{{ route('admin.transaksi.index') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2 mb-4">
+                <a href="{{ route('admin.transaksi.index') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2 mb-4">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                     Kembali ke Daftar Transaksi
                 </a>
-                <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Detail Transaksi <span class="text-green-600">Admin</span></h1>
+                <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Detail Transaksi <span class="text-amber-700">Admin</span></h1>
                 <p class="text-gray-500 text-sm mt-2 font-medium">Order ID: <span class="text-gray-900 font-bold">{{ $transaksi->order_id }}</span></p>
             </div>
             <div>
@@ -38,7 +38,7 @@
                     @elseif($transaksi->status == 'Menunggu Konfirmasi') bg-yellow-100 text-yellow-700
                     @elseif($transaksi->status == 'Diproses') bg-blue-100 text-blue-700
                     @elseif($transaksi->status == 'Dikirim') bg-purple-100 text-purple-700
-                    @elseif($transaksi->status == 'Selesai') bg-green-100 text-green-700
+                    @elseif($transaksi->status == 'Selesai') bg-amber-100 text-amber-800
                     @elseif($transaksi->status == 'Dibatalkan') bg-red-100 text-red-700
                     @else bg-gray-100 text-gray-700 @endif">
                     {{ $transaksi->status }}
@@ -91,7 +91,7 @@
                             <form action="{{ route('admin.transaksi.status', $transaksi->order_id) }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="status" value="Selesai">
-                                <button type="submit" class="px-6 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition shadow-lg shadow-green-100">
+                                <button type="submit" class="px-6 py-3 bg-amber-700 text-white font-bold rounded-xl hover:bg-amber-800 transition shadow-lg shadow-amber-100">
                                     Selesaikan Pesanan
                                 </button>
                             </form>
@@ -120,7 +120,7 @@
                 <div class="bg-white rounded-[1.5rem] md:rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden" data-aos="fade-up">
                     <div class="p-5 md:p-8 border-b border-gray-50 bg-gray-50/30">
                         <h3 class="font-black text-gray-900 flex items-center gap-2 text-sm md:text-base">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                             </svg>
                             Daftar Produk
@@ -170,7 +170,7 @@
                                     </div>
                                     @if(!$detail->ulasan->balasan)
                                         <button @click="showReplyModal = true; replyTarget = { id: {{ $detail->ulasan->id }}, name: '{{ addslashes($detail->produk->nama_produk) }}', comment: '{{ addslashes($detail->ulasan->komentar) }}' }" 
-                                            class="text-[10px] font-bold text-green-600 hover:text-green-700 uppercase tracking-wider">
+                                            class="text-[10px] font-bold text-amber-700 hover:text-amber-800 uppercase tracking-wider">
                                             Beri Balasan
                                         </button>
                                     @endif
@@ -180,7 +180,7 @@
                                 @if($detail->ulasan->balasan)
                                 <div class="mt-3 pt-3 border-t border-gray-200/50">
                                     <div class="flex items-center gap-2 mb-1">
-                                        <span class="text-[10px] font-black text-green-600 uppercase">Balasan Admin</span>
+                                        <span class="text-[10px] font-black text-amber-700 uppercase">Balasan Admin</span>
                                         <span class="text-[10px] text-gray-400 font-medium">{{ $detail->ulasan->tanggal_balasan->format('d M Y') }}</span>
                                     </div>
                                     <p class="text-xs text-gray-600">{{ $detail->ulasan->balasan }}</p>
@@ -233,7 +233,7 @@
                                     </div>
                                     @if(!$detail->ulasan->balasan)
                                         <button @click="showReplyModal = true; replyTarget = { id: {{ $detail->ulasan->id }}, name: '{{ addslashes($detail->layanan->nama_layanan) }}', comment: '{{ addslashes($detail->ulasan->komentar) }}' }" 
-                                            class="text-[10px] font-bold text-green-600 hover:text-green-700 uppercase tracking-wider">
+                                            class="text-[10px] font-bold text-amber-700 hover:text-amber-800 uppercase tracking-wider">
                                             Beri Balasan
                                         </button>
                                     @endif
@@ -243,7 +243,7 @@
                                 @if($detail->ulasan->balasan)
                                 <div class="mt-3 pt-3 border-t border-gray-200/50">
                                     <div class="flex items-center gap-2 mb-1">
-                                        <span class="text-[10px] font-black text-green-600 uppercase">Balasan Admin</span>
+                                        <span class="text-[10px] font-black text-amber-700 uppercase">Balasan Admin</span>
                                         <span class="text-[10px] text-gray-400 font-medium">{{ $detail->ulasan->tanggal_balasan->format('d M Y') }}</span>
                                     </div>
                                     <p class="text-xs text-gray-600">"{{ $detail->ulasan->balasan }}"</p>
@@ -284,7 +284,7 @@
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2">Ekspedisi</p>
                             <p class="text-xs md:text-sm font-bold text-gray-900">{{ $transaksi->ekspedisi ?? '-' }}</p>
                             @if($transaksi->nomor_resi)
-                                <p class="text-[10px] text-green-600 font-bold mt-1 uppercase">Resi: {{ $transaksi->nomor_resi }}</p>
+                                <p class="text-[10px] text-amber-700 font-bold mt-1 uppercase">Resi: {{ $transaksi->nomor_resi }}</p>
                             @endif
                         </div>
                     </div>
@@ -305,7 +305,7 @@
                         <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:ml-[1.35rem] md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-100 before:to-transparent">
                             @foreach($trackingData['data']['history'] as $index => $history)
                             <div class="relative flex items-center justify-between md:justify-start group {{ $index === 0 ? 'is-active' : '' }}">
-                                <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white {{ $index === 0 ? 'bg-green-500 shadow-lg shadow-green-200' : 'bg-gray-200' }} text-white shadow shrink-0 md:order-1 transition-all duration-300 z-10">
+                                <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white {{ $index === 0 ? 'bg-amber-500 shadow-lg shadow-amber-200' : 'bg-gray-200' }} text-white shadow shrink-0 md:order-1 transition-all duration-300 z-10">
                                     @if($index === 0)
                                         <svg class="fill-current w-3 h-3" viewBox="0 0 12 12">
                                             <path d="M12 2.4L4.8 9.6 0 4.8l1.2-1.2 3.6 3.6L10.8 1.2z" />
@@ -314,10 +314,10 @@
                                         <div class="w-2 h-2 bg-white rounded-full"></div>
                                     @endif
                                 </div>
-                                <div class="w-[calc(100%-4rem)] md:w-full ml-4 md:ml-8 p-4 rounded-2xl {{ $index === 0 ? 'bg-green-50 border border-green-100 shadow-sm' : 'bg-gray-50 border border-gray-100' }} transition-all duration-300 hover:shadow-md">
+                                <div class="w-[calc(100%-4rem)] md:w-full ml-4 md:ml-8 p-4 rounded-2xl {{ $index === 0 ? 'bg-amber-50 border border-amber-100 shadow-sm' : 'bg-gray-50 border border-gray-100' }} transition-all duration-300 hover:shadow-md">
                                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-1 mb-1">
                                         <div class="font-bold text-gray-900 text-xs md:text-sm leading-tight">{{ $history['description'] ?? $history['desc'] ?? '-' }}</div>
-                                        <time class="font-bold {{ $index === 0 ? 'text-green-600' : 'text-gray-400' }} text-[10px] md:text-xs whitespace-nowrap">
+                                        <time class="font-bold {{ $index === 0 ? 'text-amber-700' : 'text-gray-400' }} text-[10px] md:text-xs whitespace-nowrap">
                                             {{ \Carbon\Carbon::parse($history['date'] ?? $history['time'] ?? now())->format('d M Y, H:i') }}
                                         </time>
                                     </div>
@@ -361,12 +361,12 @@
                         </div>
                         <div class="flex justify-between text-xs md:text-sm">
                             <span class="text-gray-500">Biaya Pengiriman</span>
-                            <span class="font-bold text-green-600">Rp{{ number_format($transaksi->ongkir, 0, ',', '.') }}</span>
+                            <span class="font-bold text-amber-700">Rp{{ number_format($transaksi->ongkir, 0, ',', '.') }}</span>
                         </div>
                         <hr class="border-gray-50">
                         <div class="flex justify-between items-center">
                             <span class="font-bold text-gray-900 text-sm">Total Bayar</span>
-                            <span class="text-lg md:text-xl font-black text-green-600">Rp{{ number_format($transaksi->total_harga, 0, ',', '.') }}</span>
+                            <span class="text-lg md:text-xl font-black text-amber-700">Rp{{ number_format($transaksi->total_harga, 0, ',', '.') }}</span>
                         </div>
                     </div>
                 </div>

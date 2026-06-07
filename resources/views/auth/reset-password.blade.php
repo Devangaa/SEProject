@@ -14,7 +14,7 @@
 <div class="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-sm border border-gray-100 w-full max-w-md mx-auto" x-data="resetPasswordHandler()">
     
     <div class="flex justify-center mb-6">
-        <img src="{{ asset('img/logo-hydro2.ico') }}" alt="Logo HydroMart" class="w-20 h-20 object-contain">
+        <x-logo-icon class="w-20 h-20" />
     </div>
 
     <h2 class="text-2xl font-bold text-center text-gray-900 mb-1">Password Baru</h2>
@@ -29,12 +29,12 @@
             <div class="relative">
                 <input :type="show ? 'text' : 'password'" 
                     x-model="password" 
-                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300"
+                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300"
                     placeholder="Masukkan password baru">
                 
                 <button type="button" 
                         @click="show = !show" 
-                        class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-green-600 transition">
+                        class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-amber-700 transition">
                     {{-- Ikon Mata Terbuka (Show) --}}
                     <svg x-show="show" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -54,12 +54,12 @@
             <div class="relative">
                 <input :type="showConfirm ? 'text' : 'password'" 
                     x-model="password_confirmation" 
-                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300"
+                    class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300"
                     placeholder="Ulangi password">
                 
                 <button type="button" 
                         @click="showConfirm = !showConfirm" 
-                        class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-green-600 transition">
+                        class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-amber-700 transition">
                     {{-- Ikon Mata Terbuka (Show) --}}
                     <svg x-show="showConfirm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
@@ -81,7 +81,7 @@
         </template>
 
         <button @click="submitReset" :disabled="loading"
-                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-green-100 disabled:opacity-50">
+                class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-3.5 rounded-xl transition shadow-lg shadow-amber-100 disabled:opacity-50">
             <span x-show="!loading">Update Password</span>
             <span x-show="loading">Memproses...</span>
         </button>

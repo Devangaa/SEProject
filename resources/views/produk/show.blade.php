@@ -32,7 +32,7 @@
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
-                    <a href="{{ route('produk.index') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2">
+                    <a href="{{ route('produk.index') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
@@ -60,14 +60,14 @@
                         @foreach($product->foto_produk as $foto)
                         <div @click="activePhoto = '{{ asset('uploads/produk/'.$foto) }}'" 
                             class="w-20 h-20 flex-shrink-0 bg-white rounded-2xl overflow-hidden shadow-sm cursor-pointer border-2 transition-all"
-                            :class="activePhoto.includes('{{ $foto }}') ? 'border-green-500 scale-95' : 'border-transparent hover:border-gray-200'">
+                            :class="activePhoto.includes('{{ $foto }}') ? 'border-amber-500 scale-95' : 'border-transparent hover:border-gray-200'">
                             <img src="{{ asset('uploads/produk/'.$foto) }}" class="w-full h-full object-cover">
                         </div>
                         @endforeach
                     @else
                         {{-- JIKA TIDAK ADA FOTO: Tampilkan satu thumbnail placeholder --}}
                         <div @click="activePhoto = defaultAvatar" 
-                            class="w-20 h-20 flex-shrink-0 bg-white rounded-2xl overflow-hidden shadow-sm cursor-pointer border-2 transition-all border-green-500 scale-95">
+                            class="w-20 h-20 flex-shrink-0 bg-white rounded-2xl overflow-hidden shadow-sm cursor-pointer border-2 transition-all border-amber-500 scale-95">
                             <img :src="defaultAvatar" class="w-full h-full object-cover">
                         </div>
                     @endif
@@ -77,7 +77,7 @@
             {{-- Bagian: Detail & Beli Produk --}}
             <div class="space-y-8" data-aos="fade-left">
                 <div>
-                    <span class="text-green-600 text-xs font-black uppercase tracking-widest">{{ $product->kategori }}</span>
+                    <span class="text-amber-700 text-xs font-black uppercase tracking-widest">{{ $product->kategori }}</span>
                     <h1 class="text-3xl font-black text-gray-900 mt-2 tracking-tight">{{ $product->nama_produk }}</h1>
                     
                     <div class="flex items-center gap-4 mt-4">
@@ -89,15 +89,15 @@
                         <span class="text-gray-400 text-sm font-bold">({{ $product->total_ulasan }} ulasan)</span>
                         <div class="w-1.5 h-1.5 rounded-full bg-gray-300"></div>
                         @endif
-                        <span class="text-green-600 text-sm font-black">Stok: {{ $product->jumlah_stok }} {{ $product->unit }}</span>
+                        <span class="text-amber-700 text-sm font-black">Stok: {{ $product->jumlah_stok }} {{ $product->unit }}</span>
                     </div>
                 </div>
 
-                <div class="bg-green-50 rounded-[2rem] p-8 border border-green-100/50">
-                    <p class="text-green-700 text-[10px] font-black uppercase tracking-widest mb-1">Harga per {{ $product->unit }}</p>
+                <div class="bg-amber-50 rounded-[2rem] p-8 border border-amber-100/50">
+                    <p class="text-amber-800 text-[10px] font-black uppercase tracking-widest mb-1">Harga per {{ $product->unit }}</p>
                     <div class="flex items-baseline gap-1">
-                        <span class="text-4xl font-black text-green-700">Rp{{ number_format($product->harga, 0, ',', '.') }}</span>
-                        <span class="text-green-600/60 font-bold">/ {{ $product->unit }}</span>
+                        <span class="text-4xl font-black text-amber-800">Rp{{ number_format($product->harga, 0, ',', '.') }}</span>
+                        <span class="text-amber-700/60 font-bold">/ {{ $product->unit }}</span>
                     </div>
                 </div>
 
@@ -118,7 +118,7 @@
                     <div class="flex items-center bg-gray-100 rounded-xl p-1 w-fit border border-gray-200">
                         <button type="button" 
                                 @click="if(quantity > 1) quantity--" 
-                                class="w-10 h-10 flex items-center justify-center text-2xl font-bold text-gray-500 hover:text-green-600 transition select-none">
+                                class="w-10 h-10 flex items-center justify-center text-2xl font-bold text-gray-500 hover:text-amber-700 transition select-none">
                             -
                         </button>
 
@@ -130,7 +130,7 @@
 
                         <button type="button" 
                                 @click="if(quantity < maxStock) quantity++" 
-                                class="w-10 h-10 flex items-center justify-center text-2xl font-bold text-gray-500 hover:text-green-600 transition select-none">
+                                class="w-10 h-10 flex items-center justify-center text-2xl font-bold text-gray-500 hover:text-amber-700 transition select-none">
                             +
                         </button>
                     </div>
@@ -139,21 +139,21 @@
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <input type="hidden" name="jumlah" :value="quantity">
-                                <button type="submit" class="w-full bg-green-100 text-green-700 font-black py-4 px-8 rounded-2xl hover:bg-green-200 transition-all text-sm flex items-center justify-center">
+                                <button type="submit" class="w-full bg-amber-100 text-amber-800 font-black py-4 px-8 rounded-2xl hover:bg-amber-200 transition-all text-sm flex items-center justify-center">
                                     + Keranjang
                                 </button>
                             </form>
                             
                             <a :href="'{{ route('checkout.produk.index') }}?product_id={{ $product->id }}&qty=' + quantity"
-                               class="flex-1 flex items-center justify-center bg-green-600 text-white font-black py-4 px-8 rounded-2xl hover:bg-green-700 shadow-lg shadow-green-100 transition-all text-sm">
+                               class="flex-1 flex items-center justify-center bg-amber-700 text-white font-black py-4 px-8 rounded-2xl hover:bg-amber-800 shadow-lg shadow-amber-100 transition-all text-sm">
                                 Beli Sekarang
                             </a>
                         @else
-                            <a href="{{ route('login') }}" class="flex-1 flex items-center justify-center bg-green-100 text-green-700 font-black py-4 px-8 rounded-2xl hover:bg-green-200 transition-all text-sm">
+                            <a href="{{ route('login') }}" class="flex-1 flex items-center justify-center bg-amber-100 text-amber-800 font-black py-4 px-8 rounded-2xl hover:bg-amber-200 transition-all text-sm">
                                 + Keranjang
                             </a>
 
-                            <a href="{{ route('login') }}" class="flex-1 flex items-center justify-center bg-green-600 text-white font-black py-4 px-8 rounded-2xl hover:bg-green-700 shadow-lg shadow-green-100 transition-all text-sm">
+                            <a href="{{ route('login') }}" class="flex-1 flex items-center justify-center bg-amber-700 text-white font-black py-4 px-8 rounded-2xl hover:bg-amber-800 shadow-lg shadow-amber-100 transition-all text-sm">
                                 Beli Sekarang
                             </a>
                         @endauth
@@ -167,7 +167,7 @@
             {{-- Informasi Produk --}}
             <div class="bg-white rounded-[2.5rem] border border-gray-100 p-10 shadow-sm" data-aos="fade-up">
                 <div class="flex items-center gap-3 mb-8">
-                    <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-green-600">
+                    <div class="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center text-amber-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                     </div>
                     <h2 class="text-xl font-black text-gray-900">Informasi Produk</h2>
@@ -189,9 +189,9 @@
                         <span class="text-gray-400 font-bold text-sm">{{ $label }}</span>
                         <span class="text-gray-900 font-black text-sm text-right">
                             @if($label == 'Kategori')
-                                <span class="bg-green-100 text-green-600 px-3 py-1 rounded-lg text-[10px] uppercase">{{ $value }}</span>
+                                <span class="bg-amber-100 text-amber-700 px-3 py-1 rounded-lg text-[10px] uppercase">{{ $value }}</span>
                             @elseif($label == 'Kondisi')
-                                <span class="bg-green-500 text-white px-3 py-1 rounded-lg text-[10px] uppercase font-black">{{ $value }}</span>
+                                <span class="bg-amber-500 text-white px-3 py-1 rounded-lg text-[10px] uppercase font-black">{{ $value }}</span>
                             @else
                                 {{ $value }}
                             @endif
@@ -258,7 +258,7 @@
                         
                         @if($ulasan->balasan)
                         <div class="mt-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
-                            <p class="text-[10px] font-black text-green-600 uppercase tracking-widest mb-1">Balasan Admin</p>
+                            <p class="text-[10px] font-black text-amber-700 uppercase tracking-widest mb-1">Balasan Admin</p>
                             <p class="text-xs text-gray-500 leading-relaxed font-medium">{{ $ulasan->balasan }}</p>
                         </div>
                         @endif
@@ -288,9 +288,9 @@
              x-transition:leave="transition ease-in duration-200"
              x-transition:leave-start="opacity-100 translate-x-0"
              x-transition:leave-end="opacity-0 translate-x-8"
-             class="fixed bottom-8 right-8 z-[100] max-w-sm bg-white border border-green-100 rounded-2xl shadow-2xl shadow-green-200/50 p-2 pr-6 flex items-center gap-4">
+             class="fixed bottom-8 right-8 z-[100] max-w-sm bg-white border border-amber-100 rounded-2xl shadow-2xl shadow-amber-200/50 p-2 pr-6 flex items-center gap-4">
             
-            <div class="w-12 h-12 bg-green-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-green-200">
+            <div class="w-12 h-12 bg-amber-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-amber-200">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>

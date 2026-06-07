@@ -44,19 +44,19 @@
 
             <div class="p-8 max-h-[60vh] overflow-y-auto space-y-8 custom-scrollbar">
                 <div>
-                    <h4 class="text-[10px] font-black text-green-600 uppercase tracking-[0.2em] mb-4">Tersedia</h4>
+                    <h4 class="text-[10px] font-black text-amber-700 uppercase tracking-[0.2em] mb-4">Tersedia</h4>
                     <div class="space-y-3">
                         <template x-for="reward in availableRewards.filter(r => subtotal >= r.reward.minimal_pembelian)" :key="reward.id">
                             <button type="button" @click="selectReward(reward)"
-                                    class="w-full flex items-center gap-4 p-4 rounded-2xl border border-gray-100 hover:border-green-500 hover:bg-green-50/30 transition-all text-left group">
-                                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 group-hover:scale-110 transition-transform">
+                                    class="w-full flex items-center gap-4 p-4 rounded-2xl border border-gray-100 hover:border-amber-500 hover:bg-amber-50/30 transition-all text-left group">
+                                <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-700 group-hover:scale-110 transition-transform">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
                                     </svg>
                                 </div>
                                 <div class="flex-1">
                                     <p class="text-sm font-black text-gray-900" x-text="reward.reward.nama_reward"></p>
-                                    <p class="text-xs font-bold text-green-600">Potongan Rp<span x-text="formatCurrency(reward.reward.diskon)"></span></p>
+                                    <p class="text-xs font-bold text-amber-700">Potongan Rp<span x-text="formatCurrency(reward.reward.diskon)"></span></p>
                                 </div>
                                 <div class="text-right">
                                     <p class="text-[9px] text-gray-400 font-bold uppercase mb-0.5">Berlaku s/d</p>

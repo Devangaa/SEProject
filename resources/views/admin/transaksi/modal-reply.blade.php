@@ -25,7 +25,7 @@
                  class="bg-white rounded-[2.5rem] p-8 max-w-md w-full shadow-2xl">
                 
                 <h3 class="text-xl font-bold text-gray-900 mb-2">Balas Ulasan</h3>
-                <p class="text-gray-500 text-xs mb-6">Memberikan tanggapan untuk ulasan <span class="font-bold text-green-600" x-text="replyTarget.name"></span></p>
+                <p class="text-gray-500 text-xs mb-6">Memberikan tanggapan untuk ulasan <span class="font-bold text-amber-700" x-text="replyTarget.name"></span></p>
 
                 <div class="bg-gray-50 rounded-2xl p-4 mb-6 border border-gray-100">
                     <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Komentar Pelanggan</p>
@@ -38,12 +38,12 @@
                         <div>
                             <label class="block text-[10px] font-bold text-gray-400 uppercase mb-2 ml-1">Tulis Balasan Anda</label>
                             <textarea name="balasan" required rows="4" placeholder="Terima kasih telah berbelanja..." 
-                                class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-4 py-3 text-sm focus:border-green-500 focus:ring-0 transition-colors"></textarea>
+                                class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-4 py-3 text-sm focus:border-amber-500 focus:ring-0 transition-colors"></textarea>
                         </div>
                     </div>
 
                     <div class="flex flex-col gap-3 mt-8">
-                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-green-100 active:scale-95">
+                        <button type="submit" class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-amber-100 active:scale-95">
                             Kirim Balasan
                         </button>
                         <button @click="showReplyModal = false" type="button" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-4 rounded-2xl transition-all active:scale-95">

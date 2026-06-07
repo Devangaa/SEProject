@@ -17,7 +17,7 @@
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
-                    <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2">
+                    <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
@@ -28,7 +28,7 @@
         </nav>
 
         <div data-aos="fade-right" class="mb-8">
-            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
+            <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase">
                 Kelola Transaksi
             </span>
             <h1 class="text-3xl font-extrabold text-gray-900 mt-4 tracking-tight">Kelola Transaksi</h1>
@@ -39,15 +39,15 @@
         {{-- Tabs --}}
             <div class="flex gap-4 mb-6 border-b border-gray-200 overflow-x-auto no-scrollbar">
                 <a href="{{ route('admin.transaksi.index', ['tab' => 'menunggu-pembayaran']) }}" 
-                class="px-4 py-3 font-bold text-sm whitespace-nowrap transition-colors border-b-2 {{ $tab == 'menunggu-pembayaran' ? 'border-green-600 text-green-600' : 'border-transparent text-gray-500 hover:text-green-600' }}">
+                class="px-4 py-3 font-bold text-sm whitespace-nowrap transition-colors border-b-2 {{ $tab == 'menunggu-pembayaran' ? 'border-amber-700 text-amber-700' : 'border-transparent text-gray-500 hover:text-amber-700' }}">
                     Menunggu Pembayaran
                 </a>
                 <a href="{{ route('admin.transaksi.index', ['tab' => 'diproses']) }}" 
-                class="px-4 py-3 font-bold text-sm whitespace-nowrap transition-colors border-b-2 {{ $tab == 'diproses' ? 'border-green-600 text-green-600' : 'border-transparent text-gray-500 hover:text-green-600' }}">
+                class="px-4 py-3 font-bold text-sm whitespace-nowrap transition-colors border-b-2 {{ $tab == 'diproses' ? 'border-amber-700 text-amber-700' : 'border-transparent text-gray-500 hover:text-amber-700' }}">
                     Diproses
                 </a>
                 <a href="{{ route('admin.transaksi.index', ['tab' => 'riwayat']) }}" 
-                class="px-4 py-3 font-bold text-sm whitespace-nowrap transition-colors border-b-2 {{ $tab == 'riwayat' ? 'border-green-600 text-green-600' : 'border-transparent text-gray-500 hover:text-green-600' }}">
+                class="px-4 py-3 font-bold text-sm whitespace-nowrap transition-colors border-b-2 {{ $tab == 'riwayat' ? 'border-amber-700 text-amber-700' : 'border-transparent text-gray-500 hover:text-amber-700' }}">
                     Riwayat
                 </a>
             </div>
@@ -74,7 +74,7 @@
                                     @elseif($transaksi->status == 'Menunggu Konfirmasi') bg-yellow-100 text-yellow-700
                                     @elseif($transaksi->status == 'Diproses') bg-blue-100 text-blue-700
                                     @elseif($transaksi->status == 'Dikirim') bg-purple-100 text-purple-700
-                                    @elseif($transaksi->status == 'Selesai') bg-green-100 text-green-700
+                                    @elseif($transaksi->status == 'Selesai') bg-amber-100 text-amber-800
                                     @elseif($transaksi->status == 'Dibatalkan') bg-red-100 text-red-700
                                     @else bg-gray-100 text-gray-700 @endif">
                                     {{ $transaksi->status }}
@@ -148,13 +148,13 @@
                         <div class="p-6 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
                             <div class="w-full md:w-auto text-center md:text-left">
                                 <p class="text-xs text-gray-400 font-bold uppercase mb-1">Total Pembayaran</p>
-                                <p class="text-xl font-black text-green-600">Rp{{ number_format($transaksi->total_harga, 0, ',', '.') }}</p>
+                                <p class="text-xl font-black text-amber-700">Rp{{ number_format($transaksi->total_harga, 0, ',', '.') }}</p>
                             </div>
                             <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
                                 <div class="text-xs text-gray-400 font-medium text-center md:text-right">
                                     {{ \Carbon\Carbon::parse($transaksi->tanggal_transaksi)->locale('id')->translatedFormat('d M Y, H:i') }} WIB
                                 </div>
-                                <a href="{{ route('admin.transaksi.show', $transaksi->order_id) }}" class="w-full md:w-auto px-6 py-3 bg-green-600 text-white font-black rounded-xl hover:bg-green-700 transition text-sm text-center shadow-lg shadow-green-100">
+                                <a href="{{ route('admin.transaksi.show', $transaksi->order_id) }}" class="w-full md:w-auto px-6 py-3 bg-amber-700 text-white font-black rounded-xl hover:bg-amber-800 transition text-sm text-center shadow-lg shadow-amber-100">
                                     Kelola Pesanan
                                 </a>
                             </div>

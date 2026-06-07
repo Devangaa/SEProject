@@ -1,4 +1,4 @@
-﻿{{-- ============================================================================= --}}
+{{-- ============================================================================= --}}
 {{-- FILE: pelanggan/transaksi/modal-review.blade.php --}}
 {{-- HALAMAN: Modal Form Ulasan --}}
 {{-- DESKRIPSI: Form memberikan ulasan produk/layanan. --}}
@@ -27,7 +27,7 @@
                  class="bg-white rounded-[2.5rem] p-8 max-w-md w-full shadow-2xl relative z-10">
 
                 <h3 class="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.382-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                     </svg>
                     Beri Ulasan
@@ -53,11 +53,11 @@
 
                 <div class="mb-8">
                     <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Komentar</p>
-                    <textarea x-model="komentar" rows="3" class="w-full px-5 py-4 rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:border-green-500 focus:ring-0 text-sm transition-all placeholder:text-gray-400" placeholder="Berikan pendapat Anda..."></textarea>
+                    <textarea x-model="komentar" rows="3" class="w-full px-5 py-4 rounded-2xl border-gray-100 bg-gray-50 focus:bg-white focus:border-amber-500 focus:ring-0 text-sm transition-all placeholder:text-gray-400" placeholder="Berikan pendapat Anda..."></textarea>
                 </div>
 
                 <div class="flex flex-col gap-3">
-                    <button @click="showConfirmModal = true; showReviewModal = false" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-green-100 active:scale-95">
+                    <button @click="showConfirmModal = true; showReviewModal = false" class="w-full bg-amber-700 hover:bg-amber-800 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-amber-100 active:scale-95">
                         Kirim Ulasan
                     </button>
                     <button @click="showReviewModal = false" type="button" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-600 font-bold py-4 rounded-2xl transition-all active:scale-95">

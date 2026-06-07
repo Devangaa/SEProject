@@ -29,7 +29,7 @@
             <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Batas Waktu Pembayaran</p>
             <div class="flex justify-center items-center gap-4">
                 <div class="text-center">
-                    <span class="text-4xl font-black text-green-600 tabular-nums" id="countdown">-- : -- : --</span>
+                    <span class="text-4xl font-black text-amber-700 tabular-nums" id="countdown">-- : -- : --</span>
                 </div>
             </div>
             <p class="text-sm text-gray-500 mt-4 font-semibold">
@@ -38,7 +38,7 @@
         </div>
 
         {{-- Payment Info Card --}}
-        <div class="bg-white rounded-[2rem] shadow-xl shadow-green-900/5 border border-gray-100 overflow-hidden mb-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="bg-white rounded-[2rem] shadow-xl shadow-amber-900/5 border border-gray-100 overflow-hidden mb-6" data-aos="fade-up" data-aos-delay="100">
             <div class="p-8 border-b border-gray-50 bg-gray-50/30">
                 <div class="flex justify-between items-center">
                     <div>
@@ -67,7 +67,7 @@
                         <img id="qris-image" src="{{ $transaksi->kode_pembayaran }}" alt="QRIS Code" class="w-full max-w-[256px] aspect-square object-contain mx-auto rounded-xl border border-gray-100 p-2 bg-white">
                     </div>
                     <div class="flex flex-col items-center gap-4 mb-6">
-                        <a href="{{ $transaksi->kode_pembayaran }}" download="QRIS_HydroMart_{{ $transaksi->order_id }}.png" target="_blank" class="flex items-center gap-2 px-6 py-3 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition shadow-lg shadow-green-100">
+                        <a href="{{ $transaksi->kode_pembayaran }}" download="QRIS_HydroMart_{{ $transaksi->order_id }}.png" target="_blank" class="flex items-center gap-2 px-6 py-3 bg-amber-700 text-white font-bold rounded-xl hover:bg-amber-800 transition shadow-lg shadow-amber-100">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
@@ -87,7 +87,7 @@
                                 <p class="text-xs font-bold text-gray-400 uppercase mb-2">Kode Perusahaan (Biller Code)</p>
                                 <div class="flex items-center justify-center gap-2 md:gap-3 flex-wrap">
                                     <span class="text-xl md:text-3xl font-black text-gray-900 tracking-wider md:tracking-widest break-all">{{ $paymentData->biller_code }}</span>
-                                    <button onclick="copyToClipboard('{{ $paymentData->biller_code }}')" class="p-2 text-green-600 hover:bg-green-50 rounded-xl transition">
+                                    <button onclick="copyToClipboard('{{ $paymentData->biller_code }}')" class="p-2 text-amber-700 hover:bg-amber-50 rounded-xl transition">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-6a2 2 0 00-2 2z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2" />
@@ -99,7 +99,7 @@
                                 <p class="text-xs font-bold text-gray-400 uppercase mb-2">Nomor Virtual Account (Bill Key)</p>
                                 <div class="flex items-center justify-center gap-2 md:gap-3 flex-wrap">
                                     <span class="text-xl md:text-3xl font-black text-gray-900 tracking-wider md:tracking-widest break-all">{{ $paymentData->bill_key }}</span>
-                                    <button onclick="copyToClipboard('{{ $paymentData->bill_key }}')" class="p-2 text-green-600 hover:bg-green-50 rounded-xl transition">
+                                    <button onclick="copyToClipboard('{{ $paymentData->bill_key }}')" class="p-2 text-amber-700 hover:bg-amber-50 rounded-xl transition">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-6a2 2 0 00-2 2z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2" />
@@ -113,7 +113,7 @@
                             <p class="text-xs font-bold text-gray-400 uppercase mb-2">Nomor Virtual Account</p>
                             <div class="flex items-center justify-center gap-2 md:gap-3 flex-wrap">
                                 <span class="text-xl sm:text-2xl md:text-4xl font-black text-gray-900 tracking-wider md:tracking-widest break-all">{{ $transaksi->kode_pembayaran }}</span>
-                                <button onclick="copyToClipboard('{{ $transaksi->kode_pembayaran }}')" class="p-2 text-green-600 hover:bg-green-50 rounded-xl transition">
+                                <button onclick="copyToClipboard('{{ $transaksi->kode_pembayaran }}')" class="p-2 text-amber-700 hover:bg-amber-50 rounded-xl transition">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-6a2 2 0 00-2 2z" />
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2" />
@@ -125,7 +125,7 @@
                 @endif
             </div>
 
-            <div class="p-8 bg-green-600 flex justify-between items-center">
+            <div class="p-8 bg-amber-700 flex justify-between items-center">
                 <span class="text-white font-bold opacity-80 uppercase tracking-widest text-xs">Total Pembayaran</span>
                 <span class="text-2xl font-black text-white">Rp{{ number_format($transaksi->total_harga, 0, ',', '.') }}</span>
             </div>
@@ -134,7 +134,7 @@
         {{-- Instructions --}}
         <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 p-8" data-aos="fade-up" data-aos-delay="200">
             <h4 class="text-lg font-black text-gray-900 mb-6 flex items-center gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 Instruksi Pembayaran
@@ -202,7 +202,7 @@
             </div>
 
             <div class="mt-10 flex flex-col md:flex-row gap-4">
-                <a href="{{ route('transaksi.history') }}" class="flex-1 px-8 py-4 bg-green-600 text-white font-black rounded-2xl text-center shadow-lg shadow-green-100 hover:bg-green-700 transition">
+                <a href="{{ route('transaksi.history') }}" class="flex-1 px-8 py-4 bg-amber-700 text-white font-black rounded-2xl text-center shadow-lg shadow-amber-100 hover:bg-amber-800 transition">
                     Cek Status Pesanan
                 </a>
                 <a href="{{ route('produk.index') }}" class="flex-1 px-8 py-4 bg-gray-100 text-gray-600 font-bold rounded-2xl text-center hover:bg-gray-200 transition">

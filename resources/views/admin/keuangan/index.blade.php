@@ -162,7 +162,7 @@
             <nav class="flex mb-8" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
-                        <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2">
+                        <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
@@ -176,13 +176,13 @@
                 {{-- Bagian: Header & Tombol Tambah --}}
                 <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
                     <div>
-                        <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
+                        <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase">
                             Manajemen Keuangan
                         </span>
                         <h1 class="text-3xl font-extrabold text-gray-900 mt-2">Data Keuangan</h1>
                         <p class="text-gray-500 text-sm">Kelola data keuangan dan laporan pendapatan pengeluaran</p>
                     </div>
-                    <button @click="showCreateModal = true" type="button" class="inline-flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-2xl transition-all shadow-lg shadow-green-200 gap-2">
+                    <button @click="showCreateModal = true" type="button" class="inline-flex items-center justify-center bg-amber-700 hover:bg-amber-800 text-white font-bold py-3 px-6 rounded-2xl transition-all shadow-lg shadow-amber-200 gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
@@ -198,7 +198,7 @@
                     </div>
                     <div class="bg-white p-6 rounded-[1.5rem] border border-gray-100 shadow-sm">
                         <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Pendapatan</p>
-                        <p class="text-3xl font-black text-green-600" x-text="`Rp ${new Intl.NumberFormat('id-ID').format(pendapatan)}`"></p>
+                        <p class="text-3xl font-black text-amber-700" x-text="`Rp ${new Intl.NumberFormat('id-ID').format(pendapatan)}`"></p>
                     </div>
                     <div class="bg-white p-6 rounded-[1.5rem] border border-gray-100 shadow-sm">
                         <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1">Pengeluaran</p>
@@ -221,7 +221,7 @@
                                     newTahun--;
                                 }
                                 navigateTo(newBulan, newTahun);
-                            " class="p-3 bg-gray-100 hover:bg-green-600 text-gray-600 hover:text-white rounded-xl transition-all flex items-center justify-center">
+                            " class="p-3 bg-gray-100 hover:bg-amber-700 text-gray-600 hover:text-white rounded-xl transition-all flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                                 </svg>
@@ -229,7 +229,7 @@
 
                             {{-- Bulan Dropdown --}}
                             <div class="flex-1 sm:flex-none relative">
-                                <button type="button" @click="openBulan = !openBulan" class="w-full sm:w-auto bg-gray-50 border-none rounded-xl px-4 py-3 text-sm font-bold text-gray-600 outline-none focus:ring-2 focus:ring-green-500 transition flex items-center justify-between hover:bg-gray-100 min-w-[140px]">
+                                <button type="button" @click="openBulan = !openBulan" class="w-full sm:w-auto bg-gray-50 border-none rounded-xl px-4 py-3 text-sm font-bold text-gray-600 outline-none focus:ring-2 focus:ring-amber-500 transition flex items-center justify-between hover:bg-gray-100 min-w-[140px]">
                                     <span x-text="['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'][currentBulan - 1]"></span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 transition-transform" :class="openBulan ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -252,7 +252,7 @@
                                         $bulanNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
                                     @endphp
                                     @for ($m = 1; $m <= 12; $m++)
-                                        <button type="button" @click="openBulan = false; navigateTo({{ $m }}, currentTahun);" :class="currentBulan === {{ $m }} ? 'bg-green-50 text-green-600' : ''" class="w-full text-left px-4 py-3 text-sm font-bold text-gray-600 hover:bg-green-50 hover:text-green-600 transition">
+                                        <button type="button" @click="openBulan = false; navigateTo({{ $m }}, currentTahun);" :class="currentBulan === {{ $m }} ? 'bg-amber-50 text-amber-700' : ''" class="w-full text-left px-4 py-3 text-sm font-bold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition">
                                             {{ $bulanNames[$m - 1] }}
                                         </button>
                                     @endfor
@@ -268,7 +268,7 @@
                                     newTahun++;
                                 }
                                 navigateTo(newBulan, newTahun);
-                            " class="p-3 bg-gray-100 hover:bg-green-600 text-gray-600 hover:text-white rounded-xl transition-all flex items-center justify-center">
+                            " class="p-3 bg-gray-100 hover:bg-amber-700 text-gray-600 hover:text-white rounded-xl transition-all flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                 </svg>
@@ -276,7 +276,7 @@
 
                             {{-- Tahun Dropdown --}}
                             <div class="flex-1 sm:flex-none relative">
-                                <button type="button" @click="openTahun = !openTahun" class="w-full sm:w-auto bg-gray-50 border-none rounded-xl px-4 py-3 text-sm font-bold text-gray-600 outline-none focus:ring-2 focus:ring-green-500 transition flex items-center justify-between hover:bg-gray-100 min-w-[100px]">
+                                <button type="button" @click="openTahun = !openTahun" class="w-full sm:w-auto bg-gray-50 border-none rounded-xl px-4 py-3 text-sm font-bold text-gray-600 outline-none focus:ring-2 focus:ring-amber-500 transition flex items-center justify-between hover:bg-gray-100 min-w-[100px]">
                                     <span x-text="currentTahun"></span>
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 transition-transform" :class="openTahun ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -296,7 +296,7 @@
                                     class="absolute top-full left-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-[9999] overflow-y-auto max-h-80 min-w-[100px]"
                                 >
                                     @for ($y = now()->year; $y >= now()->year - 5; $y--)
-                                        <button type="button" @click="openTahun = false; navigateTo(currentBulan, {{ $y }});" :class="currentTahun === {{ $y }} ? 'bg-green-50 text-green-600' : ''" class="w-full text-left px-4 py-3 text-sm font-bold text-gray-600 hover:bg-green-50 hover:text-green-600 transition">
+                                        <button type="button" @click="openTahun = false; navigateTo(currentBulan, {{ $y }});" :class="currentTahun === {{ $y }} ? 'bg-amber-50 text-amber-700' : ''" class="w-full text-left px-4 py-3 text-sm font-bold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition">
                                             {{ $y }}
                                         </button>
                                     @endfor
@@ -316,7 +316,7 @@
                             <thead class="bg-gray-50/50">
                                 <tr>
                                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                        <a href="{{ route('admin.keuangan.index', array_merge(request()->query(), ['sort_by' => 'tanggal', 'order' => request('sort_by') == 'tanggal' && request('order') == 'asc' ? 'desc' : 'asc', 'bulan' => $bulan, 'tahun' => $tahun])) }}" class="flex items-center gap-1 hover:text-green-600 transition-colors">
+                                        <a href="{{ route('admin.keuangan.index', array_merge(request()->query(), ['sort_by' => 'tanggal', 'order' => request('sort_by') == 'tanggal' && request('order') == 'asc' ? 'desc' : 'asc', 'bulan' => $bulan, 'tahun' => $tahun])) }}" class="flex items-center gap-1 hover:text-amber-700 transition-colors">
                                             Tanggal
                                             @if(request('sort_by') == 'tanggal')
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 {{ request('order') == 'asc' ? 'rotate-180' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -325,7 +325,7 @@
                                     </th>
                                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">Keterangan</th>
                                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                        <a href="{{ route('admin.keuangan.index', array_merge(request()->query(), ['sort_by' => 'tipe_laporan', 'order' => request('sort_by') == 'tipe_laporan' && request('order') == 'asc' ? 'desc' : 'asc', 'bulan' => $bulan, 'tahun' => $tahun])) }}" class="flex items-center gap-1 hover:text-green-600 transition-colors">
+                                        <a href="{{ route('admin.keuangan.index', array_merge(request()->query(), ['sort_by' => 'tipe_laporan', 'order' => request('sort_by') == 'tipe_laporan' && request('order') == 'asc' ? 'desc' : 'asc', 'bulan' => $bulan, 'tahun' => $tahun])) }}" class="flex items-center gap-1 hover:text-amber-700 transition-colors">
                                             Tipe
                                             @if(request('sort_by') == 'tipe_laporan')
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 {{ request('order') == 'asc' ? 'rotate-180' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -333,7 +333,7 @@
                                         </a>
                                     </th>
                                     <th class="px-6 py-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                                        <a href="{{ route('admin.keuangan.index', array_merge(request()->query(), ['sort_by' => 'nominal', 'order' => request('sort_by') == 'nominal' && request('order') == 'asc' ? 'desc' : 'asc', 'bulan' => $bulan, 'tahun' => $tahun])) }}" class="flex items-center gap-1 hover:text-green-600 transition-colors">
+                                        <a href="{{ route('admin.keuangan.index', array_merge(request()->query(), ['sort_by' => 'nominal', 'order' => request('sort_by') == 'nominal' && request('order') == 'asc' ? 'desc' : 'asc', 'bulan' => $bulan, 'tahun' => $tahun])) }}" class="flex items-center gap-1 hover:text-amber-700 transition-colors">
                                             Nominal
                                             @if(request('sort_by') == 'nominal')
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 {{ request('order') == 'asc' ? 'rotate-180' : '' }}" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
@@ -398,7 +398,7 @@
                                         </div>
                                     </td>
                                     <td class="px-6 py-4 text-sm">
-                                        <span class="px-3 py-1 rounded-full font-bold text-xs {{ $tipe === 'pendapatan' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
+                                        <span class="px-3 py-1 rounded-full font-bold text-xs {{ $tipe === 'pendapatan' ? 'bg-amber-100 text-amber-800' : 'bg-red-100 text-red-700' }}">
                                             {{ $tipe === 'pendapatan' ? 'Pendapatan' : 'Pengeluaran' }}
                                         </span>
                                     </td>
@@ -428,7 +428,7 @@
                                                         tipe_laporan: '{{ $item['data']->tipe_laporan }}',
                                                         tanggal: '{{ $item['data']->tanggal->format('Y-m-d') }}',
                                                     };
-                                                " type="button" class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-green-50 text-green-500 hover:bg-green-500 hover:text-white transition-all" title="Edit">
+                                                " type="button" class="inline-flex items-center justify-center h-10 w-10 rounded-xl bg-amber-50 text-amber-500 hover:bg-amber-500 hover:text-white transition-all" title="Edit">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>

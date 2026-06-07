@@ -17,14 +17,14 @@
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
                 @if(auth()->check() && auth()->user()->role == 'admin')
-                <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2">
+                <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                     Kembali ke Dasboard
                 </a>
                 @else
-                <a href="{{ route('landing') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2">
+                <a href="{{ route('landing') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
@@ -36,7 +36,7 @@
     </nav>
 
     <div class="mb-8">
-        <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
+        <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase">
             Data Akun Anda
         </span>
         <h1 class="text-3xl font-extrabold text-gray-900 mt-4 tracking-tight">Data Akun</h1>
@@ -50,13 +50,13 @@
             Lihat Data Akun
         </a>
         <a href="{{ route('profile.edit') }}" 
-           class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-center bg-green-600 text-white shadow-md">
+           class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-center bg-amber-700 text-white shadow-md">
             Ubah Data Akun
         </a>
     </div>
 
     @if(session('success'))
-        <div class="mb-6 p-4 bg-green-600 text-white rounded-2xl shadow-lg shadow-green-100 text-sm font-bold flex items-center gap-3">
+        <div class="mb-6 p-4 bg-amber-700 text-white rounded-2xl shadow-lg shadow-amber-100 text-sm font-bold flex items-center gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
             </svg>
@@ -66,7 +66,7 @@
 
     <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 mb-8">
         <div class="p-8 border-b border-gray-200 flex items-center gap-4">
-            <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600 border border-green-100">
+            <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center text-amber-700 border border-amber-100">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
@@ -85,28 +85,28 @@
                 <div>
                     <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">Username</label>
                     <input type="text" name="username" value="{{ old('username', $user->username) }}" 
-                        class="w-full bg-gray-50 border {{ $errors->has('username') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 transition-all">
+                        class="w-full bg-gray-50 border {{ $errors->has('username') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none font-bold text-gray-700 transition-all">
                     @error('username') <p class="text-red-500 text-xs mt-2 ml-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
                     <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">Nama Lengkap</label>
                     <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap', $user->nama_lengkap) }}" 
-                        class="w-full bg-gray-50 border {{ $errors->has('nama_lengkap') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 transition-all">
+                        class="w-full bg-gray-50 border {{ $errors->has('nama_lengkap') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none font-bold text-gray-700 transition-all">
                     @error('nama_lengkap') <p class="text-red-500 text-xs mt-2 ml-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
                     <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">Email</label>
                     <input type="email" name="email" value="{{ old('email', $user->email) }}" 
-                        class="w-full bg-gray-50 border {{ $errors->has('email') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 transition-all">
+                        class="w-full bg-gray-50 border {{ $errors->has('email') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none font-bold text-gray-700 transition-all">
                     @error('email') <p class="text-red-500 text-xs mt-2 ml-1">{{ $message }}</p> @enderror
                 </div>
 
                 <div>
                     <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">Nomor Telepon</label>
                     <input type="text" name="no_hp" value="{{ old('no_hp', $user->no_hp) }}" 
-                        class="w-full bg-gray-50 border {{ $errors->has('no_hp') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 transition-all">
+                        class="w-full bg-gray-50 border {{ $errors->has('no_hp') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none font-bold text-gray-700 transition-all">
                     @error('no_hp') <p class="text-red-500 text-xs mt-2 ml-1">{{ $message }}</p> @enderror
                 </div>
 
@@ -120,8 +120,8 @@
 
                         <button type="button"
                             @click="open = !open; if(open) $nextTick(() => $refs.provSearch.focus())"
-                            class="w-full bg-gray-50 border {{ $errors->has('provinsi') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 transition-all flex items-center justify-between gap-2"
-                            :class="open ? 'ring-2 ring-green-500 border-green-300' : 'hover:border-gray-300'"
+                            class="w-full bg-gray-50 border {{ $errors->has('provinsi') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none font-bold text-gray-700 transition-all flex items-center justify-between gap-2"
+                            :class="open ? 'ring-2 ring-amber-500 border-amber-300' : 'hover:border-gray-300'"
                         >
                             <span :class="selectedProvinceName ? 'text-gray-800' : 'text-gray-400'"
                                   x-text="selectedProvinceName || 'Pilih Provinsi'"></span>
@@ -143,7 +143,7 @@
                             {{-- Search --}}
                             <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                                 <input type="text" x-model="provinceSearch" x-ref="provSearch" placeholder="Cari provinsi..."
-                                       class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                       class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                             </div>
                             <div class="max-h-52 overflow-y-auto">
                                 <template x-if="filteredProvinces.length === 0">
@@ -152,8 +152,8 @@
                                 <template x-for="prov in filteredProvinces" :key="prov.id">
                                     <button type="button"
                                         @click="selectProvince(prov); open = false"
-                                        class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 transition"
-                                        :class="selectedProvince == prov.id ? 'bg-green-50 text-green-600' : ''"
+                                        class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition"
+                                        :class="selectedProvince == prov.id ? 'bg-amber-50 text-amber-700' : ''"
                                         x-text="prov.name">
                                     </button>
                                 </template>
@@ -169,15 +169,15 @@
 
                         <button type="button"
                             @click="if (selectedProvince && !loadingCities) { open = !open; if(open) $nextTick(() => $refs.citySearch.focus()) }"
-                            class="w-full bg-gray-50 border {{ $errors->has('kota') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 transition-all flex items-center justify-between gap-2"
+                            class="w-full bg-gray-50 border {{ $errors->has('kota') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none font-bold text-gray-700 transition-all flex items-center justify-between gap-2"
                             :class="{
-                                'ring-2 ring-green-500 border-green-300': open,
+                                'ring-2 ring-amber-500 border-amber-300': open,
                                 'hover:border-gray-300': selectedProvince && !loadingCities,
                                 'opacity-50 cursor-not-allowed': !selectedProvince || loadingCities
                             }"
                         >
                             <span class="flex items-center gap-2" :class="selectedCityName ? 'text-gray-800' : 'text-gray-400'">
-                                <svg x-show="loadingCities" class="animate-spin h-4 w-4 text-green-500 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <svg x-show="loadingCities" class="animate-spin h-4 w-4 text-amber-500 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                                 </svg>
@@ -200,7 +200,7 @@
                              class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden z-50">
                             <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                                 <input type="text" x-model="citySearch" x-ref="citySearch" placeholder="Cari kota..."
-                                       class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                       class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                             </div>
                             <div class="max-h-52 overflow-y-auto">
                                 <template x-if="filteredCities.length === 0">
@@ -209,8 +209,8 @@
                                 <template x-for="city in filteredCities" :key="city.id">
                                     <button type="button"
                                         @click="selectCity(city); open = false"
-                                        class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 transition"
-                                        :class="selectedCity == city.id ? 'bg-green-50 text-green-600' : ''"
+                                        class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition"
+                                        :class="selectedCity == city.id ? 'bg-amber-50 text-amber-700' : ''"
                                         x-text="city.name">
                                     </button>
                                 </template>
@@ -226,15 +226,15 @@
 
                         <button type="button"
                             @click="if (selectedCity && !loadingKecamatan) { open = !open; if(open) $nextTick(() => $refs.kecSearch.focus()) }"
-                            class="w-full bg-gray-50 border {{ $errors->has('kecamatan') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 transition-all flex items-center justify-between gap-2"
+                            class="w-full bg-gray-50 border {{ $errors->has('kecamatan') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none font-bold text-gray-700 transition-all flex items-center justify-between gap-2"
                             :class="{
-                                'ring-2 ring-green-500 border-green-300': open,
+                                'ring-2 ring-amber-500 border-amber-300': open,
                                 'hover:border-gray-300': selectedCity && !loadingKecamatan,
                                 'opacity-50 cursor-not-allowed': !selectedCity || loadingKecamatan
                             }"
                         >
                             <span class="flex items-center gap-2" :class="selectedKecamatanName ? 'text-gray-800' : 'text-gray-400'">
-                                <svg x-show="loadingKecamatan" class="animate-spin h-4 w-4 text-green-500 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <svg x-show="loadingKecamatan" class="animate-spin h-4 w-4 text-amber-500 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
                                 </svg>
@@ -257,7 +257,7 @@
                              class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl overflow-hidden z-50">
                             <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                                 <input type="text" x-model="kecamatanSearch" x-ref="kecSearch" placeholder="Cari kecamatan..."
-                                       class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                       class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                             </div>
                             <div class="max-h-52 overflow-y-auto">
                                 <template x-if="filteredKecamatan.length === 0">
@@ -266,8 +266,8 @@
                                 <template x-for="kec in filteredKecamatan" :key="kec.id">
                                     <button type="button"
                                         @click="selectKecamatan(kec); open = false"
-                                        class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 transition"
-                                        :class="selectedKecamatan == kec.id ? 'bg-green-50 text-green-600' : ''"
+                                        class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition"
+                                        :class="selectedKecamatan == kec.id ? 'bg-amber-50 text-amber-700' : ''"
                                         x-text="kec.name">
                                     </button>
                                 </template>
@@ -280,12 +280,12 @@
                 <div class="md:col-span-2">
                     <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 ml-1">Detail Alamat</label>
                     <textarea name="alamat" rows="3" 
-                            class="w-full bg-gray-50 border {{ $errors->has('alamat') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-green-500 outline-none font-bold text-gray-700 leading-relaxed transition-all">{{ old('alamat', $user->alamat) }}</textarea>
+                            class="w-full bg-gray-50 border {{ $errors->has('alamat') ? 'border-red-500' : 'border-gray-100' }} p-4 rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none font-bold text-gray-700 leading-relaxed transition-all">{{ old('alamat', $user->alamat) }}</textarea>
                     @error('alamat') <p class="text-red-500 text-xs mt-2 ml-1">{{ $message }}</p> @enderror
                 </div>
             </div>
 
-            <button type="submit" class="bg-green-600 text-white px-10 py-3.5 rounded-2xl font-bold shadow-lg shadow-green-100 hover:bg-green-700 transition-all">
+            <button type="submit" class="bg-amber-700 text-white px-10 py-3.5 rounded-2xl font-bold shadow-lg shadow-amber-100 hover:bg-amber-800 transition-all">
                 Simpan Perubahan
             </button>
         </form>

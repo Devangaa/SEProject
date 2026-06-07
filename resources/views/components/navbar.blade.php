@@ -10,8 +10,8 @@
 
         {{-- Bagian: Logo & Brand --}}
         <a href="{{ route('landing') }}" class="flex items-center gap-2 group">
-            <img src="{{ asset('img/logo-hydro2.ico') }}" alt="Logo HydroMart" class="w-11 h-11 object-contain">
-            <span class="text-2xl font-bold text-gray-900 tracking-tight">Hydro<span class="text-green-600">Mart</span></span>
+            <x-logo-icon />
+            <span class="text-2xl font-bold text-gray-900 tracking-tight">Hydro<span class="text-amber-700">Mart</span></span>
         </a>
 
         {{-- Bagian: Menu Desktop --}}
@@ -19,12 +19,11 @@
             @if(!Route::is('login', 'register', 'password.request', 'password.reset'))
                 @if(!auth()->check() || (auth()->check() && auth()->user()->role !== 'admin'))
                     <div class="flex items-center gap-8 mr-2">
-                        <a href="{{ route('produk.index') }}" class="text-gray-600 font-medium hover:text-green-600 transition text-sm">Produk</a>
-                        <a href="{{ route('layanan.index') }}" class="text-gray-600 font-medium hover:text-green-600 transition text-sm">Layanan</a>
+                        <a href="{{ route('produk.index') }}" class="text-gray-600 font-medium hover:text-amber-700 transition text-sm">Produk</a>
                         
                         @if(auth()->check() && auth()->user()->role === 'pelanggan')
                             {{-- Bagian: Ikon Keranjang Desktop --}}
-                            <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 hover:text-green-600 transition group">
+                            <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 hover:text-amber-700 transition group">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
                                 </svg>
@@ -42,8 +41,8 @@
                 @auth
                     <div x-data="{ open: false }" @click.away="open = false" class="relative">
                         <button @click="open = !open" class="h-11 flex items-center gap-3 px-3 rounded-xl hover:bg-gray-50 transition duration-300">
-                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center border border-green-200">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                            <div class="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center border border-amber-200">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-700" viewBox="0 0 20 20" fill="currentColor">
                                     <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                                 </svg>
                             </div>
@@ -56,23 +55,17 @@
                         <div x-show="open" x-cloak x-transition 
                             class="absolute right-0 w-52 mt-2 bg-white border border-gray-100 rounded-2xl shadow-xl z-50 py-2">
                             
-                            <a href="{{ route('profile') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-600 hover:bg-green-50 hover:text-green-600 transition">
+                            <a href="{{ route('profile') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                                 Profil Saya
                             </a>
 
                             @if(auth()->user()->role == 'pelanggan')
-                                <a href="{{ route('transaksi.history') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-600 hover:bg-green-50 hover:text-green-600 transition">
+                                <a href="{{ route('transaksi.history') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
                                     Pesanan Saya
                                 </a>
 
-                                <a href="{{ route('reward.index') }}" class="flex items-center gap-3 px-4 py-3 text-sm text-gray-600 hover:bg-green-50 hover:text-green-600 transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                                    </svg>
-                                    Reward Saya
-                                </a>
                             @endif
 
                             <hr class="my-1 border-gray-100">
@@ -87,8 +80,8 @@
                 @else
                     @if(Route::is('login', 'register', 'password.request', 'password.reset'))
                     @else
-                        <a href="{{ route('login') }}" class="h-11 px-6 border-2 border-green-600 text-green-600 font-bold rounded-xl hover:bg-green-50 transition text-sm flex items-center">Login</a>
-                        <a href="{{ route('register') }}" class="h-11 px-6 bg-green-600 text-white font-bold rounded-xl hover:bg-green-700 transition shadow-md shadow-green-100 text-sm flex items-center">Register</a>
+                        <a href="{{ route('login') }}" class="h-11 px-6 border-2 border-amber-700 text-amber-700 font-bold rounded-xl hover:bg-amber-50 transition text-sm flex items-center">Login</a>
+                        <a href="{{ route('register') }}" class="h-11 px-6 bg-amber-700 text-white font-bold rounded-xl hover:bg-amber-800 transition shadow-md shadow-amber-100 text-sm flex items-center">Register</a>
                     @endif
                 @endauth
             </div>
@@ -100,7 +93,7 @@
 
             @if((auth()->check() && auth()->user()->role !== 'admin'))
                 {{-- Bagian: Ikon Keranjang Mobile --}}
-                <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 hover:text-green-600 transition">
+                <a href="{{ route('cart.index') }}" class="relative p-2 text-gray-600 hover:text-amber-700 transition">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
                     </svg>
@@ -135,8 +128,8 @@
             @auth
                 {{-- Bagian: Menu Mobile - Pengguna Login --}}
                 <div class="flex items-center gap-3 py-2 border-b border-gray-50 pb-4">
-                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center border border-green-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                    <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center border border-amber-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-700" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
                         </svg>
                     </div>
@@ -147,15 +140,13 @@
                 </div>
 
                 @if(auth()->user()->role !== 'admin')
-                    <a href="{{ route('produk.index') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Produk</a>
-                    <a href="{{ route('layanan.index') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Layanan</a>
+                    <a href="{{ route('produk.index') }}" class="block text-gray-600 font-medium hover:text-amber-700 py-2">Produk</a>
                 @endif
 
-                <a href="{{ route('profile') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Profil Saya</a>
+                <a href="{{ route('profile') }}" class="block text-gray-600 font-medium hover:text-amber-700 py-2">Profil Saya</a>
                 
                 @if(auth()->user()->role == 'pelanggan')
-                    <a href="{{ route('transaksi.history') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Pesanan Saya</a>
-                    <a href="{{ route('reward.index') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Reward Saya</a>
+                    <a href="{{ route('transaksi.history') }}" class="block text-gray-600 font-medium hover:text-amber-700 py-2">Pesanan Saya</a>
                 @endif
                 
                 <button @click="showLogoutModal = true; mobileMenuOpen = false" class="w-full text-left text-red-500 font-bold py-2">Keluar</button>
@@ -166,14 +157,13 @@
 
                 @else
                     {{-- Bagian: Menu Mobile - Navigasi & Tombol Auth --}}
-                    <a href="{{ route('produk.index') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Produk</a>
-                    <a href="{{ route('layanan.index') }}" class="block text-gray-600 font-medium hover:text-green-600 py-2">Layanan</a>
+                    <a href="{{ route('produk.index') }}" class="block text-gray-600 font-medium hover:text-amber-700 py-2">Produk</a>
 
                     <hr class="border-gray-50 my-2">
 
                     <div class="grid grid-cols-1 gap-3 pt-2">
-                        <a href="{{ route('login') }}" class="w-full h-12 flex items-center justify-center border-2 border-green-600 text-green-600 font-bold rounded-xl">Login</a>
-                        <a href="{{ route('register') }}" class="w-full h-12 flex items-center justify-center bg-green-600 text-white font-bold rounded-xl shadow-md">Register</a>
+                        <a href="{{ route('login') }}" class="w-full h-12 flex items-center justify-center border-2 border-amber-700 text-amber-700 font-bold rounded-xl">Login</a>
+                        <a href="{{ route('register') }}" class="w-full h-12 flex items-center justify-center bg-amber-700 text-white font-bold rounded-xl shadow-md">Register</a>
                     </div>
                 @endif
             @endauth

@@ -16,7 +16,7 @@
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
-                    <a href="{{ route('produk.index') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2">
+                    <a href="{{ route('produk.index') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
@@ -28,7 +28,7 @@
 
         {{-- Bagian: Header Checkout --}}
         <div class="mb-8" data-aos="fade-right">
-            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
+            <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase">
                 Checkout
             </span>
             <h1 class="text-3xl font-extrabold text-gray-900 mt-4 tracking-tight">Checkout Produk</h1>
@@ -53,7 +53,7 @@
                 {{-- Bagian: Kartu Detail Produk --}}
                 <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden" data-aos="fade-up">
                     <div class="p-8 border-b border-gray-200 flex items-center gap-4">
-                        <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center border border-green-100 text-green-600">
+                        <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center border border-amber-100 text-amber-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                             </svg>
@@ -103,7 +103,7 @@
                                         </div>
                                         <div class="text-right">
                                             <p class="text-[9px] text-gray-400 uppercase font-black leading-none mb-1">Subtotal</p>
-                                            <p class="text-lg font-black text-green-600 leading-none">Rp{{ number_format($item->subtotal, 0, ',', '.') }}</p>
+                                            <p class="text-lg font-black text-amber-700 leading-none">Rp{{ number_format($item->subtotal, 0, ',', '.') }}</p>
                                         </div>
                                     </div>
 
@@ -114,22 +114,22 @@
                                                 <p class="text-xs font-black text-gray-700 leading-none">Rp{{ number_format($item->product->harga, 0, ',', '.') }}</p>
                                             </div>
                                             <div class="sm:hidden space-y-0.5">
-                                                <p class="text-[9px] text-gray-400 font-bold uppercase text-green-600/70">Subtotal</p>
-                                                <p class="text-sm font-black text-green-600 leading-none">Rp{{ number_format($item->subtotal, 0, ',', '.') }}</p>
+                                                <p class="text-[9px] text-gray-400 font-bold uppercase text-amber-700/70">Subtotal</p>
+                                                <p class="text-sm font-black text-amber-700 leading-none">Rp{{ number_format($item->subtotal, 0, ',', '.') }}</p>
                                             </div>
                                         </div>
                                         
                                         @if($mode === 'buy_now')
                                             <div class="flex items-center bg-white border border-gray-200 rounded-xl p-1 shadow-sm">
                                                 <button type="button" onclick="let qty = document.getElementById('item-qty'); qty.value = Math.max(1, parseInt(qty.value) - 1); updateTotal({{ $item->product->harga }}, {{ $item->product->berat }});"
-                                                        class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-green-600 rounded-lg transition-all">
+                                                        class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-amber-700 rounded-lg transition-all">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" /></svg>
                                                 </button>
                                                 <input type="number" name="items[{{ $index }}][jumlah]" id="item-qty" value="{{ $item->qty }}" min="1" max="{{ $item->product->jumlah_stok }}"
                                                        class="w-10 text-center bg-transparent border-none focus:ring-0 text-sm font-black text-gray-900 px-0"
                                                        oninput="updateTotal({{ $item->product->harga }}, {{ $item->product->berat }})">
                                                 <button type="button" onclick="let qty = document.getElementById('item-qty'); qty.value = Math.min({{ $item->product->jumlah_stok }}, parseInt(qty.value) + 1); updateTotal({{ $item->product->harga }}, {{ $item->product->berat }});"
-                                                        class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-green-600 rounded-lg transition-all">
+                                                        class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-amber-700 rounded-lg transition-all">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
                                                 </button>
                                             </div>
@@ -152,7 +152,7 @@
                                         <textarea name="items[{{ $index }}][catatan]" 
                                                   rows="1" 
                                                   placeholder="Contoh: Titip di satpam, atau warna cadangan..."
-                                                  class="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-green-500/20 focus:border-green-500 focus:outline-none transition text-xs placeholder-gray-300"></textarea>
+                                                  class="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500 focus:outline-none transition text-xs placeholder-gray-300"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -255,7 +255,7 @@
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-2">Nama Penerima</label>
                                 <input type="text" name="nama_penerima" value="{{ auth()->user()->nama_lengkap ?? auth()->user()->username }}"
-                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300"
+                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300"
                                        placeholder="Masukkan nama penerima"
                                        @input="errors.nama_penerima = ''"
                                        required>
@@ -266,7 +266,7 @@
                             <div>
                                 <label class="block text-sm font-bold text-gray-700 mb-2">Nomor HP</label>
                                 <input type="tel" name="no_hp" value="{{ auth()->user()->no_hp ?? '' }}"
-                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300"
+                                       class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300"
                                        placeholder="Masukkan nomor hp penerima"
                                        @input="errors.no_hp = ''"
                                        required>
@@ -305,7 +305,7 @@
                                     <label class="block text-sm font-bold text-gray-700 mb-2">Kecamatan</label>
                                     <input type="hidden" name="kecamatan_id" :value="selected">
                                     <button type="button" @click="open = !open; if(open) $nextTick(() => $refs.kecSearch.focus())" 
-                                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 transition text-sm font-semibold text-left flex items-center justify-between">
+                                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 transition text-sm font-semibold text-left flex items-center justify-between">
                                         <span :class="selectedName ? 'text-gray-800' : 'text-gray-400'" x-text="selectedName || 'Pilih Kecamatan'"></span>
                                         <svg class="h-4 w-4 text-gray-400 transition-transform duration-200" :class="open ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -318,7 +318,7 @@
                                          class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden">
                                         <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                                             <input type="text" x-model="search" x-ref="kecSearch" placeholder="Cari kecamatan..."
-                                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                                         </div>
                                         <div class="max-h-52 overflow-y-auto">
                                             <template x-if="filteredOptions.length === 0">
@@ -326,7 +326,7 @@
                                             </template>
                                             <template x-for="opt in filteredOptions" :key="opt.id">
                                                 <button type="button" @click="selected = opt.id; selectedName = opt.name; open = false; $dispatch('checkout-fetch-shipping', { id: opt.id }); errors.kecamatan_id = '';"
-                                                        class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-green-50 hover:text-green-600 transition" x-text="opt.name"></button>
+                                                        class="w-full text-left px-4 py-3 text-sm font-semibold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition" x-text="opt.name"></button>
                                             </template>
                                         </div>
                                     </div>
@@ -346,14 +346,14 @@
                                     <div x-show="open" x-cloak @click.away="open = false" class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden">
                                         <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                                             <input type="text" x-model="provinceSearch" x-ref="provSearch" placeholder="Cari provinsi..."
-                                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                                         </div>
                                         <div class="max-h-52 overflow-y-auto">
                                             <template x-if="filteredProvinces.length === 0">
                                                 <p class="px-4 py-3 text-sm text-gray-400 text-center">Tidak ditemukan</p>
                                             </template>
                                             <template x-for="prov in filteredProvinces" :key="prov.id">
-                                                <button type="button" @click="selectProvince(prov); open = false" class="w-full text-left px-4 py-3 text-sm hover:bg-green-50 transition" x-text="prov.name"></button>
+                                                <button type="button" @click="selectProvince(prov); open = false" class="w-full text-left px-4 py-3 text-sm hover:bg-amber-50 transition" x-text="prov.name"></button>
                                             </template>
                                         </div>
                                     </div>
@@ -370,14 +370,14 @@
                                     <div x-show="open" x-cloak @click.away="open = false" class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden">
                                         <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                                             <input type="text" x-model="citySearch" x-ref="citySearch" placeholder="Cari kota..."
-                                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                                         </div>
                                         <div class="max-h-52 overflow-y-auto">
                                             <template x-if="filteredCities.length === 0">
                                                 <p class="px-4 py-3 text-sm text-gray-400 text-center">Tidak ditemukan</p>
                                             </template>
                                             <template x-for="city in filteredCities" :key="city.id">
-                                                <button type="button" @click="selectCity(city); open = false" class="w-full text-left px-4 py-3 text-sm hover:bg-green-50 transition" x-text="city.name"></button>
+                                                <button type="button" @click="selectCity(city); open = false" class="w-full text-left px-4 py-3 text-sm hover:bg-amber-50 transition" x-text="city.name"></button>
                                             </template>
                                         </div>
                                     </div>
@@ -397,14 +397,14 @@
                                     <div x-show="open" x-cloak @click.away="open = false" class="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-100 rounded-xl shadow-xl z-50 overflow-hidden">
                                         <div class="p-2 border-b border-gray-50 bg-gray-50/50">
                                             <input type="text" x-model="kecamatanSearch" x-ref="kecSearch" placeholder="Cari kecamatan..."
-                                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-400 focus:outline-none placeholder-gray-300 font-medium">
+                                                   class="w-full px-3 py-2 text-xs bg-white border border-gray-200 rounded-lg focus:ring-2 focus:ring-amber-400 focus:outline-none placeholder-gray-300 font-medium">
                                         </div>
                                         <div class="max-h-52 overflow-y-auto">
                                             <template x-if="filteredKecamatan.length === 0">
                                                 <p class="px-4 py-3 text-sm text-gray-400 text-center">Tidak ditemukan</p>
                                             </template>
                                             <template x-for="kec in filteredKecamatan" :key="kec.id">
-                                                <button type="button" @click="selectKecamatan(kec); open = false; errors.kecamatan_id = '';" class="w-full text-left px-4 py-3 text-sm hover:bg-green-50 transition" x-text="kec.name"></button>
+                                                <button type="button" @click="selectKecamatan(kec); open = false; errors.kecamatan_id = '';" class="w-full text-left px-4 py-3 text-sm hover:bg-amber-50 transition" x-text="kec.name"></button>
                                             </template>
                                         </div>
                                     </div>
@@ -415,7 +415,7 @@
                         <div>
                             <label class="block text-sm font-bold text-gray-700 mb-2">Alamat Lengkap</label>
                             <textarea name="alamat_lengkap" rows="3" placeholder="Jl. Contoh No. 123, RT/RW 01/02..."
-                                      class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:outline-none transition placeholder-gray-300"
+                                      class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none transition placeholder-gray-300"
                                       @input="errors.alamat_lengkap = ''"
                                       required></textarea>
                             <template x-if="errors.alamat_lengkap">
@@ -455,7 +455,7 @@
                         </template>
                         <div class="flex justify-between text-sm">
                             <span class="text-gray-600">Ongkir</span>
-                            <span class="font-bold text-green-600" x-text="ongkirText"></span>
+                            <span class="font-bold text-amber-700" x-text="ongkirText"></span>
                         </div>
                         <hr class="border-gray-100">
                         <div class="flex justify-between items-end">
@@ -463,7 +463,7 @@
                                 <span class="font-bold text-gray-900 block">Total Pembayaran</span>
                                 <span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Mendapat <span x-text="Math.max(0, Math.floor((subtotal - rewardDiscount) / 10000))"></span> Poin</span>
                             </div>
-                            <span class="text-xl font-black text-green-600" x-text="'Rp' + formatCurrency(finalTotal)"></span>
+                            <span class="text-xl font-black text-amber-700" x-text="'Rp' + formatCurrency(finalTotal)"></span>
                         </div>
                     </div>
                 </div>
@@ -525,8 +525,8 @@
                         @foreach($methods as $method)
                         <label class="flex items-center p-4 border-2 rounded-xl cursor-pointer transition relative group"
                             :class="selectedMethod === '{{ $method['id'] }}' 
-                                        ? 'border-green-500 bg-green-50' 
-                                        : ({{ $method['is_cod'] ? 'isCodDisabled' : 'false' }} ? 'border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed' : 'border-gray-200 hover:border-green-300 bg-white')"
+                                        ? 'border-amber-500 bg-amber-50' 
+                                        : ({{ $method['is_cod'] ? 'isCodDisabled' : 'false' }} ? 'border-gray-200 bg-gray-50 opacity-50 cursor-not-allowed' : 'border-gray-200 hover:border-amber-300 bg-white')"
                             @click="if (!({{ $method['is_cod'] ? 'isCodDisabled' : 'false' }})) { selectedMethod = '{{ $method['id'] }}'; errors.metode_pembayaran = ''; }">
                             
                             <div class="flex items-center gap-4 flex-1">
@@ -554,7 +554,7 @@
                                     @endif
                                 </div>
 
-                                <div x-show="selectedMethod === '{{ $method['id'] }}'" class="text-green-600 flex-shrink-0">
+                                <div x-show="selectedMethod === '{{ $method['id'] }}'" class="text-amber-700 flex-shrink-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
                                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                     </svg>
@@ -571,7 +571,7 @@
                 </div>
 
                 {{-- Tombol Submit --}}
-                <button type="button" @click="openConfirmModal()" class="w-full bg-green-600 text-white font-bold py-4 px-6 rounded-xl hover:bg-green-700 shadow-lg shadow-green-100 transition duration-200" data-aos="fade-left" data-aos-delay="200">
+                <button type="button" @click="openConfirmModal()" class="w-full bg-amber-700 text-white font-bold py-4 px-6 rounded-xl hover:bg-amber-800 shadow-lg shadow-amber-100 transition duration-200" data-aos="fade-left" data-aos-delay="200">
                     Buat Pesanan
                 </button>
             </div>

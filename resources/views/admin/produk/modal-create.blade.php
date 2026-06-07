@@ -89,7 +89,7 @@
                     </div>
                 @endif
 
-                <div class="mb-8 bg-green-50 border border-green-100 rounded-2xl p-4 flex items-center gap-3 text-green-700">
+                <div class="mb-8 bg-amber-50 border border-amber-100 rounded-2xl p-4 flex items-center gap-3 text-amber-800">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -102,7 +102,7 @@
                         
                         <div class="grid grid-cols-4 gap-4">
                             <template x-for="(photo, index) in newPhotos" :key="index">
-                                <div class="relative aspect-square rounded-2xl overflow-hidden border-2 border-green-500 shadow-sm animate-pulse-once">
+                                <div class="relative aspect-square rounded-2xl overflow-hidden border-2 border-amber-500 shadow-sm animate-pulse-once">
                                     <img :src="photo.preview" class="w-full h-full object-cover">
                                     
                                     <button type="button" @click="removePhoto(index)" 
@@ -116,7 +116,7 @@
 
                             <label x-show="newPhotos.length < 4" 
                                 class="aspect-square flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-2xl cursor-pointer hover:bg-gray-50 transition group">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 group-hover:text-green-500 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 group-hover:text-amber-500 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                                 </svg>
                                 <span class="text-[10px] text-gray-400 mt-1 font-bold">Tambah</span>
@@ -132,13 +132,13 @@
                         </div>
                         
                         <p class="text-[10px] text-gray-400 font-medium ml-1">
-                            * Foto berbingkai <span class="text-green-500 font-bold">Hijau</span> adalah foto yang akan di-upload.
+                            * Foto berbingkai <span class="text-amber-500 font-bold">Hijau</span> adalah foto yang akan di-upload.
                         </p>
                     </div>
 
                     <div class="space-y-2">
                         <label class="text-sm font-bold text-gray-700 ml-1">Nama Produk <span class="text-red-500">*</span></label>
-                        <input type="text" name="nama_produk" value="{{ old('nama_produk') }}"placeholder="cth. Selada Romaine" required class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 transition outline-none text-sm">
+                        <input type="text" name="nama_produk" value="{{ old('nama_produk') }}"placeholder="cth. Selada Romaine" required class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 transition outline-none text-sm">
                     </div>
 
                     <div class="space-y-2"
@@ -151,7 +151,7 @@
                         <div class="relative">
                             <button type="button"
                                 @click="openKategori = !openKategori"
-                                class="w-full px-5 py-4 bg-gray-50 rounded-2xl focus:ring-2 focus:ring-green-500 transition outline-none text-sm flex items-center justify-between gap-3 hover:bg-gray-100 font-medium text-gray-700">
+                                class="w-full px-5 py-4 bg-gray-50 rounded-2xl focus:ring-2 focus:ring-amber-500 transition outline-none text-sm flex items-center justify-between gap-3 hover:bg-gray-100 font-medium text-gray-700">
                                 <span x-text="selectedKategori"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 transition-transform duration-200 shrink-0" :class="openKategori ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -176,8 +176,8 @@
                                 <template x-for="cat in kategoriList" :key="cat">
                                     <button type="button"
                                         @click="selectedKategori = cat; openKategori = false"
-                                        class="w-full text-left px-5 py-3 text-sm font-bold text-gray-600 hover:bg-green-50 hover:text-green-600 transition"
-                                        :class="selectedKategori === cat ? 'bg-green-50 text-green-600' : ''"
+                                        class="w-full text-left px-5 py-3 text-sm font-bold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition"
+                                        :class="selectedKategori === cat ? 'bg-amber-50 text-amber-700' : ''"
                                         x-text="cat">
                                     </button>
                                 </template>
@@ -188,12 +188,12 @@
 
                     <div class="space-y-2">
                         <label class="text-sm font-bold text-gray-700 ml-1">Harga (Rp) <span class="text-red-500">*</span></label>
-                        <input type="number" name="harga" min="0" value="{{ old('harga') }}" placeholder="cth. 15000" required class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 transition outline-none text-sm">
+                        <input type="number" name="harga" min="0" value="{{ old('harga') }}" placeholder="cth. 15000" required class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 transition outline-none text-sm">
                     </div>
 
                     <div class="space-y-2">
                         <label class="text-sm font-bold text-gray-700 ml-1">Stok <span class="text-red-500">*</span></label>
-                        <input type="number" name="jumlah_stok" min="0" value="{{ old('jumlah_stok') }}" placeholder="cth. 50" required class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 transition outline-none text-sm">
+                        <input type="number" name="jumlah_stok" min="0" value="{{ old('jumlah_stok') }}" placeholder="cth. 50" required class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 transition outline-none text-sm">
                     </div>
 
                     <div class="space-y-2"
@@ -206,7 +206,7 @@
                         <div class="relative">
                             <button type="button"
                                 @click="openUnit = !openUnit"
-                                class="w-full px-5 py-4 bg-gray-50 rounded-2xl focus:ring-2 focus:ring-green-500 transition outline-none text-sm flex items-center justify-between gap-3 hover:bg-gray-100 font-medium text-gray-700">
+                                class="w-full px-5 py-4 bg-gray-50 rounded-2xl focus:ring-2 focus:ring-amber-500 transition outline-none text-sm flex items-center justify-between gap-3 hover:bg-gray-100 font-medium text-gray-700">
                                 <span x-text="selectedUnit"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 transition-transform duration-200 shrink-0" :class="openUnit ? 'rotate-180' : ''" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -231,8 +231,8 @@
                                 <template x-for="unit in unitList" :key="unit">
                                     <button type="button"
                                         @click="selectedUnit = unit; openUnit = false"
-                                        class="w-full text-left px-5 py-3 text-sm font-bold text-gray-600 hover:bg-green-50 hover:text-green-600 transition"
-                                        :class="selectedUnit === unit ? 'bg-green-50 text-green-600' : ''"
+                                        class="w-full text-left px-5 py-3 text-sm font-bold text-gray-600 hover:bg-amber-50 hover:text-amber-700 transition"
+                                        :class="selectedUnit === unit ? 'bg-amber-50 text-amber-700' : ''"
                                         x-text="unit">
                                     </button>
                                 </template>
@@ -243,12 +243,12 @@
 
                     <div class="space-y-2">
                         <label class="text-sm font-bold text-gray-700 ml-1">Berat (gram)</label>
-                        <input type="number" name="berat" min="0" value="{{ old('berat') }}" placeholder="cth. 250" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 transition outline-none text-sm">
+                        <input type="number" name="berat" min="0" value="{{ old('berat') }}" placeholder="cth. 250" class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 transition outline-none text-sm">
                     </div>
 
                     <div class="md:col-span-2 space-y-2">
                         <label class="text-sm font-bold text-gray-700 ml-1">Deskripsi</label>
-                        <textarea name="deskripsi" rows="3" placeholder="Deskripsi singkat..." class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 transition outline-none text-sm resize-none"></textarea>
+                        <textarea name="deskripsi" rows="3" placeholder="Deskripsi singkat..." class="w-full px-5 py-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-amber-500 transition outline-none text-sm resize-none"></textarea>
                     </div>
                 </div>
 
@@ -258,7 +258,7 @@
                     </button>
                     <button type="submit" 
                         :disabled="isSubmitting"
-                        class="px-8 py-4 bg-green-600 text-white font-bold rounded-2xl shadow-lg shadow-green-100 hover:bg-green-700 transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+                        class="px-8 py-4 bg-amber-700 text-white font-bold rounded-2xl shadow-lg shadow-amber-100 hover:bg-amber-800 transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
                         
                         <svg x-show="isSubmitting" class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

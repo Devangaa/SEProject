@@ -17,14 +17,14 @@
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
             <li class="inline-flex items-center">
                 @if(auth()->check() && auth()->user()->role == 'admin')
-                <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2">
+                <a href="{{ route('admin.dashboard') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                     Kembali ke Dasboard
                 </a>
                 @else
-                <a href="{{ route('landing') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2">
+                <a href="{{ route('landing') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
@@ -37,7 +37,7 @@
 
     {{-- Bagian: Header Halaman --}}
     <div class="mb-8">
-        <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
+        <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase">
             Data Akun Anda
         </span>
         <h1 class="text-3xl font-extrabold text-gray-900 mt-4 tracking-tight">Data Akun</h1>
@@ -47,11 +47,11 @@
     {{-- Bagian: Tab Navigasi --}}
     <div class="bg-white p-1.5 rounded-2xl shadow-sm border border-gray-100 flex w-full mb-8">
         <a href="{{ route('profile') }}" 
-           class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-center {{ Route::is('profile') ? 'bg-green-600 text-white shadow-md' : 'text-gray-500 hover:text-gray-700' }}">
+           class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-center {{ Route::is('profile') ? 'bg-amber-700 text-white shadow-md' : 'text-gray-500 hover:text-gray-700' }}">
             Lihat Data Akun
         </a>
         <a href="{{ route('profile.edit') }}" 
-           class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-center {{ Route::is('profile.edit') ? 'bg-green-600 text-white shadow-md' : 'text-gray-400 hover:text-gray-600' }}">
+           class="flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 text-center {{ Route::is('profile.edit') ? 'bg-amber-700 text-white shadow-md' : 'text-gray-400 hover:text-gray-600' }}">
             Ubah Data Akun
         </a>
     </div>
@@ -59,7 +59,7 @@
     {{-- Bagian: Kartu Informasi Akun --}}
     <div class="bg-white rounded-[2rem] shadow-sm border border-gray-100 overflow-hidden w-full">
         <div class="p-8 border-b border-gray-200 flex items-center gap-4">
-            <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center border border-green-100 text-green-600">
+            <div class="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center border border-amber-100 text-amber-700">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>

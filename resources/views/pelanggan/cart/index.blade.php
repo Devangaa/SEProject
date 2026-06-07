@@ -17,7 +17,7 @@
         <nav class="flex mb-8" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
-                    <a href="{{ route('produk.index') }}" class="text-sm font-bold text-gray-400 hover:text-green-600 transition-colors flex items-center gap-2">
+                    <a href="{{ route('produk.index') }}" class="text-sm font-bold text-gray-400 hover:text-amber-700 transition-colors flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                         </svg>
@@ -28,7 +28,7 @@
         </nav>
 
         <div class="mb-8">
-            <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full uppercase">
+            <span class="px-3 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase">
                 Keranjang Belanja
             </span>
             <h1 class="text-3xl font-extrabold text-gray-900 mt-4 tracking-tight">Keranjang Anda</h1>
@@ -37,14 +37,14 @@
 
         @if($cartItems->isEmpty())
             <div class="bg-white rounded-[2.5rem] p-16 text-center shadow-sm border border-gray-100">
-                <div class="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-green-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="w-24 h-24 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-6 border border-amber-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                     </svg>
                 </div>
                 <h2 class="text-2xl font-black text-gray-900 mb-2">Keranjangmu masih kosong</h2>
                 <p class="text-gray-500 mb-8 font-medium">Ayo mulai belanja produk segar dari Greenhouse HydroMart!</p>
-                <a href="{{ route('produk.index') }}" class="inline-flex items-center px-10 py-4 bg-green-600 text-white font-bold rounded-2xl hover:bg-green-700 transition shadow-lg shadow-green-100 active:scale-95">
+                <a href="{{ route('produk.index') }}" class="inline-flex items-center px-10 py-4 bg-amber-700 text-white font-bold rounded-2xl hover:bg-amber-800 transition shadow-lg shadow-amber-100 active:scale-95">
                     Mulai Belanja
                 </a>
             </div>
@@ -56,7 +56,7 @@
                     {{-- Daftar Produk --}}
                     <div class="lg:col-span-2 space-y-4">
                         @foreach($cartItems as $index => $item)
-                            <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-sm border border-gray-100 group transition-all hover:shadow-md hover:border-green-100 relative" 
+                            <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-sm border border-gray-100 group transition-all hover:shadow-md hover:border-amber-100 relative" 
                                  x-data="{ 
                                     qty: {{ $item->jumlah }}, 
                                     price: {{ $item->product->harga }},
@@ -74,7 +74,7 @@
                                                    class="peer hidden"
                                                    @change="updateSummary()"
                                                    @if($item->product->jumlah_stok <= 0) disabled @endif>
-                                            <div class="w-6 h-6 border-2 border-gray-200 rounded-lg flex items-center justify-center transition-all peer-checked:bg-green-600 peer-checked:border-green-600 peer-disabled:bg-gray-100 peer-disabled:border-gray-100 peer-checked:[&_svg]:opacity-100">
+                                            <div class="w-6 h-6 border-2 border-gray-200 rounded-lg flex items-center justify-center transition-all peer-checked:bg-amber-700 peer-checked:border-amber-700 peer-disabled:bg-gray-100 peer-disabled:border-gray-100 peer-checked:[&_svg]:opacity-100">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white opacity-0 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                                                 </svg>
@@ -118,8 +118,8 @@
                                             <p class="text-xs font-black text-gray-700 leading-none">Rp{{ number_format($item->product->harga, 0, ',', '.') }}</p>
                                         </div>
                                         <div class="space-y-0.5">
-                                            <p class="text-[9px] text-gray-400 font-bold uppercase text-green-600/70">Subtotal</p>
-                                            <p class="text-sm sm:text-base font-black text-green-600 leading-none">Rp<span x-text="formatNumber(qty * price)"></span></p>
+                                            <p class="text-[9px] text-gray-400 font-bold uppercase text-amber-700/70">Subtotal</p>
+                                            <p class="text-sm sm:text-base font-black text-amber-700 leading-none">Rp<span x-text="formatNumber(qty * price)"></span></p>
                                         </div>
                                     </div>
 
@@ -129,7 +129,7 @@
                                         {{-- Quantity Control --}}
                                         <div class="flex items-center bg-gray-50 rounded-xl p-1 border border-gray-100">
                                             <button type="button" @click="decrement()" 
-                                                    class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-gray-400 hover:text-green-600 hover:bg-white hover:shadow-sm rounded-lg transition-all disabled:opacity-30"
+                                                    class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-gray-400 hover:text-amber-700 hover:bg-white hover:shadow-sm rounded-lg transition-all disabled:opacity-30"
                                                     :disabled="qty <= 1 || loading">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" /></svg>
                                             </button>
@@ -138,7 +138,7 @@
                                                    class="w-10 text-center bg-transparent border-none focus:ring-0 text-sm font-black text-gray-900 px-0"
                                                    :disabled="loading">
                                             <button type="button" @click="increment()" 
-                                                    class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-gray-400 hover:text-green-600 hover:bg-white hover:shadow-sm rounded-lg transition-all disabled:opacity-30"
+                                                    class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-gray-400 hover:text-amber-700 hover:bg-white hover:shadow-sm rounded-lg transition-all disabled:opacity-30"
                                                     :disabled="qty >= {{ $item->product->jumlah_stok }} || loading">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
                                             </button>
@@ -152,7 +152,7 @@
                     {{-- Ringkasan Pesanan --}}
                     <div class="lg:col-span-1 lg:sticky lg:top-24 sticky bottom-4 z-[40]">
                         <div class="bg-white rounded-3xl lg:rounded-[2rem] p-4 lg:p-8 shadow-2xl lg:shadow-sm border border-gray-100 overflow-hidden transition-all duration-300">
-                            <div class="hidden lg:block absolute top-0 right-0 w-32 h-32 bg-green-50 rounded-full -mr-16 -mt-16 opacity-50"></div>
+                            <div class="hidden lg:block absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-full -mr-16 -mt-16 opacity-50"></div>
                             
                             <h3 class="hidden lg:block text-xl font-black text-gray-900 mb-6 relative">Ringkasan Pesanan</h3>
                             
@@ -164,13 +164,13 @@
                             <div class="flex lg:flex-col items-center lg:items-start justify-between gap-4 relative">
                                 <div class="lg:pt-6 lg:border-t lg:border-gray-100 lg:mb-10 w-full lg:w-auto">
                                     <p class="text-[9px] lg:text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1 leading-none">Total Pembayaran</p>
-                                    <div class="text-xl lg:text-3xl font-black text-green-600 leading-none">
+                                    <div class="text-xl lg:text-3xl font-black text-amber-700 leading-none">
                                         Rp<span x-text="formatNumber(totalPrice)"></span>
                                     </div>
                                 </div>
 
                                 <button type="submit" 
-                                        class="flex-grow lg:w-full py-3.5 lg:py-5 px-8 bg-green-600 text-white font-black rounded-2xl hover:bg-green-700 transition shadow-lg shadow-green-100 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed group active:scale-95 text-sm lg:text-base whitespace-nowrap"
+                                        class="flex-grow lg:w-full py-3.5 lg:py-5 px-8 bg-amber-700 text-white font-black rounded-2xl hover:bg-amber-800 transition shadow-lg shadow-amber-100 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed group active:scale-95 text-sm lg:text-base whitespace-nowrap"
                                         :disabled="selectedCount === 0">
                                     <span class="hidden lg:inline">Lanjut ke Checkout</span>
                                     <span class="lg:hidden whitespace-nowrap text-xs">Checkout (<span x-text="selectedCount"></span>)</span>

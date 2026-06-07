@@ -87,7 +87,7 @@
 
                         <template x-if="review.balasan">
                             <div class="p-3 mt-4 bg-gray-50 rounded-xl border border-gray-100">
-                                <span class="text-[10px] font-black text-green-600 uppercase tracking-widest bg-green-100 px-2 py-0.5 rounded-md">Balasan Admin</span>
+                                <span class="text-[10px] font-black text-amber-700 uppercase tracking-widest bg-amber-100 px-2 py-0.5 rounded-md">Balasan Admin</span>
                                 <p class="text-sm text-gray-600 mt-2" x-text="review.balasan"></p>
                             </div>
                         </template>
